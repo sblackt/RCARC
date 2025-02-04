@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Renfrew County Amateur Radio Club</title>
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
+                    <li><a href="history.html" class="nav-link active">HISTORY</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+                <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
+    </div>
+
+    <main>
+        <div class="historyintro-content">
+        <div class="historyintro-section">
+            <div class="about-text">
+                <h1>HISTORY</h1>
+                <p>December 2, 1980, the Club was formed and incorporated under the name "Renfrew County Amateur Radio Club." For reasons unknown, the club became inactive in the early part of 1983. It stayed inactive until June 24, 1991, when VE3BV Ed Dobenko organized a meeting at the National Trust Building in Pembroke. The purpose of this meeting was to re-establish the amateur radio club and to develop a usable linking network system for Renfrew County. The number of amateurs who attended that meeting in 1991 was approximately forty. With many thanks to all those amateurs who were present, the club was re-formed as we know it today, and the decision was made to continue with the original club name RCARC.</p>
+            </div>
+            <div class="join-button-container">
+                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+            </div>
+        </div>
+    </div>
+        <div class="content-wrapper">
+            <section class="history-section">
+                <h1>REPEATER HISTORY</h1>
+                
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab(event, 've3nrr')">VE3NRR</button>
+                    <button class="tab-button" onclick="openTab(event, 'va3rbw')">VA3RBW</button>
+                    <button class="tab-button" onclick="openTab(event, 'va3zrr')">VA3ZRR</button>
+                    <button class="tab-button" onclick="openTab(event, 'va3ucr')">VA3UCR</button>
+                </div>
+
+                <!-- VE3NRR Tab Content -->
+                <div id="ve3nrr" class="tab-content active">
+                    <div class="history-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">1973</div>
+                                <div class="timeline-content">
+                                    <p>Only VE3STP served the upper Ottawa Valley. Mobile operation was marginal in Deep River, with reliable access only at the waterfront. Base station operation with a YAGI provided good connectivity.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">1973</div>
+                                <div class="timeline-content">
+                                    <p>Cliff Brown VE3AGN obtained permission to use 146.760 for a new repeater in Deep River, receiving the callsign VE3NRR (North Renfrew Repeater).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="construction-phase">
+                            <h2>Initial Installation</h2>
+                            <p>The first major milestone was the installation at the Steam Plant (current location of the Santa Fe restaurant). A dedicated team including:</p>
+                            <ul class="team-list">
+                                <li>Cliff Brown VE3AGN</li>
+                                <li>Norm Gentner VE3UE</li>
+                                <li>Jack VE3YX</li>
+                                <li>Ed Dobenko VE3BV</li>
+                            </ul>
+                            <p>The team installed 7 sections of Golden Nugget tower on the Steam Plant roof. Cliff, with assistance, constructed a 6 cavity duplexer from copper sewer pipe and brass stock, achieving 100 dB of isolation using an HP network analyzer.</p>
+                        </div>
+
+                        <div class="image-container">
+                            <img src="img/nrrlocation.png" alt="Forestry Site Location" />
+                            <p class="image-caption">The Forestry site location for VE3NRR</p>
+                        </div>
+
+                        <div class="location-history">
+                            <h2>Relocations</h2>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">Steam Plant Era</div>
+                                    <div class="timeline-content">
+                                        <p>Initial installation with GE progress line repeater and custom duplexer.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">Forestry Site</div>
+                                    <div class="timeline-content">
+                                        <p>Relocated with a Hamtronics solid state repeater kit, assembled by Jack and Ed. Featured a copper pipe 4 dipole array on a 32 ft aluminum mast.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">CHRO Site</div>
+                                    <div class="timeline-content">
+                                        <p>Final relocation to CHRO building basement, with antenna mounted approximately 375 ft up the tower by Doug Westacott VE6SI.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="va3rbw" class="tab-content">
+                    <div class="history-content">
+                        <p>When the Nuclear Emergency Plan for Deep River and Laurentian Hills was started, our ARES group was incorporated in the plan. To help with local communications, it was decided to install a local repeater. A JEPP grant provided funds to purchase a Hamtronics repeater, a Sinclair Reslok duplexer, a 68 ft DMX tower and a Til-Tek TA-150 4 bay antenna.</p>
+
+                        <p>The repeater was initially installed at the Laurentian Hills fire hall with the antenna shared with the Fire Department for communications and paging. However, the site's location at the bottom of a shallow valley was not ideal for coverage.</p>
+
+                        <div class="image-container">
+                            <img src="img/shack 1.jpg" alt="Original shack with Ham and FD equipment" />
+                            <p class="image-caption">The original shack with both Ham and FD equipment before the new construction</p>
+                        </div>
+
+                        <p>An opportunity arose when the OPP abandoned their 200 ft tower site on a high hill nearby off Bass Lake Rd. George Sansom VE3GWS, an OPP tech in charge of the site, provided access to the facility. This move would prove to be a significant upgrade for the repeater's coverage.</p>
+
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">1996</div>
+                                <div class="timeline-content">Installation of a 1500W UPS system from AECL's Accelerator Physics department</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2004</div>
+                                <div class="timeline-content">Construction of a new shack by the ARES group</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2007</div>
+                                <div class="timeline-content">Installation of a new 250 ft. tower after safety inspection</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2012</div>
+                                <div class="timeline-content">Upgrade to MSR2000 VHF repeater system</div>
+                            </div>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/shack2.jpg" alt="Shack build" />
+                            <p class="image-caption">New shack being built</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/shackdone.jpg" alt="New Shack" />
+                            <p class="image-caption">New shack done</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/towerbuild.jpg" alt="New tower build" />
+                            <p class="image-caption">New Tower Going Up</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/current shack.jpg" alt="Current repeater setup" />
+                            <p class="image-caption">Current repeater setup with link radio and APRS equipment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="va3zrr" class="tab-content">
+                    <div class="history-content">
+                        <p>Content for VA3ZRR repeater history will go here...</p>
+                    </div>
+                </div>
+
+                <div id="va3ucr" class="tab-content">
+                    <div class="history-content">
+                        <p>Content for VA3UCR repeater history will go here...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let content of tabContents) {
+                content.classList.remove("active");
+            }
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let button of tabButtons) {
+                button.classList.remove("active");
+            }
+
+            // Show the selected tab content and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+      
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let content of tabContents) {
+                content.classList.remove("active");
+            }
+
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let button of tabButtons) {
+                button.classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+   
+    </script>
+     <!-- The Modal -->
+     <div id="membershipModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Membership Application</h2>
+            
+            <form id="membershipForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="callsign">Callsign</label>
+                    <input type="text" id="callsign">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <textarea id="interests" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Submit Application
+                    <div class="spinner"></div>
+                </button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+
+    </div>
+    <script src="events.js"></script>
+    <script src="jointheclub.js"></script>
+</body>
+</html>

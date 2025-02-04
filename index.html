@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renfrew County Amateur Radio Club</title>
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
+                    <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+                <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
+    </div>
+
+    <main>
+        <div class="content-wrapper">
+            <div class="welcome-container">
+                <section class="welcome-section">
+                    <h1>WELCOME!</h1>
+                    <p class="welcome-text">
+                        Thanks for checking out the Renfrew County Amateur Radio Club. We are a group of 
+                        radio amateurs located in Renfrew county who meet regularly to discuss all aspects of 
+                        the hobby. We have members interested in contesting, homebrew, digital modes, APRS, 
+                        repeater building, pico balloons, Winlink, emergency communications and lots more!
+                    </p>
+                </section>
+                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+            </div>
+
+            <div class="info-container">
+                <section class="events-section">
+                    <h2>UPCOMING EVENTS</h2>
+                    <div class="dotted-line"></div>
+                    <div class="events-list">
+                        <!-- Events will be populated here automatically by events.js -->
+                    </div>
+                </section>
+
+                <section class="nets-section">
+                   <div class="netheader"> <h2>NETS</h2>
+                    <a href="netinfo.html" class="netinfo">Net Info</a>
+                  </div>
+                    <div class="dotted-line"></div>
+                    <p>CLUB NET - MONDAYS AT 7:30PM ON ALL CLUB REPEATERS</p>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <!-- The Modal -->
+    <div id="membershipModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Membership Application</h2>
+            
+            <form id="membershipForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="callsign">Callsign</label>
+                    <input type="text" id="callsign">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <textarea id="interests" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Submit Application
+                    <div class="spinner"></div>
+                </button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+
+    </div>
+    <script src="events.js"></script>
+    <script src="jointheclub.js"></script>
+</body>
+</html>

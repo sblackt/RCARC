@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Renfrew County Amateur Radio Club</title>
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="about.html" class="nav-link active">ABOUT</a></li>
+                    <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+                <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
+    </div>
+
+    <main class="about-content">
+        <div class="about-section">
+            <div class="about-text">
+                <h1>ABOUT</h1>
+                <p>The Renfrew County Amateur Radio Club Inc. is the official Radio Amateurs of Canada affiliated club for Renfrew County in Ontario, Canada.</p>
+            </div>
+            <div class="join-button-container">
+                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+            </div>
+        </div>
+
+        <section class="executive-section">
+            <h2>EXECUTIVE</h2>
+            <div class="executive-list">
+                <div class="executive-item">
+                    <span class="executive-title">President</span>
+                    <span>Charles Gale VE3XCC</span>
+                </div>
+                <div class="executive-item">
+                    <span class="executive-title">Vice President</span>
+                    <span>Yvonna Adam VE3RYA</span>
+                </div>
+                <div class="executive-item">
+                    <span class="executive-title">Treasurer</span>
+                    <span>Ean Robertson VE3TLG</span>
+                </div>
+                <div class="executive-item">
+                    <span class="executive-title">Secretary</span>
+                    <span>Steve White VA3WAV</span>
+                </div>
+                <div class="executive-item">
+                    <span class="executive-title">Past-President</span>
+                    <span>Robert MacFarlane VA3AGN</span>
+                </div>
+                <div class="executive-item">
+                    <span class="executive-title">Technical Director</span>
+                    <span>Mike St. Amand VE3ODJ</span>
+                </div>
+                <div class="executive-item">
+                    <span class="executive-title">Emerg Comms Director</span>
+                    <span>Bob Howard VE3YX</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="repeaters-section">
+            <h2>REPEATERS</h2>
+            <p>The Renfrew County Amateur Radio Club is located in the County of Renfrew in the province of Ontario, Canada. We own and maintain four 2 metre repeaters and one 70 cm repeater in the area:</p>
+            
+            <table class="repeaters-table">
+                <thead>
+                    <tr>
+                        <th>Repeater</th>
+                        <th>Frequency</th>
+                        <th>Location</th>
+                        <th>Packet Node</th>
+                        <th>Packet BBS</th>
+                        <th>Packet Freq.</th>
+                        <th>APRS</th>
+                        <th>APRS Freq.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VE3NRR</td>
+                        <td>146.760 -</td>
+                        <td>Pembroke</td>
+                        <td>VE3NRR-7 (KA)</td>
+                        <td>VE3NRR-1</td>
+                        <td>145.010</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>VE3NRR</td>
+                        <td>448.025 -</td>
+                        <td>Pembroke</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>VE3UCR</td>
+                        <td>145.430 -</td>
+                        <td>Foymount</td>
+                        <td>VE3UCR-7 (KA)</td>
+                        <td>VE3UCR-1</td>
+                        <td>145.010</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>VA3RBW</td>
+                        <td>146.790 -</td>
+                        <td>Point Alexander</td>
+                        <td>VA3RBW-7 (KA)</td>
+                        <td>VA3RBW-1</td>
+                        <td>145.010</td>
+                        <td>VA3RBW-3</td>
+                        <td>144.390</td>
+                    </tr>
+                    <tr>
+                        <td>VA3ZRR</td>
+                        <td>147.120 +</td>
+                        <td>Renfrew</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="repeater-notes">
+                <p>VE3ZRR is hard linked to VE3NRR. The other repeaters can be linked with DTMF codes to VE3NRR.</p>
+                <p>VE3NRR VHF has an IRLP node (2520). Node Status:</p>
+                <p>Note that the IRLP can only be used on NRR VHF. It won't work through the links or the UHF.</p>
+            </div>
+
+            <div class="map-container">
+                <img src="img/RenfrewMap2.jpg" alt="Repeater Coverage Map">
+            </div>
+        </section>
+    </main>
+     <!-- The Modal -->
+     <div id="membershipModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Membership Application</h2>
+            
+            <form id="membershipForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="callsign">Callsign</label>
+                    <input type="text" id="callsign">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <textarea id="interests" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Submit Application
+                    <div class="spinner"></div>
+                </button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+
+    </div>
+    <script src="events.js"></script>
+    <script src="jointheclub.js"></script>
+</body>
+</html>

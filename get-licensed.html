@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Licensed - Renfrew County Amateur Radio Club</title>
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
+                    <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+                <a href="get-licensed.html" class="license-button active">GET LICENSED</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
+    </div>
+
+    <main class="licensed-content">
+        <div class="licensed-section">
+            <div class="licensed-text">
+                <h1>GET LICENSED</h1>
+                
+                <p>Getting licensed for Amateur Radio is a easy as one 100 multiple choice question exam. Scoring 70% gets you a <strong>Basic</strong> license with use of frequencies above 30mhz and scoring 80% or more gets you <strong>Basic with Honours</strong> and the use of the full Amateur Radio frequency bands in Canada.</p>
+
+                <div class="examiner-info">
+                    <p>If you are ready to take an exam in the Renfrew County area, contact our Examiner:<br>
+                    <a href="mailto:va3wav@gmail.com">Steve White VA3WAV</a></p>
+                </div>
+
+                <div class="study-resources">
+                    <p>If you want to know how to study for the exam, take a look at the great resources listed on this site:<br>
+                    <a href="https://lid.radio/ham-study-stuff/" target="_blank">lid.radio/ham-study-stuff/</a></p>
+                </div>
+
+                <p>The regulatory body ISED also has practice exams you can take any time.<br>
+                <a href="https://ised-isde.canada.ca/site/amateur-radio-operator-certificate-services/en/amateur-radio-exam-generator" target="_blank">Practice Exams</a></p>
+            </div>
+            
+            <div class="join-button-container">
+                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+            </div>
+        </div>
+    </main>
+     <!-- The Modal -->
+     <div id="membershipModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Membership Application</h2>
+            
+            <form id="membershipForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="callsign">Callsign</label>
+                    <input type="text" id="callsign">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <textarea id="interests" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Submit Application
+                    <div class="spinner"></div>
+                </button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+
+    </div>
+    <script src="events.js"></script>
+    <script src="jointheclub.js"></script>
+</body>
+</html>
