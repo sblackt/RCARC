@@ -43,7 +43,7 @@
         </div>
     </div>
         <div class="content-wrapper">
-            <section class="history-section">
+            <section class="history-section" id="repeater-history">
                 <h1>REPEATER HISTORY</h1>
                 
                 <div class="tabs">
@@ -167,13 +167,20 @@
 
                 <div id="va3zrr" class="tab-content">
                     <div class="history-content">
-                        <p>Content for VA3ZRR repeater history will go here...</p>
+                        <p>VA3ZRR repeater history coming soon</p>
                     </div>
                 </div>
 
                 <div id="va3ucr" class="tab-content">
                     <div class="history-content">
-                        <p>Content for VA3UCR repeater history will go here...</p>
+                        <h2>Early History</h2>
+                        <p>The VE3UCR repeater system originated in the summer of 1988 when a group of amateur radio operators, including VE3ES, UE, MJG, OSD, JCH, and WQ, installed a temporary digipeater at Foymount under the call VE3NRR. Recognizing its potential, they secured the VE3UCR call sign in February 1989. Initially, the system used a Kenwood TR-7200 running 15 watts into a four-bay collinear antenna, linked via a NET/ROM-upgraded MFJ-1270 TNC. This setup quickly proved successful, prompting expansion plans.</p>
+
+                            <p>By June 1991, the group, with assistance from VE3KXR and VE3BDJ, established a new repeater on 444.085 MHz, running 12 watts into a four-bay dipole. To enhance coverage, they secured a two-acre site at an elevation of 1,725 feet above sea level, reportedly one of the highest accessible locations in Ontario. Plans included erecting a 120-foot commercial tower, significantly improving reach. The site benefited from paved road access and hydro, ensuring reliable year-round operation.</p>
+                            
+                            <p>The repeater system continued to expand, linking VE3NRR (146.760 MHz) and VE3RHI (146.910 MHz) into the network, with VE3MPC in Ottawa poised to join. Operators also aimed to install a 2-meter repeater for even wider coverage on 147.33 MHz. Work on the tower site progressed steadily, with ground anchors, cement bases, and underground conduit being installed throughout late 1991. Enthusiastic volunteers coordinated work parties, overcoming challenges such as trenching through rocky terrain.</p>
+                            
+                            <p>By late October 1991, major infrastructure components were in place, including a new shack with hydro service. The site was now well-positioned for long-term growth. With the VE3UCR system linking key Ontario repeaters, it became a vital hub for regional amateur radio operations. The project's success was driven by dedicated operators who invested time, resources, and technical expertise, making VE3UCR a prominent and well-connected repeater system in Eastern Ontario.</p>
                     </div>
                 </div>
             </section>
@@ -212,6 +219,12 @@
 
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            
+            document.getElementById('repeater-history').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+            })
+            
         }
    
     </script>

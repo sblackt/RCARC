@@ -8,16 +8,16 @@ class EventManager {
                 // Add dates and locations for each breakfast
                 events: [
                     { date: '2025-02-08', location: 'BEST WESTERN PEMBROKE' },
-                    { date: '2025-03-06', location: 'TBD' },
-                    { date: '2025-04-03', location: 'TBD' },
-                    { date: '2025-05-01', location: 'TBD' },
-                    { date: '2025-06-05', location: 'TBD' },
-                    { date: '2025-07-03', location: 'TBD' },
-                    { date: '2025-08-07', location: 'TBD' },
-                    { date: '2025-09-04', location: 'TBD' },
-                    { date: '2025-10-02', location: 'TBD' },
-                    { date: '2025-11-06', location: 'TBD' },
-                    { date: '2025-12-04', location: 'TBD' }
+                    { date: '2025-03-08', location: 'Bears Den, Deep River' },
+                    { date: '2025-04-12', location: 'TBD' },
+                    { date: '2025-05-10', location: 'TBD' },
+                    { date: '2025-06-14', location: 'TBD' },
+                    { date: '2025-07-12', location: 'TBD' },
+                    { date: '2025-08-09', location: 'TBD' },
+                    { date: '2025-09-13', location: 'TBD' },
+                    { date: '2025-10-11', location: 'TBD' },
+                    { date: '2025-11-08', location: 'TBD' },
+                    { date: '2025-12-13', location: 'TBD' }
                 ]
             },
             meeting: {
@@ -49,6 +49,10 @@ class EventManager {
                     { date: '2025-02-27', topic: 'SDR Programming' },
                     { date: '2025-03-13', topic: 'Digital Modes' },
                     { date: '2025-03-27', topic: 'Antenna Building' },
+                    { date: '2025-04-10', topic: 'Raspberry Pi' },
+                    { date: '2025-04-24', topic: 'Station Automation' },
+                    { date: '2025-05-08', topic: 'DMR Programming' },
+                    { date: '2025-05-22', topic: 'RF Design Basics' },
                     { date: '2025-04-10', topic: 'Raspberry Pi' },
                     { date: '2025-04-24', topic: 'Station Automation' },
                     { date: '2025-05-08', topic: 'DMR Programming' },

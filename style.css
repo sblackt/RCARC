@@ -11,6 +11,14 @@ body {
     color: #4b3e36;
     line-height: 1.6;
 }
+.link{
+    text-transform: none;
+    color: #4b3e36;
+    text-decoration: underline;
+}
+html {
+    scroll-behavior: smooth;
+  }
 
 /* Header styles */
 header {
