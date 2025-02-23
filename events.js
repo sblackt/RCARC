@@ -1,11 +1,9 @@
 class EventManager {
     constructor() {
-        // Store events in a structured format
         this.events = {
             breakfast: {
                 name: 'CLUB BREAKFAST',
                 time: '9:30AM',
-                // Add dates and locations for each breakfast
                 events: [
                     { date: '2025-02-08', location: 'BEST WESTERN PEMBROKE' },
                     { date: '2025-03-08', location: 'Bears Den, Deep River' },
@@ -24,43 +22,32 @@ class EventManager {
                 name: 'CLUB MEETING',
                 location: 'PETAWAWA CIVIC CENTRE',
                 time: '1PM',
-                // Third Sunday of each month
                 dates: [
-                    '2025-02-16',
-                    '2025-03-17',
-                    '2025-04-21',
-                    '2025-05-19',
-                    '2025-06-16',
-                    '2025-07-21',
-                    '2025-08-18',
-                    '2025-09-15',
-                    '2025-10-20',
-                    '2025-11-17',
-                    '2025-12-15'
+                    '2025-02-16', '2025-03-16', '2025-04-20', '2025-05-18', '2025-06-22',
+                    '2025-07-20', '2025-08-24', '2025-09-28', '2025-10-12', '2025-11-16'
                 ]
             },
             techie: {
                 name: 'TECHIE NIGHT',
                 location: 'ZOOM',
                 time: '7:30PM',
-                // Every second Thursday
                 events: [
                     { date: '2025-02-13', topic: 'Arduino Projects' },
-                    { date: '2025-02-27', topic: 'SDR Programming' },
+                    { date: '2025-02-27', topic: 'JS8 Call HF digital mode' },
                     { date: '2025-03-13', topic: 'Digital Modes' },
                     { date: '2025-03-27', topic: 'Antenna Building' },
                     { date: '2025-04-10', topic: 'Raspberry Pi' },
                     { date: '2025-04-24', topic: 'Station Automation' },
                     { date: '2025-05-08', topic: 'DMR Programming' },
-                    { date: '2025-05-22', topic: 'RF Design Basics' },
-                    { date: '2025-04-10', topic: 'Raspberry Pi' },
-                    { date: '2025-04-24', topic: 'Station Automation' },
-                    { date: '2025-05-08', topic: 'DMR Programming' },
                     { date: '2025-05-22', topic: 'RF Design Basics' }
-                    // Add more dates and topics as needed
                 ]
             }
         };
+    }
+
+    parseLocalDate(dateString) {
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(year, month - 1, day); // Month is 0-based
     }
 
     getNextEvents() {
@@ -69,10 +56,9 @@ class EventManager {
 
         const nextEvents = [];
 
-        // Find next breakfast
-        const nextBreakfast = this.events.breakfast.events
-            .find(event => new Date(event.date) >= today);
-        
+        const nextBreakfast = this.events.breakfast.events.find(event =>
+            this.parseLocalDate(event.date) >= today
+        );
         if (nextBreakfast) {
             nextEvents.push({
                 type: this.events.breakfast.name,
@@ -82,10 +68,9 @@ class EventManager {
             });
         }
 
-        // Find next meeting
-        const nextMeeting = this.events.meeting.dates
-            .find(date => new Date(date) >= today);
-
+        const nextMeeting = this.events.meeting.dates.find(date =>
+            this.parseLocalDate(date) >= today
+        );
         if (nextMeeting) {
             nextEvents.push({
                 type: this.events.meeting.name,
@@ -95,10 +80,9 @@ class EventManager {
             });
         }
 
-        // Find next techie night
-        const nextTechie = this.events.techie.events
-            .find(event => new Date(event.date) >= today);
-
+        const nextTechie = this.events.techie.events.find(event =>
+            this.parseLocalDate(event.date) >= today
+        );
         if (nextTechie) {
             nextEvents.push({
                 type: this.events.techie.name,
@@ -115,36 +99,29 @@ class EventManager {
     updateEventsDisplay() {
         const nextEvents = this.getNextEvents();
         const eventsListDiv = document.querySelector('.events-list');
-        
         if (!eventsListDiv) return;
-        
+
         eventsListDiv.innerHTML = nextEvents
             .map(event => {
-                const date = new Date(event.date);
+                const date = this.parseLocalDate(event.date);
                 const formattedDate = date.toLocaleDateString('en-US', {
-                    month: 'long',
-                    day: 'numeric'
+                    month: 'long', day: 'numeric'
                 }).toUpperCase();
-                
-                // Add topic if it exists
                 const topicText = event.topic ? ` – TOPIC: ${event.topic}` : '';
-                
                 return `<p>${event.type} - ${formattedDate}, ${event.time} – ${event.location}${topicText}</p>`;
             })
             .join('');
     }
 }
 
-// Initialize and use the event manager
 document.addEventListener('DOMContentLoaded', () => {
     const eventManager = new EventManager();
     eventManager.updateEventsDisplay();
-    
-    // Update the display every day at midnight
+
     setInterval(() => {
         const now = new Date();
         if (now.getHours() === 0 && now.getMinutes() === 0) {
             eventManager.updateEventsDisplay();
         }
-    }, 60000); // Check every minute
+    }, 60000);
 });
