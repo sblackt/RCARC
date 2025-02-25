@@ -1,0 +1,12 @@
+<p class="style6">
+<span style="background-color: #FFFFFF">
+<font size="4">
+<span style="font-weight: 700">
+<iframe width="77" scrolling="no" height="44" name="NodeStatus" src="http://status.irlp.net/IRLPnodestatus.php?node=5918">
+<html>
+</iframe>
+</span>
+</font>
+</span>
+<span style="font-weight: 700; background-color: #FFFFFF"> </span>
+</

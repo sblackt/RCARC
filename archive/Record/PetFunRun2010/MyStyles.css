@@ -1,0 +1,73 @@
+
+P.title1 {
+color : red;
+font-family: Tahoma;
+font-size: 18.0pt;
+text-align: center;
+font-weight: bold;
+}
+
+P.title2 {
+color : red;
+font-family: Tahoma;
+font-size: 13.5pt;
+text-align: center;
+font-weight: bold;
+}
+
+P.title3 {
+color : black;
+font-family: Verdana;
+font-size: 24pt;
+text-align: center;
+font-weight: bold;
+}
+
+P.main13
+   {
+   color:black;
+   font-family: Tahoma;
+   font-size:13.5pt;
+   }
+
+P.main12
+   {
+   color:black;
+   font-family: Tahoma;
+   font-size:12.0pt;
+   }
+
+P.main12R
+   {
+   color:red;
+   font-family: Tahoma;
+   font-size:12.0pt;
+   }
+
+span.verd14bk
+   {
+   color:black;
+   font-family: Verdana;
+   font-size: 14.0pt;
+   }
+
+span.verd14bu
+   {
+   color:blue;
+   font-family: Verdana;
+   font-size: 14.0pt;
+   }
+
+span.verd12bk
+   {
+   color:black;
+   font-family: Verdana;
+   font-size: 12.0pt;
+   }
+
+P.verd12bk
+   {
+   color:black;
+   font-family: Verdana;
+   font-size: 12.0pt;
+   }   

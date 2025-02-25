@@ -1,0 +1,20 @@
+MSG # <M>
+
+From: =
+Posn: =
+
+To: =
+Posn: =
+
+Time of Origin: =
+Message Typed: <t>
+
+Message Text:
+
+=
+
+Authorized by: =
+
+Signature: =
+
+From the <tacloc>

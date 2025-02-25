@@ -189,6 +189,16 @@ h2 {
 .events-list p {
     margin-bottom: 1rem;
 }
+/*zoom link*/
+.events-list a {
+    text-decoration: underline;
+    color: inherit; /* Keeps the text the same color as surrounding text */
+}
+
+.events-list a:hover {
+    text-decoration: none; /* Removes underline on hover */
+    opacity: 0.8; /* Slight fade effect */
+}
 
 /* Responsive styles */
 @media screen and (max-width: 1024px) {
@@ -561,6 +571,15 @@ h2 {
         width: 100%;
     }
 }
+/*archive styles*/
+.archive-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start; /* This helps with alignment */
+    padding-top: 20px;
+    }
+
 /* history styles */
 .historyintro-content {
     max-width: 1440px;

@@ -1,0 +1,23 @@
+line 17 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 20 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 23 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 28 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 31 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 34 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 39 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 42 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 45 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 50 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 53 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 56 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 61 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 64 column 1 - Warning: <td> proprietary attribute "cellpadding"
+line 67 column 1 - Warning: <td> proprietary attribute "cellpadding"
+Info: Doctype given is "-//W3C//DTD HTML 4.01 Transitional//EN"
+Info: Document content looks like HTML Proprietary
+15 warnings, 0 errors were found!
+
+To learn more about HTML Tidy see http://tidy.sourceforge.net
+Please send bug reports to html-tidy@w3.org
+HTML and CSS specifications are available from http://www.w3.org/
+Lobby your company to join W3C, see http://www.w3.org/Consortium

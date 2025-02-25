@@ -1,0 +1,368 @@
+<HTML>
+<HEAD>
+
+	<TITLE>Laurentian Hills Public Library</TITLE>
+
+
+<link rel="shortcut icon" href="favicon.ico">
+
+<link rel=stylesheet href="main.css" type="text/css">
+
+
+
+<link href="dropdowntab2.css" rel="stylesheet" type="text/css" />
+ 
+<script type="text/javascript" src="dropdowntab2.js"> 
+/***********************************************
+* Drop Down Tab Menu- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+</script>
+
+
+<script type="text/javascript" language="javascript"> 
+var min=8;
+var max=16;
+function increaseFontSize() {
+   var div = document.getElementsByTagName('div');
+   for(i=0;i<div.length;i++) {
+      if(div[i].style.fontSize) {
+         var s = parseInt(div[i].style.fontSize.replace("px",""));
+      } else {
+         var s = 12;
+      }
+      if(s!=max) {
+         s += 1;
+      }
+      div[i].style.fontSize = s+"px"
+   }
+}
+function decreaseFontSize() {
+   var div = document.getElementsByTagName('div');
+   for(i=0;i<div.length;i++) {
+      if(div[i].style.fontSize) {
+         var s = parseInt(div[i].style.fontSize.replace("px",""));
+      } else {
+         var s = 12;
+      }
+      if(s!=min) {
+         s -= 1;
+      }
+      div[i].style.fontSize = s+"px"
+   }   
+}
+</script>
+
+</HEAD>
+
+<BODY>
+
+
+     
+
+
+<table width=850 cellpadding=0 cellspacing=0 align=center bgcolor="#ffffff">
+
+<tr>
+<td width=10 background="bgl.gif"></td>
+<td width=25></td>
+<td width=780 align=center>
+
+
+	<TABLE width=780 >
+	<tr>
+	<form name="mycombo">
+	<td width=280 valign=middle><span class="headerlink"><div class="text2"> 
+	<a href="javascript:increaseFontSize();"><img src="larger2.png" border=0 alt="Larger Text" style="vertical-align:middle;"></a> 	
+	<a href="javascript:location.reload(true);" target="_self"><img src="medium.png" border=0 alt="Normal Text" style="vertical-align:middle;"></a> 
+	<a href="javascript:decreaseFontSize();"><img src="smaller.png" border=0 alt="Smaller Text" style="vertical-align:middle;"></a>
+	
+	<!--&nbsp; <a href="index.html">Home</a> | <a href="contact.html">Contact the Library</a>--></div></span></td>
+	<td width=500 height=48 BACKGROUND="bg_search.gif" style="background-position: right top;" align=right valign=middle>
+		
+	
+	<select name="example" style="font-size:13px; font-family:tahoma; color:0C0C5F; width:188px; height:22px; border:1px solid #c3c3c3; border-top-color:#7c7c7c; padding:1px; margin-bottom:0px; vertical-align:middle;">
+ 
+		<option value="catalogue.html" selected>search the online catalogue
+		<option value="databases.html">search the online databases
+		<option value="services.html">get a free library card
+		<option value="events.html">find events and programs
+		<option value="contact.html">contact the library
+ 
+		
+		
+  
+		</select>
+		<script language="javascript" style="margin-bottom:0px;"> 
+<!--
+function go()
+{
+location=
+document.mycombo.example.options[document.mycombo.example.selectedIndex].value
+}
+//-->
+</script>
+		
+	<a href="JavaScript:go()"><img src="go.gif" border=0 style="vertical-align:middle;"></a>
+	
+	
+ 
+ 
+ 
+ 
+	</td>
+	</tr>	
+	</table>
+
+
+
+</td>
+<td width=25></td>
+<td width=10 background="bgr.gif"></td>
+</tr>
+
+<tr>
+<td width=10 background="bgl.gif"></td>
+<td width=25></td>
+<td width=780>
+	
+
+
+	<TABLE width=780 cellspacing=0 cellpadding=0 align=center bgcolor="#ffffff">
+
+
+
+	<TR>          	
+        <TD width=470 height=175 valign=top bgcolor="#0D3087" background="header.jpg"></TD>
+		<td width=1></td>
+        <TD width=309 valign=top background="bluebook.jpg"></TD>
+	
+	</tr>
+		
+	<tr><td colspan=3 height=1></td></tr>
+
+
+
+	<TR>          	
+        <TD colspan=3 valign=top background="menubg.gif">
+        <div id="shademenu" class="shadetabs" style="margin-bottom:0px;">
+
+
+			<table width=780 cellpadding=0 cellspacing=0 background="images/menubg.gif">
+			<tr height=40>
+			<td width=76><span class="MENUTEXT"><li><a href="index.html">&nbsp; &nbsp; &nbsp;HOME</a></span></td>
+			<td width=156><span class="MENUTEXT"><li><a href="about.html" rel="dropmenu1">&nbsp; &nbsp; ABOUT THE LIBRARY</a></li></span></td>
+			<td width=168><span class="MENUTEXT"><li><a href="events.html" rel="dropmenu2">&nbsp; &nbsp; &nbsp; EVENTS & PROGRAMS</a></span></td>
+			<td width=153><span class="MENUTEXT"><li><a href="services.html" rel="dropmenu3">&nbsp; &nbsp; &nbsp; LIBRARY SERVICES</a></span></td>
+			<td width=158><span class="MENUTEXT"><li><a href="reading.html" rel="dropmenu4">&nbsp; &nbsp; READING RESOURCES</a></span></td>
+			<td width=140><span class="MENUTEXT"><li><a href="resources.html" rel="dropmenu5">&nbsp; &nbsp; ONLINE RESOURCES</a></span></td>
+		
+			</tr></div>
+			</table>
+ 
+<!--1st drop down menu -->                                                
+<div id="dropmenu1" class="dropmenudiv" style="width:144px;">
+<a href="about.html">&nbsp;About Us</a>
+<a href="branches.html">&nbsp;Library Branches</a>
+<a href="volunteer.html">&nbsp;Volunteer at the Library</a>
+<a href="friends.html">&nbsp;Friends of the Library</a>
+<a href="contact.html">&nbsp;Contact the Library</a>
+</div>
+ 
+<!--2nd drop down menu -->                                                   
+<div id="dropmenu2" class="dropmenudiv" style="width:156px;">
+<a href="events.html">&nbsp;Event Calendar</a>
+</div>
+ 
+<!--3rd drop down menu -->                                                   
+<div id="dropmenu3" class="dropmenudiv" style="width:140px;">
+<a href="services.html">&nbsp;Get a Card</a>
+<a href="services.html">&nbsp;Loan Periods</a>
+<a href="services.html">&nbsp;Interlibrary Loan</a>
+<a href="services.html">&nbsp;Our Collection</a>
+<a href="services.html">&nbsp;Copy, Print & Fax</a>
+<a href="services.html">&nbsp;Computers</a>
+<a href="services.html">&nbsp;ServiceOntario</a>
+<a href="seniors.html">&nbsp;Seniors Services</a>
+<a href="children.html">&nbsp;Children @ the Library</a>
+</div>
+ 
+<!--4th drop down menu -->                                                   
+<div id="dropmenu4" class="dropmenudiv" style="width:146px;">
+<a href="newreleases.html">&nbsp;New Releases</a>
+<a href="staffpicks.html">&nbsp;Staff Picks</a>
+<a href="novelist.html">&nbsp;NoveList</a>
+<a href="tumblebooks.html">&nbsp;TumbleBooks</a>
+<a href="audiobooks.html">&nbsp;eBooks & Audiobooks</a>
+</div>
+ 
+<!--5th drop down menu -->                                                   
+<div id="dropmenu5" class="dropmenudiv" style="width:130px;">
+<a href="catalogue.html" target="_blank">&nbsp;Online Catalogue</a>
+<a href="databases.html">&nbsp;Online Databases</a>
+<a href="reference.html">&nbsp;Online Reference</a>
+<a href="audiobooks.html">&nbsp;Download eBooks &<br>&nbsp; Audiobooks</a>
+</div>
+ 
+ 
+<script type="text/javascript"> 
+//tabdropdown.initializetabmenu("tab_menu_id", optional_selected_tab_number)
+//ie: tabdropdown.initializetabmenu("tab_menu_id", 2)
+tabdropdown.initializetabmenu("shademenu")
+</script>
+	
+	</TD>
+	</TR>
+
+	<tr><td colspan=3 height=1 bgcolor="#ffffff"></td></tr>
+	
+	<TR><TD colspan=3 height=76 background="whatson.gif">
+	
+	
+	<span class="redlink"><div class="textbox_red"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+	<a href="newreleases.html">Read the Library's New Releases</a> &nbsp;|&nbsp; 
+	<a href="events.html">Browse the Calendar of Events</a> &nbsp;|&nbsp; 
+	<a href="about.html">Learn More About the Library</a> &raquo;
+
+	
+	</TD>
+	</TR>
+
+
+	<tr>
+	<td colspan=3 height=30 bgcolor="#ffffff"></td>
+	</tr>
+
+
+
+	<TR>          	
+    <TD colspan=3>
+
+			<table width=780 cellpadding=0 cellspacing=0>
+
+
+			<tr>
+			<td colspan=5 height=2></td>
+			</tr>
+
+			<tr>
+			<td width=259 bgcolor="#ffffff" height=255 valign=top background="home_about.jpg">
+			
+			<span class="redlink"><div class="text" style="margin-left:10px; margin-top:5px;"><BR><BR><BR>
+			<a href="newreleases.html">Read the latest books to hit our shelves</a> &raquo; <BR>
+			<a href="staffpicks.html">Browse our favourite staff picks</a> &raquo;<br>
+			<a href="reading.html">More reading resources</a> &raquo; <BR>
+
+
+
+			
+			</td>
+			<td width=1 bgcolor="#dddddd"></td>
+			<td width=260 bgcolor="#ffffff" height=255 valign=top background="home_resources.jpg">
+			
+			<span class="grlink"><div class="text" style="margin-left:10px;  margin-top:5px;"><BR><BR><BR>
+			<a href="reference.html">Use our online reference sources</a> &raquo;<br>
+			<a href="audiobooks.html">Download ebooks & audiobooks</a> &raquo;<BR>
+			<a href="databases.html">Search our online databases</a> &raquo; <BR>
+	
+	
+			
+			</td>
+	
+			<td width=1 bgcolor="#dddddd"></td>
+			<td width=259 bgcolor="#ffffff" height=255 valign=top background="home_catalogue.jpg">
+			
+			<span class="blink"><div class="text" style="margin-left:10px; margin-top:5px;"><BR><BR><BR>
+			<a href="catalogue.html" target="_blank">Soon you'll be able to search our catalogue<br>online to find what you're looking for!<br>Learn more</a> &raquo; <BR>
+	
+			
+			</td>
+			</tr>
+			
+
+			</table>
+		
+	</td>
+	</tr>
+ 
+
+
+	<tr>
+	<td colspan=3 height=30 bgcolor="#ffffff"></td>
+	</tr>
+
+
+	<tr>
+	<td colspan=3>
+		
+			<table width=780 cellpadding=0 cellspacing=0>
+			<tr>
+			<td width="520" height=65 bgcolor="#0D3087"><div class="footertext">
+			
+Copyright &copy; 2009-<script type="text/javascript">
+var d = new Date()
+document.write(d.getFullYear())
+</script> Laurentian Hills Public Library. All Rights Reserved.<br>
+<a href="index.html">Home</a> &nbsp;|&nbsp; 
+<a href="about.html">About Us</a> &nbsp;|&nbsp; 
+<a href="branches.html">Branches</a> &nbsp;|&nbsp; 
+<a href="events.html">Events & Programs</a> &nbsp;|&nbsp; 
+<a href="services.html">Services</a> &nbsp;|&nbsp; 
+<a href="resources.html">Resources</a> &nbsp;|&nbsp; 
+<a href="contact.html">Contact Us</a></span></td>
+			<td width="1"></td>
+			<td width="259" bgcolor="#7BAE2C" background="footerbg.gif" valign="bottom" >
+			<span class="wlink2"><div class="footertext">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			<a href="branches.html">Point Alexander</a> &nbsp;|&nbsp; <a href="branches.html">Chalk River</a><br><Br> </td>			
+			</tr>
+			</table>
+		
+		
+	
+
+	
+
+	</td>
+	</tr>
+	
+
+	</table>
+
+
+
+
+
+
+
+</td>
+<td width=25></td>
+<td width=10 background="bgr.gif"></td>
+</tr>
+
+<tr>
+<td width=10 background="bgl.gif"></td>
+<td colspan=3 height=20></td>
+<td width=10 background="bgr.gif"></td>
+</tr>
+
+<tr>
+<td width=10 background="bgl2.gif"></td>
+<td colspan=3 height=10 background="bgb.gif"></td>
+<td width=10 background="bgr2.gif"></td>
+</tr>
+
+<tr>
+<td colspan=5 bgcolor="#E0E5E7" class="text" align=right></a> 
+<img src="serviceontario.gif" align=right><BR>This website was made possible with funding from ServiceOntario. <BR><a href="services.html#ontario">Click here to learn more about ServiceOntario &raquo;</a> 
+</td>
+</tr>
+
+
+</table><br><br>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+ 
+  <meta http-equiv="Content-Language" content="en-us">
+ 
+  <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+ 
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+ 
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  
+  <title>Recent Updates and Important News Flashes</title>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5169945-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+
+<body bgcolor="#c0c0c0">
+
+
+
+<p align="center"><font size="4"><b><i>Recent Updates and Important News
+Flashes...</i></b></font></p>
+
+
+<p align="center">&nbsp;</p>
+
+
+<p align="left"><font size="4">This section will be reserved on the web site for
+any important late breaking news or announcements that would have a direct
+bearing on ARES members in general and Renfrew County ARES members as a group. I
+will date the items as of the posting date. Some items may remain posted even
+after their respective operational dates.</font></p>
+
+<p style="font-weight: bold;" align="left">Oct, 2010</p>
+<p style="font-weight: bold;" align="left"><span style="font-weight: normal;">
+The IRLP node 2520 is back on the air from it's new location in the Petawawa Civic Centre. Problems with the Civic Centre's router, cabling from the radio to the computer and changes in squelch settings etc were resolved and the node seems to be working well. It can now be connected to the Ontario Emergency Reflector 9035 for ARES nets.
+</p>
+<p style="font-weight: bold;" align="left">Thur. Oct 29, 2009</p>
+<p style="font-weight: bold;" align="left"><span style="font-weight: normal;">The
+web page for the Renfrew County Amateur Club has been moved to this
+ARES site. The link is in the list of links on the left pane.</span></p>
+<p style="font-weight: bold;" align="left"><span style="font-weight: normal;">The</span> IRLP <span style="font-weight: normal;">system
+is presently in it's new home at the Petawawa Civic Centre. There are
+problems with the internet connections that we hope can be resolved
+before too long.</span></p>
+<p style="font-weight: bold;" align="left"><span style="font-weight: normal;">An
+APRS digi has been installed at VA3RBW (VA3RBW-3). It is extending the
+APRS coverage up the valley toward Bisset Creek. It comunicates through
+VA2REH to the rest of the network.</span><span style="font-weight: normal;"></span></p>
+<p style="font-weight: bold;" align="left">Wed. May 13, 2008</p>
+
+<p align="left">VE3UCR is back on the air at Foymount. Freq. is
+145.430-, PL tone out is 114.8. There is no tone input requirement. The
+repeater can be linked to VE3NRR in Pembroke with CTCSS code 521
+(unlink 520). &nbsp;So far, the range appears to be very good.</p>
+
+<p align="left">A packet node (X1J4) named FOY was also installed at
+Foymount. Freq. is 145.010. Call is VE3UCR-1. So far, it's performance
+has been disappointing. The &nbsp;ARX-2B antenna is mounted near the
+tower and just above the building. Vertical separation is being used to
+isolate it from the input to the voice repeater on 144.830. The antenna
+for VE3UCR voice is at about 420 ft on the tower. The station will be
+checked at a later date (when the bugs have gone!) to look for problems.</p>
+
+Bob &nbsp; VE3YX<br>
+
+<p style="font-weight: bold;" align="left"><font color="#0000ff" size="4">Sunday, September 30, 2007 -- IRLP Update.</font></p>
+
+
+<p align="left"><font size="4">The short version ....</font></p>
+
+
+<p align="left"><i><b><font size="4">After many unsuccessful attempts and many 
+late hours trying to put the 
+Pembroke IRLP node back on the air at the new location on Joe Street (space and 
+internet connection made available by club member John - VA3AJT) the node has 
+been re-installed in it's original location at the shack of VE3PL and is once 
+again 
+fully operational.</font></b></i></p>
+
+
+<p align="left"><font size="4">For those who want the nitty gritty facts ... 
+read on.</font></p>
+
+
+<p align="left">Although the installation at Joe Street should have
+been a straight forward re-locate and energize of the IRLP node, this
+was not the case. After installation and power up, I was indeed
+dismayed to find that we were not connecting to the internet. Several
+attempts later (and many many days due to limited time available to
+work on the system) and some serious re-routing and re-configuring of
+the host network the internet was finally available to the IRLP box.
+This should have been the end of the troubles right?? Wrong...</p>
+
+
+<p align="left">The irlp-troubleshoot script clearly 
+indicated that port 15425, a necessary port for the IRLP function, was not allowing any incoming 
+TCP traffic. The usual 
+re-configuration of the D-Link DI-604 router to allow port traffic was 
+completed, but to no avail. The incoming TCP connection on 15425 was blocked, 
+and that was that. Help files on the internet indicated that perhaps the ISP was 
+blocking the port. A phone call was made, and we were told that the ISP was NOT 
+blocking any ports, so our troubles may lie elsewhere.</p>
+
+
+<p align="left">As with any situation, two heads are often better 
+than one, and with the help of Ron (VA3KRY) we began to troubleshoot the 
+network. After exchanging the existing router for one that Ron had (Linksys) and 
+setting up the port forwarding as required, we still had the same problem. The 
+IRLP troubleshooting script reported that the port was still blocked. Again, we 
+had full access to the internet on port 80, allowing us to surf the net, and the 
+required UDP ports were being reported as fully functional.</p>
+
+
+<p align="left">The next obvious thing was to remove the router from the 
+equation entirely and attempt to operate IRLP directly through Bell's High Speed 
+MoDem. It was necessary to once again reconfigure the IRLP network setup to 
+allow this new configuration via the net addressing on the IRLP box. Upon 
+completion of these changes we had internet capability as before, but still 
+could not receive any input on the incoming side of the port in question.</p>
+
+
+<p align="left">One thing that we did realize during this last exercise was that 
+the MoDem had assigned a new DHCP address to our laptop, which we had on site 
+and were using as a second access to the internet allowing us to surf the net 
+for troubleshooting purposes while addressing the issues with the IRLP Linux 
+box. This indicated to us that the MoDem itself housed a DHCP server. The next 
+realization is then if it is assigning a dynamic address to our host, it is a firewall of sorts. </p>
+
+
+<p align="left">Ron set up his 
+laptop as a server and connected directly to the high speed MoDem. I attempted 
+to connect to his server from an outside line on both port 80 and also the port 
+in question, and could not connect either way. When Ron did the same experiment 
+with his laptop from his home QTH, I was able to connect immediately to his 
+server from my home QTH.</p>
+
+
+<p align="left">I packed up the IRLP box and cabling and all the required 
+paraphernalia and brought it back to my home QTH were it had resided previously 
+since May 2002. I plugged it in, hooked it up, set the IRLP networking address 
+and we were on the air... just like that.&nbsp; </p>
+
+
+<p align="left">This certainly implies that the MoDem is the culprit in all of 
+this, OR, the ISP is indeed blocking the port. I suspect that the MoDem is at 
+fault. </p>
+
+
+<p align="left">Our intention at this point in time is to leave the IRLP 
+functional at the current location (home of VE3PL) and sort out the MoDem issue 
+at the Joe Street location. I will attempt to keep club members posted on the 
+progress on this page.</p>
+
+
+<p align="left">I thank all club members for their patience, and wish all best 
+'73. </p>
+
+
+<p align="left">de Les VE3PL </p>
+
+<p align="left">&nbsp;</p>
+
+
+<p align="center">
+<a target="_top" href="http://www.rcarc.ca/index.html"><font ="" family="SANSSERIF" ptsize="10" back="#ffffff" color="#0000ff" face="Arial" lang="0" size="3">(Home)</font></a>
+<font ="" family="SANSSERIF" ptsize="10" back="#ffffff" color="#0000ff" face="Arial" lang="0" size="2">
+<br>
+
+
+&nbsp;</font></p>
+
+
+
+</body>
+</html>

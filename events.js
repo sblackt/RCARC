@@ -108,8 +108,12 @@ class EventManager {
                     month: 'long', day: 'numeric'
                 }).toUpperCase();
                 const topicText = event.topic ? ` – TOPIC: ${event.topic}` : '';
-                return `<p>${event.type} - ${formattedDate}, ${event.time} – ${event.location}${topicText}</p>`;
-            })
+                 // Check if location is "ZOOM" and make it a link
+        const locationText = event.location === 'ZOOM' 
+            ? `<a href="https://tinyurl.com/RCARC-Events" target="_blank">ZOOM</a>` 
+            : event.location;
+            return `<p>${event.type} - ${formattedDate}, ${event.time} – ${locationText}${topicText}</p>`;
+        })
             .join('');
     }
 }

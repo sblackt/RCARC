@@ -1,0 +1,24 @@
+MSG # <M>
+
+From: =
+Posn: =
+
+To: =
+Posn: =
+
+Time of Origin: =
+Message Typed: <t>
+
+Message Text:
+
+This is an exercise message.
+
+=
+
+This is an exercise message.
+
+Authorized by: =
+
+Signature: =
+
+From the <tacloc>
