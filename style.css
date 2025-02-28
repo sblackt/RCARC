@@ -21,6 +21,9 @@ html {
   }
 
 /* Header styles */
+#hamburger-menu {
+    display: none;  /* Hide hamburger in desktop view */
+}
 header {
     background-color: #faf7f3;
     padding: 1rem 2rem;
@@ -201,7 +204,62 @@ h2 {
 }
 
 /* Responsive styles */
+/* Mobile styles *//* Mobile styles */
+/* Mobile styles */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none; /* Hide menu on mobile */
+        flex-direction: column;
+        justify-content: center; /* Horizontally center the items */
+        align-items: center; /* Vertically center the items if needed */
+        width: 100%;
+        height: auto; /* Full viewport height */
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 60px; /* Space from the top (adjust based on your header) */
+    }
+
+    .nav-link {
+        width: 100%; /* Ensure each menu item spans full width */
+        text-align: center; /* Center the text */
+        border-bottom: none; /* No separators */
+    }
+
+    .hamburger-menu {
+        display: block;
+        font-size: 30px; /* Adjust if needed */
+        cursor: pointer;
+        text-align: center;
+        color: #4b3e36;
+        text-decoration: underline;
+        border-radius: 5px;
+    }
+
+    .menu-text {
+        font-size: 18px; /* Adjust text size */
+        font-weight: bold;
+        text-transform: uppercase; /* Optional: to make the text all uppercase */
+    }
+
+    /* Show the menu when hamburger is clicked */
+    .nav-list.show {
+        display: flex;
+    }
+
+    /* Show the menu when clicked */
+    #hamburger-menu {
+        display: block;  /* Show the menu text in mobile view */
+        cursor: pointer;  /* Pointer cursor to indicate it's clickable */
+    }
+}
+
+
+
 @media screen and (max-width: 1024px) {
+    
     .welcome-container {
         flex-direction: column;
     }
@@ -232,6 +290,7 @@ h2 {
     .main-nav {
         flex-direction: column;
         width: 100%;
+        gap: 0;
     }
 
     .nav-list {

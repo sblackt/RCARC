@@ -34,6 +34,10 @@
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+                   <!-- mobile text "Menu" -->
+<div id="hamburger-menu" class="hamburger-menu">
+    <span class="menu-text">Menu</span>
+</div>
             </nav>
         </div>
     </header>
@@ -58,6 +62,15 @@
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navList = document.querySelector('.nav-list');  // Use class selector instead of ID
+    
+            hamburger.addEventListener('click', function() {
+                navList.classList.toggle('show');  // Toggle 'show' class on the nav-list
+            });
+        });
+    </script>
 </body>
 </html>

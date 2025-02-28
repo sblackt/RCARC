@@ -33,6 +33,10 @@
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button active">GET LICENSED</a>
+                   <!-- mobile text "Menu" -->
+<div id="hamburger-menu" class="hamburger-menu">
+    <span class="menu-text">Menu</span>
+</div>
             </nav>
         </div>
     </header>
@@ -115,5 +119,15 @@
     </div>
     <script src="events.js"></script>
     <script src="jointheclub.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navList = document.querySelector('.nav-list');  // Use class selector instead of ID
+    
+            hamburger.addEventListener('click', function() {
+                navList.classList.toggle('show');  // Toggle 'show' class on the nav-list
+            });
+        });
+    </script>
 </body>
 </html>
