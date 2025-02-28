@@ -1,0 +1,37 @@
+-- Breakfast Events
+INSERT INTO events (type, name, date, time, location) VALUES
+('breakfast', 'CLUB BREAKFAST', '2025-02-08', '9:30AM', 'BEST WESTERN PEMBROKE'),
+('breakfast', 'CLUB BREAKFAST', '2025-03-08', '9:30AM', 'Bears Den, Deep River'),
+('breakfast', 'CLUB BREAKFAST', '2025-04-12', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-05-10', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-06-14', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-07-12', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-08-09', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-09-13', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-10-11', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-11-08', '9:30AM', 'TBD'),
+('breakfast', 'CLUB BREAKFAST', '2025-12-13', '9:30AM', 'TBD');
+
+-- Club Meetings
+INSERT INTO events (type, name, date, time, location) VALUES
+('meeting', 'CLUB MEETING', '2025-02-16', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-03-16', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-04-20', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-05-18', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-06-22', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-07-20', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-08-24', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-09-28', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-10-12', '1PM', 'PETAWAWA CIVIC CENTRE'),
+('meeting', 'CLUB MEETING', '2025-11-16', '1PM', 'PETAWAWA CIVIC CENTRE');
+
+-- Techie Nights
+INSERT INTO events (type, name, date, time, location, topic) VALUES
+('techie', 'TECHIE NIGHT', '2025-02-13', '7:30PM', 'ZOOM', 'Arduino Projects'),
+('techie', 'TECHIE NIGHT', '2025-02-27', '7:30PM', 'ZOOM', 'JS8 Call HF digital mode'),
+('techie', 'TECHIE NIGHT', '2025-03-13', '7:30PM', 'ZOOM', 'Digital Modes'),
+('techie', 'TECHIE NIGHT', '2025-03-27', '7:30PM', 'ZOOM', 'Antenna Building'),
+('techie', 'TECHIE NIGHT', '2025-04-10', '7:30PM', 'ZOOM', 'Raspberry Pi'),
+('techie', 'TECHIE NIGHT', '2025-04-24', '7:30PM', 'ZOOM', 'Station Automation'),
+('techie', 'TECHIE NIGHT', '2025-05-08', '7:30PM', 'ZOOM', 'DMR Programming'),
+('techie', 'TECHIE NIGHT', '2025-05-22', '7:30PM', 'ZOOM', 'RF Design Basics');

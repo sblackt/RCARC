@@ -76,7 +76,7 @@ header {
     font-family: "Futura-Bold", Helvetica, sans-serif;
     color: #4b3e36;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -905,16 +905,34 @@ h2 {
     }
 }
 
-/*gallery styles*/
+/* Gallery Styles */
+
 .gallery-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    column-count: 3;  /* Number of columns */
+    column-gap: 15px;  /* Space between columns */
+    max-width: 1200px; /* Adjust width as needed */
+    margin: auto;
+}
+
+.gallery a {
+    display: block;
+    margin-bottom: 15px; /* Space between images */
+    break-inside: avoid; /* Prevent column breaks inside images */
+}
+
+.gallery img {
+    max-width: 100%;  /* Allow image to fit within its column */
+    height: auto;     /* Maintain aspect ratio */
+    border-radius: 5px;  /* Optional: rounded corners */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
 }
 
 .gallery-item img {
-    width: 200px;
+    max-width: 100%;  /* Ensure it fills the column */
     height: auto;
     border-radius: 5px;
     cursor: pointer;
@@ -924,6 +942,7 @@ h2 {
 .gallery-item img:hover {
     transform: scale(1.1);
 }
+
 
 /* Lightbox Styling */
 .lightbox {

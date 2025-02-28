@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="globals.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 </head>
 <body>
     <header>
@@ -31,36 +32,23 @@
     <main>
         <div class="content-wrapper">
             <h1>Club Gallery</h1>
-            <p class="welcome-text">Browse through our collection of club activities, events, and projects.</p>
+            <p class="welcome-text">Events and photos from throughout the club's history.</p>
             
             <div class="gallery-container">
+            <div class="gallery">
                 <?php
-               $images = glob("img/gallery/*.{jpg,png,gif,jpeg}", GLOB_BRACE);
-                foreach ($images as $img) {
-                    echo "<div class='gallery-item'><img src='$img' loading='lazy' alt='Gallery Image'></div>";
+                $images = glob("img/gallery/*.{jpg,png,gif,jpeg}", GLOB_BRACE);
+                foreach ($images as $image) {
+                 echo '<a href="'.$image.'" data-lightbox="gallery"><img src="'.$image.'" class="gallery-image"></a>';
                 }
                 ?>
             </div>
+            </div>
+            
         </div>
     </main>
-
-    <script>
-        document.querySelectorAll(".gallery-item img").forEach(img => {
-            img.addEventListener("click", () => {
-                document.getElementById("lightbox-img").src = img.src;
-                document.getElementById("lightbox").style.display = "flex";
-            });
-        });
-
-        document.getElementById("lightbox").addEventListener("click", () => {
-            document.getElementById("lightbox").style.display = "none";
-        });
-    </script>
-
-    <!-- Lightbox for enlarged image -->
-    <div class="lightbox" id="lightbox">
-        <img id="lightbox-img">
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 
 </body>
 </html>
