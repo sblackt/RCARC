@@ -30,6 +30,7 @@
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li><a href="about.html" class="nav-link">ABOUT</a></li>
                     <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="events.html" class="nav-link">EVENTS</a></li>
                     <li><a href="gallery.php" class="nav-link active">GALLERY</a></li>
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>

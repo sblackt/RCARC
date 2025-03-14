@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - The Renfrew County Amateur Radio Club</title>
+    <title>Event Details - The Renfrew County Amateur Radio Club</title>
     <link rel="stylesheet" href="globals.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -27,15 +27,17 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
-                    <li><a href="about.html" class="nav-link active">ABOUT</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
                     <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="events.html" class="nav-link active">EVENTS</a></li>
+                    <li><a href="gallery.php" class="nav-link ">GALLERY</a></li>
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
-                   <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
-    <span class="menu-text">Menu</span>
-</div>
+                <!-- mobile text "Menu" -->
+                <div id="hamburger-menu" class="hamburger-menu">
+                    <span class="menu-text">Menu</span>
+                </div>
             </nav>
         </div>
     </header>
@@ -47,8 +49,8 @@
     <main class="about-content">
         <div class="about-section">
             <div class="about-text">
-                <h1>Events</h1>
-                <p>The club holds a breakfast either in Deep River, or Pembroke each month along with a regular club business meeting in Petawawa. We also have a techie night zoom meeting twice a month.</p>
+                <h1>Event Details</h1>
+                <p>The Renfrew County Amateur Radio Club hosts regular events throughout the year. Check out the details of our upcoming events below, including location information, special notes, and links to related resources.</p>
             </div>
             <div class="join-button-container">
                 <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
@@ -60,65 +62,91 @@
                 <h2>UPCOMING EVENTS</h2>
                 <div class="dotted-line"></div>
                 <div class="events-list">
-                    <!-- Events will be populated here automatically by events.js -->
+                    <!-- Events will be populated here automatically by events-details.js -->
                 </div>
             </section>
-
-     <!-- The Modal -->
-     <div id="membershipModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Membership Application</h2>
-            
-            <form id="membershipForm">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" required>
+            <section class="events-section">
+                <h2>EVENT CALENDAR</h2>
+                <div class="dotted-line"></div>
+                <div class="calendar-container">
+                    <!-- Calendar will be inserted here by JavaScript -->
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" required>
+                <div class="calendar-info">
+                    <p>Our events follow a regular schedule:</p>
+                    <ul class="event-schedule">
+                        <li><strong>Club Breakfast:</strong> Alternates between Deep River and Pembroke locations on the second Saturday of each month at 9:30AM</li>
+                        <li><strong>Club Meeting:</strong> Held at the Petawawa Civic Centre on the third Sunday of each month at 1PM</li>
+                        <li><strong>Techie Night:</strong> Online via Zoom on the second and fourth Thursday of each month at 7:30PM</li>
+                    </ul>
                 </div>
-
-                <div class="form-group">
-                    <label for="callsign">Callsign</label>
-                    <input type="text" id="callsign">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone">
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="interests">Interests</label>
-                    <textarea id="interests" rows="3"></textarea>
-                </div>
-
-                <button type="submit" class="submit-button">
-                    Submit Application
-                    <div class="spinner"></div>
-                </button>
-                <div id="formMessage" class="form-message"></div>
-            </form>
+            </section>
         </div>
 
-    </div>
-    <script src="events.js"></script>
+        <section class="recordings-section">
+            <h2>TECHIE NIGHT RECORDINGS</h2>
+            <div class="dotted-line"></div>
+            <div class="recordings-container">
+                <!-- Recordings will be populated here by events-details.js -->
+            </div>
+        </section>
+
+        <!-- The Modal -->
+        <div id="membershipModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Membership Application</h2>
+                
+                <form id="membershipForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="callsign">Callsign</label>
+                        <input type="text" id="callsign">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests">Interests</label>
+                        <textarea id="interests" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        Submit Application
+                        <div class="spinner"></div>
+                    </button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="events-details.js"></script>
     <script src="jointheclub.js"></script>
+    <script src="event-calendar.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger-menu');
-            const navList = document.querySelector('.nav-list');  // Use class selector instead of ID
+            const navList = document.querySelector('.nav-list');
     
             hamburger.addEventListener('click', function() {
-                navList.classList.toggle('show');  // Toggle 'show' class on the nav-list
+                navList.classList.toggle('show');
             });
         });
     </script>

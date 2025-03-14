@@ -7,15 +7,15 @@ class EventManager {
                 events: [
                     { date: '2025-02-08', location: 'BEST WESTERN PEMBROKE' },
                     { date: '2025-03-08', location: 'Bears Den, Deep River' },
-                    { date: '2025-04-12', location: 'TBD' },
-                    { date: '2025-05-10', location: 'TBD' },
-                    { date: '2025-06-14', location: 'TBD' },
-                    { date: '2025-07-12', location: 'TBD' },
-                    { date: '2025-08-09', location: 'TBD' },
-                    { date: '2025-09-13', location: 'TBD' },
-                    { date: '2025-10-11', location: 'TBD' },
-                    { date: '2025-11-08', location: 'TBD' },
-                    { date: '2025-12-13', location: 'TBD' }
+                    { date: '2025-04-12', location: 'BEST WESTERN PEMBROKE' },
+                    { date: '2025-05-10', location: 'Bears Den, Deep River' },
+                    { date: '2025-06-14', location: 'BEST WESTERN PEMBROKE' },
+                    { date: '2025-07-12', location: 'Bears Den, Deep River' },
+                    { date: '2025-08-09', location: 'BEST WESTERN PEMBROKE' },
+                    { date: '2025-09-13', location: 'Bears Den, Deep River' },
+                    { date: '2025-10-11', location: 'BEST WESTERN PEMBROKE' },
+                    { date: '2025-11-08', location: 'Bears Den, Deep River' },
+                    { date: '2025-12-13', location: 'BEST WESTERN PEMBROKE' }
                 ]
             },
             meeting: {
@@ -34,12 +34,12 @@ class EventManager {
                 events: [
                     { date: '2025-02-13', topic: 'Arduino Projects' },
                     { date: '2025-02-27', topic: 'JS8 Call HF digital mode' },
-                    { date: '2025-03-13', topic: 'TBD' },
-                    { date: '2025-03-27', topic: 'Antenna Building' },
-                    { date: '2025-04-10', topic: 'Raspberry Pi' },
-                    { date: '2025-04-24', topic: 'Station Automation' },
-                    { date: '2025-05-08', topic: 'DMR Programming' },
-                    { date: '2025-05-22', topic: 'RF Design Basics' }
+                    { date: '2025-03-13', topic: 'Antenna Tuners and Transformers' },
+                    { date: '2025-03-27', topic: 'TBD' },
+                    { date: '2025-04-10', topic: 'TBD' },
+                    { date: '2025-04-24', topic: 'TBD' },
+                    { date: '2025-05-08', topic: 'TBD' },
+                    { date: '2025-05-22', topic: 'TBD' }
                 ]
             }
         };
