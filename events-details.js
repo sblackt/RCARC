@@ -42,13 +42,13 @@ class EventDetailsManager {
                     },
                     {
                         date: '2025-04-20',
-                        details: 'Monthly club business meeting. This meeting will include a special presentation on digital modes.',
+                        details: 'Monthly club business meeting.',
                         address: '16 Civic Centre Rd, Petawawa, ON',
                         mapLink: 'https://maps.google.com/?q=Petawawa+Civic+Centre'
                     },
                     {
                         date: '2025-05-18',
-                        details: 'Monthly club business meeting. We\'ll be finalizing our field day preparations.',
+                        details: 'Monthly club business meeting.',
                         address: '16 Civic Centre Rd, Petawawa, ON',
                         mapLink: 'https://maps.google.com/?q=Petawawa+Civic+Centre'
                     }

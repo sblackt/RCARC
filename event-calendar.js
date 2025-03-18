@@ -138,70 +138,68 @@ class CalendarWidget {
         }
         
         // Fill in days of the month
-        for (let day = 1; day <= daysInMonth; day++) {
-            const isToday = day === currentDay && 
-                            this.currentMonth === currentMonth && 
-                            this.currentYear === currentYear;
-            
-            const hasEvents = this.hasEvent(day);
-            const dayEvents = this.getEventsForDay(day);
-            
-            let classNames = 'calendar-day';
-            if (isToday) classNames += ' today';
-            if (hasEvents) classNames += ' has-events';
-            
-            calendarHTML += `<div class="${classNames}" data-day="${day}">
-                <span class="day-number">${day}</span>`;
-            
-            if (hasEvents) {
-                calendarHTML += `<div class="event-indicator">`;
-                
-                // Add different colored indicators for different event types
-                const eventTypes = new Set(dayEvents.map(e => e.type));
-                
-                if (eventTypes.has('breakfast')) {
-                    calendarHTML += `<span class="event-dot breakfast"></span>`;
-                }
-                if (eventTypes.has('meeting')) {
-                    calendarHTML += `<span class="event-dot meeting"></span>`;
-                }
-                if (eventTypes.has('techie')) {
-                    calendarHTML += `<span class="event-dot techie"></span>`;
-                }
-                
-                calendarHTML += `</div>`;
-                
-                // Add hidden event details that will be shown on hover/click
-                calendarHTML += `<div class="event-tooltip">`;
-                dayEvents.forEach(event => {
-                    calendarHTML += `
-                        <div class="event-item ${event.type}">
-                            <span class="event-title">${event.title}</span>
-                            <span class="event-time">${event.time}</span>
-                            <span class="event-location">${event.location}</span>
-                        </div>`;
-                });
-                calendarHTML += `</div>`;
-            }
-            
-            calendarHTML += `</div>`;
-        }
+       // Inside your render function, replace the code for handling events with this:
+for (let day = 1; day <= daysInMonth; day++) {
+    const isToday = day === currentDay && 
+                    this.currentMonth === currentMonth && 
+                    this.currentYear === currentYear;
+    
+    const hasEvents = this.hasEvent(day);
+    const dayEvents = this.getEventsForDay(day);
+    
+    let classNames = 'calendar-day';
+    if (isToday) classNames += ' today';
+    if (hasEvents) classNames += ' has-events';
+    
+    calendarHTML += `<div class="${classNames}" data-day="${day}">
+        <span class="day-number">${day}</span>`;
+    
+    if (hasEvents) {
+        calendarHTML += `<div class="event-indicator">`;
         
-        calendarHTML += `
-                </div>
-                <div class="calendar-legend">
-                    <div class="legend-item">
-                        <span class="event-dot breakfast"></span> Breakfast
-                    </div>
-                    <div class="legend-item">
-                        <span class="event-dot meeting"></span> Meeting
-                    </div>
-                    <div class="legend-item">
-                        <span class="event-dot techie"></span> Techie Night
-                    </div>
-                </div>
+        // Display event titles instead of dots
+        dayEvents.forEach(event => {
+            let shortTitle = "";
+            if (event.type === 'breakfast') shortTitle = "B";
+            else if (event.type === 'meeting') shortTitle = "M";
+            else if (event.type === 'techie') shortTitle = "T";
+            
+            calendarHTML += `<span class="event-label ${event.type}">${shortTitle}</span>`;
+        });
+        
+        calendarHTML += `</div>`;
+        
+        // Add hidden event details that will be shown on hover/click
+        calendarHTML += `<div class="event-tooltip">`;
+        dayEvents.forEach(event => {
+            calendarHTML += `
+                <div class="event-item ${event.type}">
+                    <span class="event-title">${event.title}</span>
+                    <span class="event-time">${event.time}</span>
+                    <span class="event-location">${event.location}</span>
+                </div>`;
+        });
+        calendarHTML += `</div>`;
+    }
+    
+    calendarHTML += `</div>`;
+}
+
+calendarHTML += `
+        </div>
+        <div class="calendar-legend">
+            <div class="legend-item">
+                <span class="event-label breakfast">Breakfast</span>
             </div>
-        `;
+            <div class="legend-item">
+                <span class="event-label meeting">Meeting</span>
+            </div>
+            <div class="legend-item">
+                <span class="event-label techie">Tech Night</span>
+            </div>
+        </div>
+    </div>
+`;
         
         this.container.innerHTML = calendarHTML;
         this.attachEventListeners();

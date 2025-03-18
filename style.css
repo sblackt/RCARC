@@ -881,10 +881,17 @@ h2 {
 
 .calendar-day {
     border: 1px solid #eee;
-    min-height: 40px;
+    min-height: 60px; /* Increased height to fit event labels */
     padding: 5px;
     position: relative;
-    color: #4b3e36; /* Match text color */
+    color: #4b3e36;
+    display: flex;
+    flex-direction: column;
+}
+
+.day-number {
+    font-size: 0.9em;
+    margin-bottom: 3px;
 }
 
 .calendar-day.empty {
@@ -906,33 +913,31 @@ h2 {
     cursor: pointer;
 }
 
+
+.event-label {
+    font-size: 1.2em;
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-right: 2px;
+    white-space: nowrap;
+    color: white;
+}
+
+.event-label.breakfast {
+    background-color: #cb433f;
+}
+
+.event-label.meeting {
+    background-color: #4b3e36;
+}
+
+.event-label.techie {
+    background-color: #2191c5;
+}
+
 .event-indicator {
     display: flex;
-    gap: 2px;
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.event-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-/* Updated event dot colors to match your site's palette */
-.event-dot.breakfast {
-    background-color: #cb433f; /* Main accent color */
-}
-
-.event-dot.meeting {
-    background-color: #4b3e36; /* Main text color */
-}
-
-.event-dot.techie {
-    background-color: #8c7267; /* Lighter version of your main text color */
+    width: 100%;
 }
 
 .event-tooltip {
@@ -1023,6 +1028,9 @@ h2 {
     padding: 5px;
     border-top: 1px solid #ddd;
     background-color: #faf7f3; /* Match site background */
+}
+.calendar-legend .event-label{
+    font-size: 1rem;
 }
 
 .legend-item {
