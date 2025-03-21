@@ -35,7 +35,7 @@ class EventManager {
                     { date: '2025-02-13', topic: 'Arduino Projects' },
                     { date: '2025-02-27', topic: 'JS8 Call HF digital mode' },
                     { date: '2025-03-13', topic: 'Antenna Tuners and Transformers' },
-                    { date: '2025-03-27', topic: 'TBD' },
+                    { date: '2025-03-27', topic: 'Designing filters with Elsie' },
                     { date: '2025-04-10', topic: 'TBD' },
                     { date: '2025-04-24', topic: 'TBD' },
                     { date: '2025-05-08', topic: 'TBD' },

@@ -68,16 +68,16 @@ class EventDetailsManager {
                     },
                     { 
                         date: '2025-03-27', 
-                        topic: 'TBD',
-                        details: 'Details to come',
-                        presenter: 'TBD',
+                        topic: 'Designing filters with Elsie',
+                        details: 'Learn how to use Elsie software to design rf filters and more!',
+                        presenter: 'Charlie VE3XCC',
                         zoomLink: 'https://tinyurl.com/RCARC-Events'
                     },
                     { 
                         date: '2025-04-10', 
-                        topic: 'HF Propagation Prediction Tools',
-                        details: 'A walkthrough of various software tools and websites for predicting HF propagation conditions.',
-                        presenter: 'Mike VE3DEF',
+                        topic: 'Raspberry Pi pico as a data collector cost reduction',
+                       // details: 'A walkthrough of various software tools and websites for predicting HF propagation conditions.',
+                        presenter: 'Charlie VE3XCC',
                         zoomLink: 'https://tinyurl.com/RCARC-Events'
                     }
                 ]

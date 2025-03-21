@@ -1295,7 +1295,137 @@ h2 {
         padding: 1rem; /* Smaller padding on mobile */
     }
 }
+/* what is radio styles */
+/* What is Amateur Radio Section */
+.what-is-section {
+    margin: 2rem 0 4rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+.radio-info-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.radio-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.radio-features {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.radio-features li {
+    margin-bottom: 0.5rem;
+}
+
+.radio-images {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.radio-image {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Modes and Activities */
+.radio-modes {
+    margin-top: 3rem;
+}
+
+.radio-modes h3 {
+    margin-bottom: 1.5rem;
+}
+
+.modes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+.mode-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mode-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.mode-card h4 {
+    margin: 0.5rem 0;
+}
+
+/* CTA Container */
+.cta-container {
+    margin-top: 3rem;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 6px;
+}
+
+.cta-text {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #2c3e50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #1a2530;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .radio-info-container {
+        flex-direction: column;
+    }
+    
+    .modes-container {
+        justify-content: center;
+    }
+}
+/* About page styles */
 .about-content {
     max-width: 1440px;
     margin: 0 auto;
