@@ -101,14 +101,30 @@ class EventDetailsManager {
                 presenter: 'Steve VA3WAV',
                 embedUrl: 'https://www.youtube.com/embed/nuWv6N3K3Y4'
             },
-          //  {
-          //      title: 'Antenna Building Workshop',
-           //     date: '2025-01-30',
-           //     description: 'Learn how to build simple but effective wire antennas for HF.',
-          //      videoId: 'example-video-id-3',
-           //     presenter: 'Linda VE3MNO',
-          //      embedUrl: 'https://www.youtube.com/embed/example-video-id-3'
-          //  }
+            {
+                title: 'Parks On The Air',
+                date: '2025-02-13',
+                description: 'All about Parks On The Air (POTA) and how to get started.',
+                videoId: 'JHBCDMT1w_0?si=Dbvmlzs4Z1XQ92gC',
+                presenter: 'Al VE3VTT',
+                embedUrl: 'https://www.youtube.com/embed/JHBCDMT1w_0?si=Dbvmlzs4Z1XQ92gC'
+            },
+            {
+                title: 'Winlink and Outpost',
+                date: '2025-01-23',
+                description: 'Bob walks us through using Winlink and Outpost for emergency communications.',
+                videoId: '2ZsicVi6G3A?si=D0dmN1JIYpY7An5T',
+                presenter: 'Bob VE3YX',
+                embedUrl: 'https://www.youtube.com/embed/2ZsicVi6G3A?si=D0dmN1JIYpY7An5T'
+            },
+            {
+                title: 'Homebrew Antennas',
+                date: '2025-01-09',
+                description: 'Jim shows us different types of homebrew antennas and how to build them.',
+                videoId: 'alMPiowp4f0?si=oeeyXnQPcW2UcRNi',
+                presenter: 'Jim VA3JTE',
+                embedUrl: 'https://www.youtube.com/embed/alMPiowp4f0?si=oeeyXnQPcW2UcRNi'
+            }
         ];
     }
 
