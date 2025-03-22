@@ -81,14 +81,110 @@
                 </div>
             </section>
         </div>
+       
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <section
+                class="youTubeVideos">
+            <style>
+                .youTubeVideos {
+                    margin: 20px 0;
+                    padding: 20px;
+                    background-color: #f9f9f9;
+                    border-radius: 8px;
+                }
 
-        <section class="recordings-section">
+                .video-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 20px;
+                    margin: 20px 0;
+                }
+                .video-card {
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+                .video-thumbnail {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+                .video-info {
+                    padding: 12px;
+                }
+                .video-title {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                }
+                .video-date {
+                    color: #666;
+                    font-size: 0.9em;
+                }
+            </style>
+        <div>
+            <h1>RCARC YouTube Videos</h1>
+            <div id="videoContainer" class="video-grid"></div>
+        
+            <script>
+                // Replace with your API key
+                const API_KEY = 'AIzaSyAtNIp9P7AsGDUu6dwDJfhS5MsrNjoxQnQ';
+                // Your channel ID
+                const CHANNEL_ID = 'UCBSBpalG59lY1UdUSVvIJkg';
+                
+                // Fetch videos from the channel
+                function fetchVideos() {
+                    const maxResults = 50; // Number of videos to fetch (max 50 per request)
+                    const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=viewCount&maxResults=${maxResults}&type=video`;
+                    
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            displayVideos(data.items);
+                        })
+                        .catch(error => console.error('Error fetching videos:', error));
+                }
+                
+                // Display videos in a grid
+                function displayVideos(videos) {
+                    const container = document.getElementById('videoContainer');
+                    
+                    videos.forEach(video => {
+                        if (video.id.videoId) {
+                            const videoCard = document.createElement('div');
+                            videoCard.className = 'video-card';
+                            
+                            const publishDate = new Date(video.snippet.publishedAt).toLocaleDateString();
+                            
+                            videoCard.innerHTML = `
+                                <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
+                                    <img class="video-thumbnail" src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.title}">
+                                </a>
+                                <div class="video-info">
+                                    <div class="video-title">${video.snippet.title}</div>
+                                    <div class="video-date">Published: ${publishDate}</div>
+                                </div>
+                            `;
+                            
+                            container.appendChild(videoCard);
+                        }
+                    });
+                }
+                
+                // Load videos when page loads
+                window.onload = fetchVideos;
+            </script>
+        </div>
+        </section>
+       <!-- <section class="recordings-section">
             <h2>TECHIE NIGHT RECORDINGS</h2>
             <div class="dotted-line"></div>
             <div class="recordings-container">
-                <!-- Recordings will be populated here by events-details.js -->
+                Recordings will be populated here by events-details.js
             </div>
-        </section>
+        </section>-->
 
         <!-- The Modal -->
         <div id="membershipModal" class="modal">
