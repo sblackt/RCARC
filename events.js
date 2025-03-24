@@ -1,48 +1,86 @@
 class EventManager {
     constructor() {
         this.events = {
-            breakfast: {
-                name: 'CLUB BREAKFAST',
-                time: '9:30AM',
-                events: [
-                    { date: '2025-02-08', location: 'BEST WESTERN PEMBROKE' },
-                    { date: '2025-03-08', location: 'Bears Den, Deep River' },
-                    { date: '2025-04-12', location: 'BEST WESTERN PEMBROKE' },
-                    { date: '2025-05-10', location: 'Bears Den, Deep River' },
-                    { date: '2025-06-14', location: 'BEST WESTERN PEMBROKE' },
-                    { date: '2025-07-12', location: 'Bears Den, Deep River' },
-                    { date: '2025-08-09', location: 'BEST WESTERN PEMBROKE' },
-                    { date: '2025-09-13', location: 'Bears Den, Deep River' },
-                    { date: '2025-10-11', location: 'BEST WESTERN PEMBROKE' },
-                    { date: '2025-11-08', location: 'Bears Den, Deep River' },
-                    { date: '2025-12-13', location: 'BEST WESTERN PEMBROKE' }
-                ]
-            },
-            meeting: {
-                name: 'CLUB MEETING',
-                location: 'PETAWAWA CIVIC CENTRE',
-                time: '1PM',
-                dates: [
-                    '2025-02-16', '2025-03-16', '2025-04-20', '2025-05-18', '2025-06-22',
-                    '2025-07-20', '2025-08-24', '2025-09-28', '2025-10-12', '2025-11-16'
-                ]
-            },
-            techie: {
-                name: 'TECHIE NIGHT',
-                location: 'ZOOM',
-                time: '7:30PM',
-                events: [
-                    { date: '2025-02-13', topic: 'Arduino Projects' },
-                    { date: '2025-02-27', topic: 'JS8 Call HF digital mode' },
-                    { date: '2025-03-13', topic: 'Antenna Tuners and Transformers' },
-                    { date: '2025-03-27', topic: 'Designing filters with Elsie' },
-                    { date: '2025-04-10', topic: 'TBD' },
-                    { date: '2025-04-24', topic: 'TBD' },
-                    { date: '2025-05-08', topic: 'TBD' },
-                    { date: '2025-05-22', topic: 'TBD' }
-                ]
-            }
+            breakfast: { name: 'CLUB BREAKFAST', time: '9:30AM', events: [] },
+            meeting: { name: 'CLUB MEETING', location: 'PETAWAWA CIVIC CENTRE', time: '1PM', dates: [] },
+            techie: { name: 'TECHIE NIGHT', location: 'ZOOM', time: '7:30PM', events: [] }
         };
+        this.fetchEvents();
+    }
+
+    async fetchEvents() {
+        try {
+            const response = await fetch('api.php');
+            
+            // Log the raw response
+            console.log('Response status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const fetchedEvents = await response.json();
+            
+            // Log the fetched events
+            console.log('Fetched events:', fetchedEvents);
+            
+            // Check for error response from API
+            if (fetchedEvents.error) {
+                throw new Error(fetchedEvents.error);
+            }
+            
+            if (!fetchedEvents || fetchedEvents.length === 0) {
+                this.showErrorMessage('No events found');
+                return;
+            }
+            
+            // Organize events by type
+            this.organizeEvents(fetchedEvents);
+            
+            // Update display after fetching
+            this.updateEventsDisplay();
+        } catch (error) {
+            console.error('Error fetching events:', error);
+            this.showErrorMessage(error.message);
+        }
+    }
+
+    organizeEvents(fetchedEvents) {
+        // Reset events
+        this.events.breakfast.events = [];
+        this.events.meeting.dates = [];
+        this.events.techie.events = [];
+
+        // Categorize events
+        fetchedEvents.forEach(event => {
+            switch(event.type) {
+                case 'breakfast':
+                    this.events.breakfast.events.push({
+                        date: event.date,
+                        location: event.location
+                    });
+                    break;
+                case 'meeting':
+                    this.events.meeting.dates.push(event.date);
+                    this.events.meeting.location = event.location || 'PETAWAWA CIVIC CENTRE';
+                    break;
+                case 'techie':
+                    this.events.techie.events.push({
+                        date: event.date,
+                        topic: event.topic
+                    });
+                    break;
+                default:
+                    console.warn('Unhandled event type:', event.type);
+            }
+        });
+    }
+
+    showErrorMessage(message = 'Unable to load events. Please try again later.') {
+        const eventsListDiv = document.querySelector('.events-list');
+        if (eventsListDiv) {
+            eventsListDiv.innerHTML = `<p style="color: red;">${message}</p>`;
+        }
     }
 
     parseLocalDate(dateString) {
@@ -108,24 +146,23 @@ class EventManager {
                     month: 'long', day: 'numeric'
                 }).toUpperCase();
                 const topicText = event.topic ? ` – TOPIC: ${event.topic}` : '';
-                 // Check if location is "ZOOM" and make it a link
-        const locationText = event.location === 'ZOOM' 
-            ? `<a href="https://tinyurl.com/RCARC-Events" target="_blank">ZOOM</a>` 
-            : event.location;
-            return `<p>${event.type} - ${formattedDate}, ${event.time} – ${locationText}${topicText}</p>`;
-        })
+                // Check if location is "ZOOM" and make it a link
+                const locationText = event.location === 'ZOOM' 
+                    ? `<a href="https://tinyurl.com/RCARC-Events" target="_blank">ZOOM</a>` 
+                    : event.location;
+                return `<p>${event.type} - ${formattedDate}, ${event.time} – ${locationText}${topicText}</p>`;
+            })
             .join('');
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const eventManager = new EventManager();
-    eventManager.updateEventsDisplay();
 
     setInterval(() => {
         const now = new Date();
         if (now.getHours() === 0 && now.getMinutes() === 0) {
-            eventManager.updateEventsDisplay();
+            eventManager.fetchEvents();
         }
     }, 60000);
 });

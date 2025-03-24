@@ -8,35 +8,134 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-
-button {
-    background-color: #cb433f;
-    color: white;
-    padding: 10px 32px;
-    border-radius: 100px;
-    text-decoration: none;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
+        .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-size: 16px;
-    white-space: nowrap;
+    font-family: inherit;
 }
-    #event-type{
-        padding: 10px;
-        border-radius: 42px;
-        font-family: futura, sans-serif;
-        font-size: 16px;
+        button {
+            background-color: #cb433f;
+            color: white;
+            padding: 10px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-family: "Futura-Bold", Helvetica, sans-serif;
+            font-size: 16px;
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #a53531;
+        }
+        
+        #event-type {
+            padding: 10px;
+            border-radius: 42px;
+            font-family: futura, sans-serif;
+            font-size: 16px;
+        }
+        
+        .event-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .error {
+            background-color: #ffdddd;
+            color: #ff0000;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 4px;
+            display: none;
+        }
+         /* Additional styles */
+    .options-bar {
+        margin-bottom: 15px;
     }
-.event-item{
-    padding-bottom: 20px;
-}
+    #event-form {
+        width: 50%;
+    }
+    @media screen and (max-width: 768px) {
+        #event-form {
+            width: 100%;
+        }
+        
+    }
+    /* Highlighting for the form when in edit mode */
+    #event-form.editing {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #cb433f;
+        transition: all 0.3s ease;
+    }
+    
+    /* Add a heading style for clarity */
+    .section-heading {
+        border-bottom: 2px solid #cb433f;
+        padding-bottom: 8px;
+        margin-top: 30px;
+    }
+    
+    /* Style for past events (if shown) */
+    .event-item.past-event {
+        opacity: 0.7;
+        background-color: #f5f5f5;
+    }
+    
+    /* Make the buttons more obvious */
+    .edit-button, .delete-button {
+        margin-top: 10px;
+    }
+    
+    /* Simple animation for added feedback */
+    @keyframes highlight {
+        0% { background-color: #fff; }
+        50% { background-color: #ffeb3b; }
+        100% { background-color: #fff; }
+    }
+    
+    .highlight {
+        animation: highlight 1s ease;
+    }
     </style>
 </head>
 <body style="width: 80%; margin: 0 auto;">
-    <header>  <div class="header-container">
-        <a href="/" class="logo">
-            <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
-        </a></header>
-    <h1>Event Manager</h1>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            </a>
+        </div>
+    </header>
     
+    <h1>Event Manager</h1>
+    <p>Leave irrelevant fields blank</p>
     <form id="event-form">
         <input type="hidden" id="event-id" name="id">
         
@@ -48,32 +147,48 @@ button {
                 <option value="techie">Techie</option>
             </select>
         </div>
-
+    
         <div class="form-group">
-            <label for="event-name">Name:</label>
+            <label for="event-name">Name (Tech Night, Club Meeting etc.):</label>
             <input type="text" id="event-name" name="name" required>
         </div>
-
+    
         <div class="form-group">
             <label for="event-date">Date:</label>
             <input type="date" id="event-date" name="date" required>
         </div>
-
+    
         <div class="form-group">
             <label for="event-time">Time:</label>
             <input type="text" id="event-time" name="time" required placeholder="e.g., 7:00 PM">
         </div>
-
+    
         <div class="form-group">
             <label for="event-location">Location:</label>
             <input type="text" id="event-location" name="location" required>
         </div>
-
+    
         <div class="form-group">
             <label for="event-topic">Topic:</label>
             <input type="text" id="event-topic" name="topic">
         </div>
-
+        
+        <!-- New fields -->
+        <div class="form-group">
+            <label for="event-details">Details:</label>
+            <textarea id="event-details" name="details" rows="4"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="event-presenter">Presenter:</label>
+            <input type="text" id="event-presenter" name="presenter">
+        </div>
+        
+        <div class="form-group">
+            <label for="event-link">Link:</label>
+            <input type="url" id="event-link" name="link" placeholder="https://...">
+        </div>
+    
         <button type="submit">Save Event</button>
         <button type="button" onclick="resetForm()">Clear Form</button>
     </form>
@@ -81,6 +196,11 @@ button {
     <div id="error-message" class="error"></div>
     
     <h2>Existing Events</h2>
+    <div class="options-bar">
+        <label>
+            <input type="checkbox" id="show-past-events"> Show past events
+        </label>
+    </div>
     <div id="events-list"></div>
 
     <script>
@@ -94,35 +214,112 @@ button {
                 errorDiv.style.display = 'none';
             }, 3000);
         }
+        // date
+        function formatDate(dateString) {
+    // Append a time portion that ensures the string is treated as local
+    const localDateString = dateString + 'T00:00';
+    const date = new Date(localDateString);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+}
 
-        function fetchEvents() {
-            fetch('api.php')
-                .then(response => response.json())
-                .then(events => {
-                    const eventsList = document.getElementById('events-list');
-                    eventsList.innerHTML = '';
-                    
-                    events.forEach(event => {
-                        const div = document.createElement('div');
-                        div.className = 'event-item';
-                        div.innerHTML = `
-                            <h3>${event.name}</h3>
-                            <p>Type: ${event.type}</p>
-                            <p>Date: ${event.date}</p>
-                            <p>Time: ${event.time}</p>
-                            <p>Location: ${event.location}</p>
-                            ${event.topic ? `<p>Topic: ${event.topic}</p>` : ''}
-                            <button onclick="editEvent(${encodeURIComponent(JSON.stringify(event))})">Edit</button>
-                            <button onclick="deleteEvent(${event.id})">Delete</button>
-                        `;
-                        eventsList.appendChild(div);
+
+    function fetchEvents() {
+        fetch('api.php')
+            .then(response => response.json())
+            .then(events => {
+                const eventsList = document.getElementById('events-list');
+                eventsList.innerHTML = '';
+                
+                // Get current date for comparison
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Set to beginning of day for accurate comparison
+                
+                // Determine whether to show past events
+                const showPastEvents = document.getElementById('show-past-events').checked;
+                
+                // Filter events
+                let filteredEvents = events;
+                if (!showPastEvents) {
+                    filteredEvents = events.filter(event => {
+                        const eventDate = new Date(event.date);
+                        return eventDate >= today;
                     });
-                })
-                .catch(error => showError('Error fetching events: ' + error.message));
-        }
-
-        function editEvent(eventData) {
-    const event = JSON.parse(decodeURIComponent(eventData));
+                }
+                
+                if (filteredEvents.length === 0) {
+                    eventsList.innerHTML = '<p>No events found. ' + 
+                        (showPastEvents ? '' : 'Try checking "Show past events".') + '</p>';
+                    return;
+                }
+                
+                // Sort events by date (closest future events first, then past events)
+                filteredEvents.sort((a, b) => {
+                    const dateA = new Date(a.date);
+                    const dateB = new Date(b.date);
+                    
+                    const isPastA = dateA < today;
+                    const isPastB = dateB < today;
+                    
+                    // If one is past and one is future, future comes first
+                    if (isPastA && !isPastB) return 1;
+                    if (!isPastA && isPastB) return -1;
+                    
+                    // Otherwise sort by date
+                    return dateA - dateB;
+                });
+                
+                filteredEvents.forEach(event => {
+                    const div = document.createElement('div');
+                    const eventDate = new Date(event.date);
+                    const isPastEvent = eventDate < today;
+                    
+                    div.className = 'event-item' + (isPastEvent ? ' past-event' : '');
+                    
+                    div.setAttribute('data-event-id', event.id);
+                    
+                    div.innerHTML = `
+    <h3>${event.name}</h3>
+    ${isPastEvent ? '<span class="badge">Past</span>' : ''}
+    <p>Type: ${event.type}</p>
+    <p>Date: ${formatDate(event.date)}</p>
+    <p>Time: ${event.time}</p>
+    <p>Location: ${event.location}</p>
+    ${event.topic ? `<p>Topic: ${event.topic}</p>` : ''}
+    ${event.presenter ? `<p>Presenter: ${event.presenter}</p>` : ''}
+    ${event.details ? `<p>Details: ${event.details}</p>` : ''}
+    ${event.link ? `<p>Link: <a href="${event.link}" target="_blank">${event.link}</a></p>` : ''}
+    <button class="edit-button">Edit</button>
+    <button class="delete-button">Delete</button>
+`;
+                    
+                    eventsList.appendChild(div);
+                    
+                    // Add event listeners directly to the buttons
+                    const editButton = div.querySelector('.edit-button');
+                    editButton.addEventListener('click', function() {
+                        editEvent(event);
+                        // Scroll to top of the page
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                    
+                    const deleteButton = div.querySelector('.delete-button');
+                    deleteButton.addEventListener('click', function() {
+                        deleteEvent(event.id);
+                    });
+                });
+            })
+            .catch(error => showError('Error fetching events: ' + error.message));
+    }
+  // show past events or not
+  document.getElementById('show-past-events').addEventListener('change', function() {
+        fetchEvents();
+    });
+    function editEvent(event) {
+        console.log("Editing event:", event); // Debug log
     editingId = event.id;
     document.getElementById('event-id').value = event.id;
     document.getElementById('event-type').value = event.type;
@@ -131,6 +328,23 @@ button {
     document.getElementById('event-time').value = event.time;
     document.getElementById('event-location').value = event.location;
     document.getElementById('event-topic').value = event.topic || '';
+    document.getElementById('event-details').value = event.details || '';
+    document.getElementById('event-presenter').value = event.presenter || '';
+    document.getElementById('event-link').value = event.link || '';
+}
+
+function editEvent(event) {
+    editingId = event.id;
+    document.getElementById('event-id').value = event.id;
+    document.getElementById('event-type').value = event.type;
+    document.getElementById('event-name').value = event.name;
+    document.getElementById('event-date').value = event.date;
+    document.getElementById('event-time').value = event.time;
+    document.getElementById('event-location').value = event.location;
+    document.getElementById('event-topic').value = event.topic || '';
+    document.getElementById('event-details').value = event.details || '';
+    document.getElementById('event-presenter').value = event.presenter || '';
+    document.getElementById('event-link').value = event.link || '';
 }
 
         function resetForm() {

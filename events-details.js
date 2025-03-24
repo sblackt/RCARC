@@ -1,88 +1,6 @@
 class EventDetailsManager {
     constructor() {
-        this.events = {
-            breakfast: {
-                name: 'CLUB BREAKFAST',
-                time: '9:30AM',
-                events: [
-                    { 
-                        date: '2025-03-08', 
-                        location: 'Bears Den, Deep River',
-                        details: 'Join us for our monthly breakfast at the Bears Den in Deep River. This casual gathering is a great opportunity to meet fellow club members and discuss amateur radio topics.',
-                        address: '33 Deep River Rd, Deep River, ON',
-                        mapLink: 'https://maps.google.com/?q=Bears+Den+Deep+River'
-                    },
-                    { 
-                        date: '2025-04-12', 
-                        location: 'BEST WESTERN PEMBROKE',
-                        details: 'Our Pembroke breakfast is held in the restaurant at the Best Western. Come early to grab a good seat!',
-                        address: '1 International Dr, Pembroke, ON',
-                        mapLink: 'https://maps.google.com/?q=Best+Western+Pembroke'
-                    },
-                    { 
-                        date: '2025-05-10', 
-                        location: 'Bears Den, Deep River',
-                        details: 'Join us for our monthly breakfast at the Bears Den in Deep River. This casual gathering is a great opportunity to meet fellow club members and discuss amateur radio topics.',
-                        address: '33 Deep River Rd, Deep River, ON',
-                        mapLink: 'https://maps.google.com/?q=Bears+Den+Deep+River'
-                    }
-                ]
-            },
-            meeting: {
-                name: 'CLUB MEETING',
-                location: 'PETAWAWA CIVIC CENTRE',
-                time: '1PM',
-                dates: [
-                    {
-                        date: '2025-03-16',
-                        details: 'Monthly club business meeting. This month we are discussing our club strategy, come with ideas and inspiration!',
-                        address: '16 Civic Centre Rd, Petawawa, ON',
-                        mapLink: 'https://maps.google.com/?q=Petawawa+Civic+Centre',
-                        specialNotes: 'Fundraising room, up the stairs and to the right.'
-                    },
-                    {
-                        date: '2025-04-20',
-                        details: 'Monthly club business meeting.',
-                        address: '16 Civic Centre Rd, Petawawa, ON',
-                        mapLink: 'https://maps.google.com/?q=Petawawa+Civic+Centre'
-                    },
-                    {
-                        date: '2025-05-18',
-                        details: 'Monthly club business meeting.',
-                        address: '16 Civic Centre Rd, Petawawa, ON',
-                        mapLink: 'https://maps.google.com/?q=Petawawa+Civic+Centre'
-                    }
-                ]
-            },
-            techie: {
-                name: 'TECHIE NIGHT',
-                location: 'ZOOM',
-                time: '7:30PM',
-                events: [
-                    { 
-                        date: '2025-03-13', 
-                        topic: 'Antenna Tuners and Transformers',
-                        details: 'Learn about the different types of antenna tuners and impedance matching transformers. We\'ll discuss when to use them and how they work.',
-                        presenter: 'John VE3ABC',
-                        zoomLink: 'https://tinyurl.com/RCARC-Events'
-                    },
-                    { 
-                        date: '2025-03-27', 
-                        topic: 'Designing filters with Elsie',
-                        details: 'Learn how to use Elsie software to design rf filters and more!',
-                        presenter: 'Charlie VE3XCC',
-                        zoomLink: 'https://tinyurl.com/RCARC-Events'
-                    },
-                    { 
-                        date: '2025-04-10', 
-                        topic: 'Raspberry Pi pico as a data collector cost reduction',
-                       // details: 'A walkthrough of various software tools and websites for predicting HF propagation conditions.',
-                        presenter: 'Charlie VE3XCC',
-                        zoomLink: 'https://tinyurl.com/RCARC-Events'
-                    }
-                ]
-            }
-        };
+       
 
         this.recordings = [
             {
@@ -93,39 +11,114 @@ class EventDetailsManager {
                 presenter: 'Charlie VE3XCC',
                 embedUrl: 'https://www.youtube.com/embed/H8vR2uJfquE'
             },
-            {
-                title: 'JS8 Call HF Digital Mode',
-                date: '2025-02-27',
-                description: 'Introduction to the JS8 Call digital mode for HF communications.',
-                videoId: 'nuWv6N3K3Y4',
-                presenter: 'Steve VA3WAV',
-                embedUrl: 'https://www.youtube.com/embed/nuWv6N3K3Y4'
-            },
-            {
-                title: 'Parks On The Air',
-                date: '2025-02-13',
-                description: 'All about Parks On The Air (POTA) and how to get started.',
-                videoId: 'JHBCDMT1w_0?si=Dbvmlzs4Z1XQ92gC',
-                presenter: 'Al VE3VTT',
-                embedUrl: 'https://www.youtube.com/embed/JHBCDMT1w_0?si=Dbvmlzs4Z1XQ92gC'
-            },
-            {
-                title: 'Winlink and Outpost',
-                date: '2025-01-23',
-                description: 'Bob walks us through using Winlink and Outpost for emergency communications.',
-                videoId: '2ZsicVi6G3A?si=D0dmN1JIYpY7An5T',
-                presenter: 'Bob VE3YX',
-                embedUrl: 'https://www.youtube.com/embed/2ZsicVi6G3A?si=D0dmN1JIYpY7An5T'
-            },
-            {
-                title: 'Homebrew Antennas',
-                date: '2025-01-09',
-                description: 'Jim shows us different types of homebrew antennas and how to build them.',
-                videoId: 'alMPiowp4f0?si=oeeyXnQPcW2UcRNi',
-                presenter: 'Jim VA3JTE',
-                embedUrl: 'https://www.youtube.com/embed/alMPiowp4f0?si=oeeyXnQPcW2UcRNi'
-            }
         ];
+        this.events = {
+            breakfast: { name: 'CLUB BREAKFAST', events: [] },
+            meeting: { name: 'CLUB MEETING', dates: [] },
+            techie: { name: 'TECHIE NIGHT', events: [] }
+        };
+        
+        // Fetch events immediately upon initialization
+      //  this.fetchEventsFromDatabase();
+    }
+    
+    fetchEventsFromDatabase() {
+        // Return the promise chain so you can chain .then()
+        return fetch('api.php')
+            .then(response => response.json())
+            .then(events => {
+                // Process and categorize events
+                this.processEvents(events);
+                // Update the display after fetching
+                this.updateEventsDisplay();
+                return events;  // optional: return events if needed
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+            });
+    }
+    
+    
+    processEvents(eventsFromDB) {
+        // Clear existing events
+        this.events.breakfast.events = [];
+        this.events.meeting.dates = [];
+        this.events.techie.events = [];
+        
+        // Process each event from the database
+        eventsFromDB.forEach(event => {
+            // Format the event according to its type
+            switch(event.type) {
+                case 'breakfast':
+                    this.events.breakfast.time = event.time;
+                    this.events.breakfast.events.push({
+                        date: event.date,
+                        location: event.location,
+                        details: event.details || '',
+                        presenter: event.presenter || '',
+                        address: this.extractAddress(event.location, event.details),
+                        mapLink: event.link || this.generateMapLink(event.location)
+                    });
+                    break;
+                    
+                case 'meeting':
+                    this.events.meeting.time = event.time;
+                    this.events.meeting.location = event.location;
+                    this.events.meeting.dates.push({
+                        date: event.date,
+                        details: event.details || '',
+                        presenter: event.presenter || '',
+                        address: this.extractAddress(event.location, event.details),
+                        mapLink: event.link || this.generateMapLink(event.location),
+                        specialNotes: event.topic // Using topic field for special notes
+                    });
+                    break;
+                    
+                case 'techie':
+                    this.events.techie.time = event.time;
+                    this.events.techie.location = 'ZOOM'; // Assuming techie nights are always on Zoom
+                    this.events.techie.events.push({
+                        date: event.date,
+                        topic: event.topic || '',
+                        details: event.details || '',
+                        presenter: event.presenter || '',
+                        zoomLink: event.link || 'https://tinyurl.com/RCARC-Events' // Default if not provided
+                    });
+                    break;
+            }
+        });
+        
+        // Sort events by date within each category
+        this.sortEventsByDate();
+    }
+    
+    extractAddress(location, details) {
+        // Simple address extraction logic - this could be enhanced
+        // For now, we'll just return the location as the address if it exists
+        return location || '';
+    }
+    
+    generateMapLink(location) {
+        // Generate a Google Maps link based on the location
+        if (!location) return '';
+        return `https://maps.google.com/?q=${encodeURIComponent(location)}`;
+    }
+    
+    sortEventsByDate() {
+        // Sort breakfast events
+        this.events.breakfast.events.sort((a, b) => 
+            this.parseLocalDate(a.date) - this.parseLocalDate(b.date)
+        );
+        
+        // Sort meeting dates
+        this.events.meeting.dates.sort((a, b) => 
+            this.parseLocalDate(a.date) - this.parseLocalDate(b.date)
+        );
+        
+        // Sort techie events
+        this.events.techie.events.sort((a, b) => 
+            this.parseLocalDate(a.date) - this.parseLocalDate(b.date)
+        );
     }
 
     parseLocalDate(dateString) {
@@ -150,6 +143,7 @@ class EventDetailsManager {
                 time: this.events.breakfast.time,
                 location: nextBreakfast.location,
                 details: nextBreakfast.details,
+                presenter: nextBreakfast.presenter,
                 address: nextBreakfast.address,
                 mapLink: nextBreakfast.mapLink
             });
@@ -166,6 +160,7 @@ class EventDetailsManager {
                 time: this.events.meeting.time,
                 location: this.events.meeting.location,
                 details: nextMeetingObj.details,
+                presenter: nextMeetingObj.presenter,
                 address: nextMeetingObj.address,
                 mapLink: nextMeetingObj.mapLink,
                 specialNotes: nextMeetingObj.specialNotes
@@ -288,7 +283,17 @@ class EventDetailsManager {
 
 document.addEventListener('DOMContentLoaded', () => {
     const eventDetailsManager = new EventDetailsManager();
-    eventDetailsManager.updateEventsDisplay();
+    
+    eventDetailsManager.fetchEventsFromDatabase().then(() => {
+        // Initialize the calendar widget after events have been fetched
+        const calendarContainer = document.querySelector('.calendar-container');
+        if (calendarContainer) {
+            const calendarWidget = new CalendarWidget('.calendar-container');
+            calendarWidget.init(eventDetailsManager);
+            positionTooltips();
+        }
+    });
+
     eventDetailsManager.updateRecordingsDisplay();
 
     // Update the display at midnight
@@ -296,6 +301,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         if (now.getHours() === 0 && now.getMinutes() === 0) {
             eventDetailsManager.updateEventsDisplay();
+            // Optionally re-render the calendar here if needed
+            const calendarContainer = document.querySelector('.calendar-container');
+            if (calendarContainer) {
+                const calendarWidget = new CalendarWidget('.calendar-container');
+                calendarWidget.init(eventDetailsManager);
+                positionTooltips();
+            }
         }
     }, 60000);
 });

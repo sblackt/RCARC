@@ -23,16 +23,39 @@ if ($method === 'GET') {
 
 if ($method === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
-    $stmt = $pdo->prepare("INSERT INTO events (type, name, date, time, location, topic) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$data['type'], $data['name'], $data['date'], $data['time'], $data['location'], $data['topic'] ?? null]);
+    $stmt = $pdo->prepare("INSERT INTO events (type, name, date, time, location, topic, details, presenter, link) 
+                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $data['type'], 
+        $data['name'], 
+        $data['date'], 
+        $data['time'], 
+        $data['location'], 
+        $data['topic'] ?? null,
+        $data['details'] ?? null,
+        $data['presenter'] ?? null,
+        $data['link'] ?? null
+    ]);
     echo json_encode(['success' => true]);
     exit;
 }
 
 if ($method === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
-    $stmt = $pdo->prepare("UPDATE events SET type=?, name=?, date=?, time=?, location=?, topic=? WHERE id=?");
-    $stmt->execute([$data['type'], $data['name'], $data['date'], $data['time'], $data['location'], $data['topic'] ?? null, $data['id']]);
+    $stmt = $pdo->prepare("UPDATE events SET type=?, name=?, date=?, time=?, location=?, topic=?, 
+                          details=?, presenter=?, link=? WHERE id=?");
+    $stmt->execute([
+        $data['type'], 
+        $data['name'], 
+        $data['date'], 
+        $data['time'], 
+        $data['location'], 
+        $data['topic'] ?? null,
+        $data['details'] ?? null,
+        $data['presenter'] ?? null,
+        $data['link'] ?? null,
+        $data['id']
+    ]);
     echo json_encode(['success' => true]);
     exit;
 }
