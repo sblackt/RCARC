@@ -90,56 +90,76 @@
             
         <div>
             <h1>RCARC YouTube Videos</h1>
-            <div id="videoContainer" class="video-grid"></div>
-        
-            <script>
-                // Replace with your API key
-                const API_KEY = 'AIzaSyAtNIp9P7AsGDUu6dwDJfhS5MsrNjoxQnQ';
-                // Your channel ID
-                const CHANNEL_ID = 'UCBSBpalG59lY1UdUSVvIJkg';
-                
-                // Fetch videos from the channel
-                function fetchVideos() {
-                    const maxResults = 50; // Number of videos to fetch (max 50 per request)
-                    const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=viewCount&maxResults=${maxResults}&type=video`;
-                    
-                    fetch(url)
-                        .then(response => response.json())
-                        .then(data => {
-                            displayVideos(data.items);
-                        })
-                        .catch(error => console.error('Error fetching videos:', error));
+<div id="videoContainer" class="video-grid"></div>
+
+<script>
+    const API_KEY = 'AIzaSyAtNIp9P7AsGDUu6dwDJfhS5MsrNjoxQnQ';
+    const CHANNEL_ID = 'UCBSBpalG59lY1UdUSVvIJkg';
+
+    function fetchVideos() {
+        const maxResults = 50;
+        const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=viewCount&maxResults=${maxResults}&type=video`;
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                
-                // Display videos in a grid
-                function displayVideos(videos) {
-                    const container = document.getElementById('videoContainer');
-                    
-                    videos.forEach(video => {
-                        if (video.id.videoId) {
-                            const videoCard = document.createElement('div');
-                            videoCard.className = 'video-card';
-                            
-                            const publishDate = new Date(video.snippet.publishedAt).toLocaleDateString();
-                            
-                            videoCard.innerHTML = `
-                                <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
-                                    <img class="video-thumbnail" src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.title}">
-                                </a>
-                                <div class="video-info">
-                                    <div class="video-title">${video.snippet.title}</div>
-                                    <div class="video-date">Published: ${publishDate}</div>
-                                </div>
-                            `;
-                            
-                            container.appendChild(videoCard);
-                        }
-                    });
+                return response.json();
+            })
+            .then(data => {
+                if (!data.items || data.items.length === 0) {
+                    showErrorMessage();
+                    return;
                 }
-                
-                // Load videos when page loads
-                window.onload = fetchVideos;
-            </script>
+                displayVideos(data.items);
+            })
+            .catch(error => {
+                console.error('Error fetching videos:', error);
+                showErrorMessage();
+            });
+    }
+
+    function displayVideos(videos) {
+        const container = document.getElementById('videoContainer');
+
+        videos.forEach(video => {
+            if (video.id.videoId) {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+
+                const publishDate = new Date(video.snippet.publishedAt).toLocaleDateString();
+
+                videoCard.innerHTML = `
+                    <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
+                        <img class="video-thumbnail" src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.title}">
+                    </a>
+                    <div class="video-info">
+                        <div class="video-title">${video.snippet.title}</div>
+                        <div class="video-date">Published: ${publishDate}</div>
+                    </div>
+                `;
+
+                container.appendChild(videoCard);
+            }
+        });
+    }
+
+    function showErrorMessage() {
+        const container = document.getElementById('videoContainer');
+        container.innerHTML = `
+            <div class="video-error">
+                <p><strong>Videos failed to load.</strong></p>
+                <p>This may be caused by an ad blocker or tracking protection in your browser (especially on Firefox).</p>
+                <p>If you're using an ad blocker, try disabling it for this site or adding an exception.</p>
+                 <p>In the meantime, you can <a href="https://www.youtube.com/@theRCARC" target="_blank" rel="noopener">visit our YouTube channel directly here</a>.</p>
+            </div>
+        `;
+    }
+
+    window.onload = fetchVideos;
+</script>
+
         </div>
         </section>
        <!-- <section class="recordings-section">
