@@ -15,11 +15,14 @@ body {
     font-weight: 500;
     font-family: 'Barlow', Helvetica, Arial, sans-serif;
     color: #4b3e36;
+    
 }
+
 .link{
     text-transform: none;
     color: #4b3e36;
     text-decoration: underline;
+    font-weight: 550;
 }
 html {
     scroll-behavior: smooth;
@@ -134,6 +137,7 @@ header {
 h1 {
     font-size: 24px;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .welcome-text {
@@ -148,6 +152,7 @@ h1 {
     text-decoration: none;
     font-size: 20px;
     white-space: nowrap;
+    font-weight: 550;
 }
 .join-button, button {
    border: none;
@@ -183,6 +188,7 @@ h1 {
 h2 {
     font-size: 20px;
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .dotted-line {
@@ -484,6 +490,7 @@ h2 {
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s ease;
+    font-weight: 700;
 }
 
 .tab-button:hover {
@@ -642,6 +649,13 @@ h2 {
 }
 
 /* contact page styles */
+.externalLink a{
+    color: #cb433f;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: normal;
+
+}
 .contact-content {
     max-width: 1440px;
     margin: 0 auto;
