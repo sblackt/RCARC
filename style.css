@@ -1,15 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Khand:wght@300;400;500;600;700&family=Parisienne&family=Trocchi&display=swap');
+
 /* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+   
 }
 
 body {
-    font-family: "Futura-Medium", Helvetica, Arial, sans-serif;
     background-color: #faf7f3;
-    color: #4b3e36;
     line-height: 1.6;
+    font-weight: 500;
+    font-family: 'Barlow', Helvetica, Arial, sans-serif;
+    color: #4b3e36;
 }
 .link{
     text-transform: none;
@@ -77,7 +82,6 @@ header {
 }
 
 .nav-link {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     color: #4b3e36;
     text-decoration: none;
     font-size: 18px;
@@ -128,7 +132,6 @@ header {
 }
 
 h1 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 24px;
     margin-bottom: 1rem;
 }
@@ -143,7 +146,6 @@ h1 {
     padding: 16px 32px;
     border-radius: 100px;
     text-decoration: none;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 20px;
     white-space: nowrap;
 }
@@ -179,7 +181,6 @@ h1 {
 }
 
 h2 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 20px;
     margin-bottom: 0.5rem;
 }
@@ -308,7 +309,6 @@ h2 {
     width: 80%;
     max-width: 600px;
     border-radius: 4px;
-    font-family: "Futura-Medium", Helvetica, Arial, sans-serif;
     color: #4b3e36;
     line-height: 1.6;
     max-height: 90vh; /* Limit height to 90% of viewport height */
@@ -328,7 +328,6 @@ h2 {
 }
 
 .modal-content h2 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 24px;
     margin-bottom: 1rem;
     color: #4b3e36;
@@ -341,7 +340,6 @@ h2 {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 20px;
 }
 
@@ -351,7 +349,6 @@ h2 {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-family: "Futura-Medium", Helvetica, Arial, sans-serif;
     font-size: 16px;
     color: #4b3e36;
 }
@@ -362,7 +359,6 @@ h2 {
     padding: 16px 32px;
     border-radius: 100px;
     border: none;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 20px;
     cursor: pointer;
     position: relative;
@@ -483,7 +479,6 @@ h2 {
     background: none;
     border: none;
     padding: 0.75rem 1.5rem;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 18px;
     color: #4b3e36;
     cursor: pointer;
@@ -555,7 +550,6 @@ h2 {
 .timeline-date {
     min-width: 120px;
     max-width: 120px;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     color: #cb433f;
 }
 
@@ -617,7 +611,6 @@ h2 {
 }
 
 .construction-phase h2, .location-history h2 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     color: #cb433f;
     margin-bottom: 1.5rem;
 }
@@ -667,7 +660,6 @@ h2 {
 }
 
 .contact-text h1 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 24px;
     margin-bottom: 1.5rem;
     color: #4b3e36;
@@ -722,7 +714,6 @@ h2 {
 }
 
 .licensed-text h1 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 24px;
     margin-bottom: 1.5rem;
     color: #4b3e36;
@@ -819,7 +810,6 @@ h2 {
 /* CSS additions for event-details.html */
 /* Calendar Widget Styles *//* Calendar Widget Styles */
 .calendar-widget {
-    font-family: "Futura-Medium", Helvetica, Arial, sans-serif;
     margin: 20px auto;
     max-width: 100%;
     border: 1px solid #ddd;
@@ -840,7 +830,6 @@ h2 {
 
 .calendar-header h3 {
     margin: 0;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 1.2em;
 }
 
@@ -868,7 +857,6 @@ h2 {
 .calendar-weekdays div {
     text-align: center;
     padding: 5px;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 0.9em;
     color: #4b3e36; /* Changed to match text color */
 }
@@ -1011,7 +999,6 @@ h2 {
 
 .event-title {
     display: block;
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -1118,7 +1105,6 @@ h2 {
 }
 
 .recording-title {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 18px;
     margin-bottom: 0.5rem;
     color: #4b3e36;
@@ -1466,7 +1452,6 @@ h2 {
 
 .executive-section h2,
 .repeaters-section h2 {
-    font-family: "Futura-Bold", Helvetica, sans-serif;
     font-size: 24px;
     margin-bottom: 1rem;
     color: #4b3e36;

@@ -12,7 +12,7 @@ class CalendarWidget {
         this.eventDetailsManager = eventDetailsManager;
         this.loadEvents();
         this.render();
-        this.attachEventListeners();
+        //this.attachEventListeners();
     }
 
     loadEvents() {
@@ -68,8 +68,8 @@ class CalendarWidget {
     getFirstDayOfMonth(month, year) {
         return new Date(year, month, 1).getDay();
     }
-
     navigateMonth(direction) {
+        // Update the month first
         this.currentMonth += direction;
         
         if (this.currentMonth < 0) {
@@ -80,8 +80,10 @@ class CalendarWidget {
             this.currentYear++;
         }
         
-        this.render();
+        // Call render after updating the state
+        setTimeout(() => this.render(), 0);
     }
+    
 
     formatEventDate(date) {
         // Convert YYYY-MM-DD to Date object
