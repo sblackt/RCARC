@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Renfrew County Amateur Radio Club</title>
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRZJ62CCZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QRZJ62CCZR');
+</script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .pool label {
+      font-size: 26pt;
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-color: grey;
+      color: white;
+    }
+    .pool input[type="checkbox"] {
+      display: none;
+    }
+    .pool input[type="checkbox"]:checked + label {
+      background-color: #ba3c3c;
+    }
+    .controls, .stats, .feedback, .options {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .feedback span {
+      font-size: 2rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .correct {
+      background: #c8f7c5;
+      color: #1e7d1e;
+    }
+    .wrong {
+      background: #f7c5c5;
+      color: #7d1e1e;
+    }
+    button, select, input[type=number] {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin: 0 0.25rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #inputField {
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      width: 50%;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .blurb {
+      width: 80%;
+      text-align: center;
+      margin: 0 auto;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
+                    <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="events.html" class="nav-link">EVENTS</a></li>
+                    <li><a href="gallery.php" class="nav-link ">GALLERY</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                    
+                </ul>
+     
+                <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+   <!-- mobile text "Menu" -->
+<div id="hamburger-menu" class="hamburger-menu">
+    <span class="menu-text">Menu</span>
+</div>
+
+            </nav>
+        </div>
+    </header>
+
+  <h1 style="font-size: 32px;">Morse Code Trainer</h1>
+  <div class="blurb">
+    <h2>Welcome! To start training, choose your letters directly, or through the Initial Characters dropdown. <br>Click Start Training and use the keyboard to enter the character you hear.</h2>
+  </div>
+  <div class="options">
+    <label>Letter group size:
+      <select id="groupSize">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </label>
+  
+    <label>Initial characters:
+      <select id="initialCharCount" onchange="updateInitialSelection()">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="10">10</option>
+        <option value="26">26</option>
+        <option value="41">All</option>
+      </select>
+    </label>
+  
+    <button onclick="replayChar()">Replay</button>
+  </div>
+  
+  <div class="pool" id="charPool"></div>
+  <div class="controls">
+    <button onclick="startTraining()">Start Training</button>
+    <label>WPM: <input id="wpm" type="number" value="20" min="5" max="60" /></label>
+    <label>Tone (Hz): <input id="toneHz" type="number" value="600" min="300" max="1000" /></label>
+  </div>
+  <div class="feedback" id="feedback"></div>
+  <div class="controls">
+    <input type="text" id="inputField" placeholder="Type here..." oninput="checkInput()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+  </div>
+  <div class="stats" id="stats">Accuracy: 100% | Streak: 0</div>
+<div class="blurb">
+    <p style="font-size: 16px;"> <br> Letter group size will play multiple characters one after the other for you to decode and type. <br> The WPM (words per minute) setting will adjust the speed of the sound. <br> The tone setting will adjust the frequency of the sound. <br> You can also replay the last character by clicking the Replay button.</p>
+</div>
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
+        <p class="egg"><a href="morse.html">-.-. .--</a></p>
+        
+    </div>
+</footer>
+  <script>
+    const morseMap = {
+      A: '.-', B: '-...', C: '-.-.', D: '-..',
+      E: '.', F: '..-.', G: '--.', H: '....',
+      I: '..', J: '.---', K: '-.-', L: '.-..',
+      M: '--', N: '-.', O: '---', P: '.--.',
+      Q: '--.-', R: '.-.', S: '...', T: '-',
+      U: '..-', V: '...-', W: '.--', X: '-..-',
+      Y: '-.--', Z: '--..',
+      1: '.----', 2: '..---', 3: '...--', 4: '....-',
+      5: '.....', 6: '-....', 7: '--...', 8: '---..',
+      9: '----.', 0: '-----'
+    };
+
+    const kochOrder = 'KMURESHANODTILCWZGYQPBVFJX1234567890'.split('');
+const poolDiv = document.getElementById('charPool');
+
+function createCharCheckboxes(initialCount = 1) {
+  poolDiv.innerHTML = '';
+  kochOrder.forEach((char, index) => {
+    const isChecked = index < initialCount ? 'checked' : '';
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `<input type="checkbox" id="cb-${char}" value="${char}" ${isChecked}><label for="cb-${char}">${char}</label>`;
+    poolDiv.appendChild(wrapper);
+  });
+}
+createCharCheckboxes();
+
+function updateInitialSelection() {
+  const count = parseInt(document.getElementById('initialCharCount').value, 10);
+  createCharCheckboxes(count);
+}
+
+
+    const feedback = document.getElementById('feedback');
+    const stats = document.getElementById('stats');
+    const inputField = document.getElementById('inputField');
+    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let currentGroup = '';
+    let streak = 0, total = 0, correct = 0;
+
+    function getSelectedChars() {
+      return [...document.querySelectorAll('#charPool input:checked')].map(i => i.value);
+    }
+
+    async function playMorseSequence(seq) {
+      const wpm = parseInt(document.getElementById('wpm').value);
+      const freq = parseInt(document.getElementById('toneHz').value);
+      const unit = 1200 / wpm;
+      for (let char of seq) {
+        await playMorseChar(char, freq, unit);
+        await sleep(unit * 3);
+      }
+    }
+
+    async function playMorseChar(char, freq, unit) {
+      for (let symbol of morseMap[char]) {
+        const oscillator = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        oscillator.frequency.value = freq;
+        oscillator.type = 'sine';
+        oscillator.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(1.0, now + 0.01);
+
+        oscillator.start(now);
+
+        const duration = symbol === '.' ? unit : unit * 3;
+        gain.gain.setValueAtTime(1.0, now + 0.01 + duration / 1000 - 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.01 + duration / 1000);
+
+        oscillator.stop(now + 0.01 + duration / 1000);
+        await sleep(duration);
+        await sleep(unit);
+      }
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function replayChar() {
+      if (currentGroup) playMorseSequence(currentGroup);
+    }
+
+    function generateGroup() {
+      const selected = getSelectedChars();
+      const groupSize = parseInt(document.getElementById('groupSize').value);
+      let group = '';
+      for (let i = 0; i < groupSize; i++) {
+        group += selected[Math.floor(Math.random() * selected.length)];
+      }
+      return group;
+    }
+
+    async function startTraining() {
+      inputField.value = '';
+      inputField.focus();
+      currentGroup = generateGroup();
+      await playMorseSequence(currentGroup);
+    }
+
+    function checkInput() {
+      const input = inputField.value.toUpperCase();
+      if (input.length < currentGroup.length) return;
+
+      total++;
+      if (input === currentGroup) {
+        correct++;
+        streak++;
+        feedback.innerHTML = '<span class="correct">Correct!</span>';
+      } else {
+        streak = 0;
+        feedback.innerHTML = '<span class="wrong">Wrong! ' + currentGroup + '</span>';
+      }
+
+      stats.textContent = `Accuracy: ${Math.round((correct / total) * 100)}% | Streak: ${streak}`;
+      inputField.value = '';
+      currentGroup = generateGroup();
+      playMorseSequence(currentGroup);
+    }
+  </script>
+</body>
+</html>

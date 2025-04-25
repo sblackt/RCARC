@@ -60,7 +60,15 @@
             </div>
             
         </div>
+        
     </main>
+    <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
+                <p class="egg"><a href="morse.html">-.-. .--</a></p>
+                
+            </div>
+        </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script>

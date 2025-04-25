@@ -56,6 +56,40 @@ header {
 }
 
 /* Navigation styles */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    background: white;
+    white-space: nowrap;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f5f5f5;
+}
+
 .nav-link.active {
     color: #cb433f;  /* This matches your red button color */
     position: relative;  /* For the underline positioning */
@@ -153,6 +187,7 @@ h1 {
     font-size: 20px;
     white-space: nowrap;
     font-weight: 550;
+    font-family: 'Barlow', Helvetica, Arial, sans-serif;
 }
 .join-button, button {
    border: none;
@@ -1590,4 +1625,26 @@ h2 {
     .video-grid {
         grid-template-columns: 1fr;
     }
+}
+
+footer {
+    background-color: #4b3e36;
+    color: white;
+    padding: 1rem 0;
+    text-align: left;
+    font-size: 10px;
+    padding: 2rem;
+}
+footer p{
+    font-size: 12px;
+}
+.egg{
+    width: 100%;
+    background-color: #4b3e36;
+}
+.egg a{
+    color: white;
+    text-align: right;
+    font-size: 18px;
+    float: right;
 }
