@@ -17,82 +17,142 @@
   gtag('config', 'G-QRZJ62CCZR');
 </script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .pool {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    .pool label {
-      font-size: 26pt;
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      background-color: grey;
-      color: white;
-    }
-    .pool input[type="checkbox"] {
-      display: none;
-    }
-    .pool input[type="checkbox"]:checked + label {
-      background-color: #ba3c3c;
-    }
-    .controls, .stats, .feedback, .options {
-      text-align: center;
-      margin: 1rem 0;
-    }
-    .feedback span {
-      font-size: 2rem;
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: inline-block;
-    }
-    .correct {
-      background: #c8f7c5;
-      color: #1e7d1e;
-    }
-    .wrong {
-      background: #f7c5c5;
-      color: #7d1e1e;
-    }
-    button, select, input[type=number] {
-      font-size: 1rem;
-      padding: 0.5rem;
-      margin: 0 0.25rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    #inputField {
-      font-size: 1.5rem;
-      padding: 0.5rem;
-      width: 50%;
-      text-align: center;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .blurb {
-      width: 80%;
-      text-align: center;
-      margin: 0 auto;
-      font-size: 12px;
-    }
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base size for rems */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.pool label {
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: grey;
+  color: white;
+  user-select: none;
+}
+
+.pool input[type="checkbox"] {
+  display: none;
+}
+
+.pool input[type="checkbox"]:checked + label {
+  background-color: #ba3c3c;
+}
+
+.controls, .stats, .feedback, .options {
+  text-align: center;
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+button, select, input[type=number] {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ccc;
+  min-width: 44px;
+}
+
+#inputField {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.feedback span {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.correct {
+  background: #c8f7c5;
+  color: #1e7d1e;
+}
+
+.wrong {
+  background: #f7c5c5;
+  color: #7d1e1e;
+}
+
+.blurb {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+}
+.blurb h2 {
+  white-space: wrap;
+}
+
+/* 🔁 Mobile adjustments */
+@media (max-width: 600px) {
+  .pool label {
+    font-size: 1.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .feedback span {
+    font-size: 1.25rem;
+  }
+
+  button, select, input[type=number] {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  #inputField {
+    font-size: 1.1rem;
+    width: 95%;
+  }
+
+  .controls, .options {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
   </style>
 </head>
 <body>
