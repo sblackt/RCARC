@@ -140,7 +140,7 @@ class CalendarWidget {
         }
         
         // Fill in days of the month
-       // Inside your render function, replace the code for handling events with this:
+      
 for (let day = 1; day <= daysInMonth; day++) {
     const isToday = day === currentDay && 
                     this.currentMonth === currentMonth && 
@@ -159,7 +159,7 @@ for (let day = 1; day <= daysInMonth; day++) {
     if (hasEvents) {
         calendarHTML += `<div class="event-indicator">`;
         
-        // Display event titles instead of dots
+        // Display event titles 
         dayEvents.forEach(event => {
             let shortTitle = "";
             if (event.type === 'breakfast') shortTitle = "B";
@@ -205,6 +205,15 @@ calendarHTML += `
         
         this.container.innerHTML = calendarHTML;
         this.attachEventListeners();
+
+        // Rebind tooltips and observer after rendering new calendar DOM
+if (typeof positionTooltips === 'function') {
+    positionTooltips();
+}
+if (typeof observeCalendarChanges === 'function') {
+    observeCalendarChanges();
+}
+
     }
 
     attachEventListeners() {
@@ -277,29 +286,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60000);
 });
 
-// Add this function to your JavaScript file
 function positionTooltips() {
     const calendarDays = document.querySelectorAll('.calendar-day');
-    
+
     calendarDays.forEach(day => {
         const tooltip = day.querySelector('.event-tooltip');
         if (!tooltip) return;
-        
+
         day.addEventListener('mouseenter', () => {
+            // Temporarily show tooltip to calculate accurate size
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.display = 'block';
+
             // Reset position classes
             tooltip.classList.remove('position-top', 'position-bottom', 'position-left', 'position-right');
-            
-            // Get positions
+
+            // Get bounding rectangles
             const dayRect = day.getBoundingClientRect();
             const calendarRect = document.querySelector('.calendar-widget').getBoundingClientRect();
-            
-            // Calculate available space in each direction
+
+            // Available space
             const spaceTop = dayRect.top - calendarRect.top;
             const spaceBottom = calendarRect.bottom - dayRect.bottom;
             const spaceLeft = dayRect.left - calendarRect.left;
             const spaceRight = calendarRect.right - dayRect.right;
-            
-            // Determine best position based on available space
+
+            // Pick best position
             if (spaceRight >= 150) {
                 tooltip.classList.add('position-right');
             } else if (spaceLeft >= 150) {
@@ -309,16 +321,29 @@ function positionTooltips() {
             } else {
                 tooltip.classList.add('position-top');
             }
+
+            // Reset inline styles
+            tooltip.style.visibility = '';
+            tooltip.style.display = '';
         });
     });
 }
 
-// Call this function after calendar is rendered
-window.addEventListener('load', positionTooltips);
 // Also call it when month changes if you have month navigation
-document.querySelectorAll('.calendar-header button').forEach(button => {
-    button.addEventListener('click', () => {
-        // Wait for the calendar to update
-        setTimeout(positionTooltips, 100);
+function observeCalendarChanges() {
+    const calendar = document.querySelector('.calendar-widget');
+    if (!calendar) return;
+
+    const observer = new MutationObserver(() => {
+        positionTooltips(); // re-run tooltip setup after calendar DOM changes
     });
+
+    observer.observe(calendar, { childList: true, subtree: true });
+}
+
+// Call this function after calendar is rendered
+window.addEventListener('load', () => {
+    positionTooltips();           // initial setup
+    observeCalendarChanges();     // keep watching for changes
 });
+
