@@ -27,7 +27,13 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
-                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" class="nav-link">ABOUT</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About RCARC</a></li>
+                            <li><a href="get-started.html">Getting Started</a></li>
+                        </ul>
+                    </li>
                     <li><a href="history.html" class="nav-link active">HISTORY</a></li>
                     <li><a href="events.html" class="nav-link">EVENTS</a></li>
                     <li><a href="gallery.php" class="nav-link ">GALLERY</a></li>
@@ -358,11 +364,55 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger-menu');
-            const navList = document.querySelector('.nav-list');  // Use class selector instead of ID
-    
+            const navList = document.querySelector('.nav-list');
+            
+            // Check if we're on mobile
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+            
+            // Setup mobile menu
+            function setupMobileMenu() {
+                // Clean up any existing mobile-specific elements
+                const existingMobileItems = document.querySelectorAll('.mobile-only');
+                existingMobileItems.forEach(item => item.remove());
+                
+                // Add "Get Started" as a separate menu item in mobile view
+                if (isMobile()) {
+                    // Create a new list item for Get Started
+                    const getStartedItem = document.createElement('li');
+                    getStartedItem.className = 'mobile-only';
+                    getStartedItem.innerHTML = '<a href="get-started.html" class="nav-link">GET STARTED</a>';
+                    
+                    // Create a new list item for Get Licensed 
+                    const getLicensedItem = document.createElement('li');
+                    getLicensedItem.className = 'mobile-only';
+                    getLicensedItem.innerHTML = '<a href="get-licensed.html" class="nav-link">GET LICENSED</a>';
+                    
+                    // Insert after the ABOUT item
+                    const aboutItem = document.querySelector('.nav-dropdown');
+                    if (aboutItem && aboutItem.nextSibling) {
+                        navList.insertBefore(getStartedItem, aboutItem.nextSibling);
+                        navList.appendChild(getLicensedItem);
+                    }
+                }
+            }
+            
+            // Toggle mobile menu
             hamburger.addEventListener('click', function() {
-                navList.classList.toggle('show');  // Toggle 'show' class on the nav-list
+                navList.classList.toggle('show');
+                setupMobileMenu();
             });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (!isMobile()) {
+                    navList.classList.remove('show');
+                }
+            });
+            
+            // Initial setup
+            setupMobileMenu();
         });
     </script>
 </body>

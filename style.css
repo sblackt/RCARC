@@ -69,12 +69,16 @@ header {
     padding: 0;
     margin: 0;
     list-style: none;
-    border: 1px solid #ccc;
     z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
-
+.dropdown-menu{
+    border-radius: 3px;
+}
 .nav-dropdown:hover .dropdown-menu {
     display: block;
+
 }
 
 .dropdown-menu li a {
@@ -89,7 +93,15 @@ header {
 .dropdown-menu li a:hover {
     background-color: #f5f5f5;
 }
+.dropdown-menu li:first-child a {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 
+.dropdown-menu li:last-child a {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .nav-link.active {
     color: #cb433f;  /* This matches your red button color */
     position: relative;  /* For the underline positioning */
@@ -682,7 +694,14 @@ h2 {
     color: #4b3e36;
     font-weight: bold;
 }
+/* getting started links */
+ul li .externalLink a{
+    color: #cb433f;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: normal;
 
+}
 /* contact page styles */
 .externalLink a{
     color: #cb433f;
@@ -1230,6 +1249,17 @@ h2 {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 60px; /* Space from the top (adjust based on your header) */
     }
+    .mobile-only {
+        display: none;
+    }
+    
+    .nav-list.show .mobile-only {
+        display: block;
+    }
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    
 
     .nav-link {
         width: 100%; /* Ensure each menu item spans full width */

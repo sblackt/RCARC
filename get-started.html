@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="globals.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Tab Styles - Matching your existing tab styles */
+       
+        
+        /* FAQ Styles - Keeping your existing styles */
+        .faq details {
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+        
+        .faq summary {
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .faq p {
+            margin: 0.5rem 0 0 0;
+        }
+        
+        /* Additional styles for content organization */
+        .tab-section {
+            margin-bottom: 20px;
+        }
+        
+        .tab-section h3 {
+            color: #cb433f;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .image-container {
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -30,150 +75,308 @@
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+                <div id="hamburger-menu" class="hamburger-menu">
+                    <span class="menu-text">Menu</span>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main class="about-content" style="width: 80%">
+    <main class="about-content">
         <section class="hero">
+            <img src="img/hamshakbYF.jpg" alt="Ham Shack" class="hero-image">
+              </section>
+
+       <div class="getstarted" style="padding-top: 20px;">
             <h1>Getting Started in Amateur Radio</h1>
             <p>New to ham radio? Here's a deep dive into how to get started, what gear you'll need, and what it's all about—from the first transmission to long-distance contacts around the world.</p>
-        </section>
-
-        <section class="intro-section">
+       </div>
+            <section class="history-section">
             <h2>What is Ham Radio?</h2>
             <p>Amateur radio, or "ham radio," is a hobby that lets you use designated radio frequencies to communicate locally and globally. Whether you're chatting with friends on a local repeater, working DX stations on HF, or experimenting with antennas and digital modes, ham radio is a technical, creative, and social hobby.</p>
-        </section>
 
-        <section class="bands-section">
-            <h2>HF vs. VHF/UHF: What's the Difference?</h2>
-            <p><strong>HF (High Frequency)</strong> ranges from 3 to 30 MHz and is where long-distance (DX) communication happens. You'll talk to people across the country or across the world. Bands like 20m, 40m, and 80m are staples of this part of the spectrum.</p>
-            <p><strong>VHF (Very High Frequency)</strong> and <strong>UHF (Ultra High Frequency)</strong> cover 30 to 300 MHz and 300 to 3000 MHz respectively. These are typically used for local communication—talking across your town, county, or region. Most new hams start here using a 2m or 70cm handheld or mobile radio and local repeaters.</p>
-        </section>
+        <!-- Tabbed Interface for Ham Radio Areas -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'bands')">Frequency Bands</button>
+            <button class="tab-button" onclick="openTab(event, 'antennas')">Antennas</button>
+            <button class="tab-button" onclick="openTab(event, 'equipment')">Equipment</button>
+            <button class="tab-button" onclick="openTab(event, 'tools')">Tools</button>
+            <button class="tab-button" onclick="openTab(event, 'operating')">Operating</button>
+        </div>
 
-        <section class="antennas-section">
-            <h2>Antennas: Your Most Important Investment</h2>
-            <p>Good antennas make all the difference. For <strong>VHF/UHF</strong>, a basic quarter-wave vertical antenna is a great start—many handhelds come with a rubber ducky antenna, but upgrading to a mag-mount for your car or a roof-mounted antenna can vastly improve range.</p>
-            <p>For <strong>HF</strong>, wire antennas like dipoles or end-fed half-waves are popular and relatively easy to install. A basic 40m dipole will get you on the air with decent performance across several bands with a tuner.</p>
-            <p>Remember: the antenna is more important than the radio. Spend your budget accordingly.</p>
-        </section>
+        <!-- Bands Tab Content -->
+        <div id="bands" class="tab-content active">
+            <div class="tab-section">
+                <h3>HF vs. VHF/UHF: What's the Difference?</h3>
+                <p><strong>HF (High Frequency)</strong> ranges from 3 to 30 MHz and is where long-distance (DX) communication happens. You'll talk to people across the country or across the world. Bands like 20m, 40m, and 80m are staples of this part of the spectrum.</p>
+                <p><strong>VHF (Very High Frequency)</strong> and <strong>UHF (Ultra High Frequency)</strong> cover 30 to 300 MHz and 300 to 3000 MHz respectively. These are typically used for local communication—talking across your town, county, or region. Most new hams start here using a 2m or 70cm handheld or mobile radio and local repeaters.</p>
+                
+                <h3>Popular Ham Bands</h3>
+                <ul>
+                    <li><strong>80m (3.5-4.0 MHz):</strong> Good for nighttime regional communications</li>
+                    <li><strong>40m (7.0-7.3 MHz):</strong> Reliable day and night, good for continental contacts</li>
+                    <li><strong>20m (14.0-14.35 MHz):</strong> The workhorse DX band, good throughout the day</li>
+                    <li><strong>2m (144-148 MHz):</strong> Most popular VHF band for local communication</li>
+                    <li><strong>70cm (420-450 MHz):</strong> Popular UHF band for local repeater use</li>
+                </ul>
+                
+                <h3>Propagation Basics</h3>
+                <p>Radio signals behave differently depending on frequency, time of day, season, and solar conditions. HF bands use the ionosphere to bounce signals around the globe, while VHF/UHF is mostly limited to line-of-sight communication with the help of repeaters.</p>
+            </div>
+        </div>
 
-        <section class="equipment-section">
-            <h2>Starter Gear</h2>
-            <ul>
-                <li><strong>Handheld Radio (HT):</strong> Baofeng UV-5R, Yaesu FT-65, or Anytone AT-D878 for VHF/UHF basics.</li>
-                <li><strong>Mobile/Base Radio:</strong> Yaesu FT-891 or Icom IC-7100 for HF+VHF/UHF capability.</li>
-                <li><strong>Antenna:</strong> Diamond X50, a homebrew dipole, or a mobile whip depending on your setup.</li>
-                <li><strong>Tuner:</strong> If you're running HF and a non-resonant antenna, a tuner like the LDG Z-100 or MFJ-945E is crucial.</li>
-            </ul>
-        </section>
+        <!-- Antennas Tab Content -->
+        <div id="antennas" class="tab-content">
+            <div class="tab-section">
+                <h3>Your Most Important Investment</h3>
+                <p>Good antennas make all the difference. For <strong>VHF/UHF</strong>, a basic quarter-wave vertical antenna is a great start—many handhelds come with a rubber ducky antenna, but upgrading to a mag-mount for your car or a roof-mounted antenna can vastly improve range.</p>
+                <p>For <strong>HF</strong>, wire antennas like dipoles or end-fed half-waves are popular and relatively easy to install. A basic 40m dipole will get you on the air with decent performance across several bands with a tuner.</p>
+                <p>Remember: the antenna is more important than the radio. Spend your budget accordingly.</p>
+                
+                <h3>Antenna Types for Beginners</h3>
+                <ul>
+                    <li><strong>Dipole:</strong> Simple wire antenna with two equal legs, cut to specific frequency</li>
+                    <li><strong>End-Fed Half Wave (EFHW):</strong> Wire antenna fed from one end, good multi-band performance</li>
+                    <li><strong>Quarter-Wave Vertical:</strong> Simple vertical antenna, good for VHF/UHF mobile use</li>
+                    <li><strong>J-Pole:</strong> Popular VHF/UHF antenna that's easy to build yourself</li>
+                    <li><strong>Mag Mount:</strong> Easy car-mounted antenna using magnetic base</li>
+                </ul>
+                
+                <h3>Antenna Considerations</h3>
+                <p>Height matters more than power. Getting an antenna up higher almost always improves performance more than increasing transmitter power. For HF, aim for at least 30 feet if possible. Keep antennas away from metal objects and electrical wiring that can detune them or create interference.</p>
+            </div>
+        </div>
 
-        <section class="tools-section">
-            <h2>Tools of the Trade</h2>
-            <p><strong>NanoVNA:</strong> A compact, affordable antenna analyzer that lets you visualize SWR, impedance, and more across a wide frequency range. Great for tuning antennas and learning how they behave in the real world.</p>
-            <p><strong>Coax Cable and Connectors:</strong> Start with decent-quality RG-8X or LMR-240 for short runs. Learn to solder PL-259 connectors or use crimped options with good strain relief.</p>
-            <p><strong>Power Supply:</strong> A 12V regulated supply (20A or more for HF) is needed for most base radios. Look for ones from Astron, Samlex, or MFJ.</p>
-        </section>
+        <!-- Equipment Tab Content -->
+        <div id="equipment" class="tab-content">
+            <div class="tab-section">
+                <h3>Starter Gear</h3>
+                <ul>
+                    <li><strong>Handheld Radio (HT):</strong> Baofeng UV-5R, Yaesu FT-65, or Anytone AT-D878 for VHF/UHF basics.</li>
+                    <li><strong>Mobile/Base Radio:</strong> Yaesu FT-891 or Icom IC-7100 for HF+VHF/UHF capability.</li>
+                    <li><strong>Antenna:</strong> Diamond X50, a homebrew dipole, or a mobile whip depending on your setup.</li>
+                    <li><strong>Tuner:</strong> If you're running HF and a non-resonant antenna, a tuner like the LDG Z-100 or MFJ-945E is crucial.</li>
+                </ul>
+                
+                <h3>Radio Types</h3>
+                <p><strong>Handheld Transceivers (HTs):</strong> Portable, battery-powered radios primarily for VHF/UHF operation. Great for beginners and emergency preparedness.</p>
+                <p><strong>Mobile Radios:</strong> Higher power units designed for vehicle mounting. Can be used as base stations with power supply.</p>
+                <p><strong>Base Stations:</strong> Full-featured radios designed for home use. Often include multiple bands and modes.</p>
+                <p><strong>QRP Rigs:</strong> Low-power transceivers (typically 5 watts or less) popular for portable operation and challenging yourself.</p>
+                
+                <h3>Essential Accessories</h3>
+                <ul>
+                    <li><strong>Power Supply:</strong> For home use of mobile or base stations (12-14V DC)</li>
+                    <li><strong>Coaxial Cable:</strong> RG-8X for most applications, LMR-400 for longer runs</li>
+                    <li><strong>Adapters:</strong> Various connectors like BNC, PL-259, SMA for different equipment</li>
+                    <li><strong>External Speaker or Headphones:</strong> For clearer reception</li>
+                </ul>
+            </div>
+        </div>
 
-        <section class="operating-section">
-            <h2>Getting On the Air</h2>
-            <p>Once you’re licensed and have your gear set up, start with local repeaters. Check in to weekly nets—like ours, every Monday at 7:30 PM. Then try simplex on 146.520 MHz to talk direct, no repeater.</p>
-            <p>With HF, listen before you transmit. Try calling CQ on 20m or respond to someone else. Use online tools like <a href="https://pskreporter.info/pskmap.html" target="_blank">PSK Reporter</a> or <a href="https://www.reversebeacon.net/" target="_blank">Reverse Beacon Network</a> to see how far your signal travels.</p>
-        </section>
+        <!-- Tools Tab Content -->
+        <div id="tools" class="tab-content">
+            <div class="tab-section">
+                <h3>Tools of the Trade</h3>
+                <p><strong>NanoVNA:</strong> A compact, affordable antenna analyzer that lets you visualize SWR, impedance, and more across a wide frequency range. Great for tuning antennas and learning how they behave in the real world.</p>
+                <p><strong>Coax Cable and Connectors:</strong> Start with decent-quality RG-8X or LMR-240 for short runs. Learn to solder PL-259 connectors or use crimped options with good strain relief.</p>
+                <p><strong>Power Supply:</strong> A 12V regulated supply (20A or more for HF) is needed for most base radios. Look for ones from Astron, Samlex, or MFJ.</p>
+                
+                <h3>Test Equipment</h3>
+                <ul>
+                    <li><strong>SWR Meter:</strong> Measures standing wave ratio, important for antenna performance</li>
+                    <li><strong>Multimeter:</strong> For measuring voltage, resistance, and continuity</li>
+                    <li><strong>Dummy Load:</strong> For testing transmitters without radiating a signal</li>
+                    <li><strong>Field Strength Meter:</strong> Helpful for antenna pattern testing</li>
+                </ul>
+                
+                <h3>Software Tools</h3>
+                <p>Modern ham radio often incorporates software for digital modes, logging, and more:</p>
+                <ul>
+                    <li><strong>WSJT-X:</strong> For FT8, FT4, and other weak signal digital modes</li>
+                    <li><strong>Fldigi:</strong> Multi-mode digital software</li>
+                    <li><strong>Ham Radio Deluxe:</strong> Comprehensive logging and radio control</li>
+                    <li><strong>MMSSTV:</strong> For slow-scan television</li>
+                    <li><strong>APRS Software:</strong> For position reporting and messaging</li>
+                </ul>
+            </div>
+        </div>
 
-        <section class="learning-section">
-            <h2>Keep Learning</h2>
-            <ul>
-                <li>Join your local club (like us!) and participate in nets, tech nights, and field days.</li>
-                <li>Explore digital modes like FT8, Winlink, APRS, and DMR.</li>
-                <li>Experiment with building antennas, solar-powered stations, or portable field gear.</li>
-                <li>Use logging and mapping tools like <a href="https://www.qrz.com/" class="link">QRZ.com</a> or <a href="https://www.hamqth.com/" class="link">HamQTH</a>.</li>
-            </ul>
-        </section>
-
-        <section class="wrapup-section" style="padding-bottom: 20px;">
+        <!-- Operating Tab Content -->
+        <div id="operating" class="tab-content">
+            <div class="tab-section">
+                <h3>Getting On the Air</h3>
+                <p>Once you're licensed and have your gear set up, start with local repeaters. Check in to weekly nets—like ours, every Monday at 7:30 PM. Then try simplex on 146.520 MHz to talk direct, no repeater.</p>
+                <p>With HF, listen before you transmit. Try calling CQ on 20m or respond to someone else. Use online tools like <a href="https://pskreporter.info/pskmap.html " class="link" target="_blank">PSK Reporter</a> or <a href="https://www.reversebeacon.net/" class="link" target="_blank">Reverse Beacon Network</a> to see how far your signal travels.</p>
+                
+                <h3>Operating Modes</h3>
+                <ul>
+                    <li><strong>Phone (Voice):</strong> FM on VHF/UHF, SSB on HF</li>
+                    <li><strong>CW (Morse Code):</strong> Traditional but still very effective</li>
+                    <li><strong>Digital Modes:</strong> FT8, FT4, PSK31, RTTY, etc.</li>
+                    <li><strong>SSTV:</strong> Slow Scan Television for sending images</li>
+                    <li><strong>Satellite:</strong> Communication via amateur radio satellites</li>
+                </ul>
+                
+                <h3>Ham Radio Activities</h3>
+                <p>Beyond basic communication, hams enjoy many specialized activities:</p>
+                <ul>
+                    <li><strong>Contesting:</strong> Competitive events focused on making many contacts</li>
+                    <li><strong>DXing:</strong> Making contacts with distant stations</li>
+                    <li><strong>SOTA/POTA:</strong> Summits/Parks On The Air portable operation</li>
+                    <li><strong>EmComm:</strong> Emergency communications preparation and service</li>
+                    <li><strong>Foxhunting:</strong> Radio direction finding competitions</li>
+                    <li><strong>QRP Operation:</strong> Low-power operating challenges</li>
+                </ul>
+                
+                <h3>Keep Learning</h3>
+                <ul>
+                    <li>Join your local club (like us!) and participate in nets, tech nights, and field days.</li>
+                    <li>Explore digital modes like FT8, Winlink, APRS, and DMR.</li>
+                    <li>Experiment with building antennas, solar-powered stations, or portable field gear.</li>
+                    <li>Use logging and mapping tools like <a href="https://www.qrz.com/" class="link">QRZ.com</a> or <a href="https://www.hamqth.com/" class="link">HamQTH</a>.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+        <section class="wrapup-section" style="padding: 20px 0;">
             <h2>Ready to Transmit?</h2>
-            <p>Getting started in amateur radio opens the door to a lifelong hobby of experimentation, communication, and learning. Reach out to our club—we’re here to help!</p>
+            <p>Getting started in amateur radio opens the door to a lifelong hobby of experimentation, communication, and learning. Reach out to our club—we're here to help!</p>
             <a href="contact.html" class="license-button">Contact Us</a>
         </section>
 
-<div class="faq">
-<h1>Frequently Asked Questions</h1>
-    <details>
-    <summary>1. What’s the difference between VHF and HF?</summary>
-    <p>VHF (Very High Frequency) is great for local communication—think talking across your town or region with repeaters. HF (High Frequency) is where long-distance (DX) communication happens, letting you talk across the country or the world, depending on band conditions and antenna setup.</p>
-    </details>
-    
-    <details>
-    <summary>2. How far can I talk with a ham radio?</summary>
-    <p>It depends on the band, your antenna, and propagation. With VHF, 20-50 km is typical via line of sight or repeater use. With HF, hundreds to thousands of kilometers are common—even global communication is possible with good conditions and modest gear.</p>
-    </details>
-    
-    <details>
-    <summary>3. Do I need the internet or cell service to use ham radio?</summary>
-    <p>Nope! That’s one of the biggest benefits. Ham radio is independent of the internet, phone networks, and commercial infrastructure. That’s why it’s often used in emergencies.</p>
-    </details>
-    
-    <details>
-    <summary>4. Can I use ham radio for emergencies?</summary>
-    <p>Yes—and many hams do. Ham radio is a vital part of emergency communication networks. You can pass traffic, coordinate response, or just check in on others when the grid goes down.</p>
-    </details>
-    
-    <details>
-    <summary>5. What kind of radio should I start with?</summary>
-    <p>Most new hams start with a simple handheld VHF/UHF radio (like the Baofeng UV-5R or Yaesu FT-65). They’re inexpensive, great for learning, and perfect for talking on local repeaters. Later, you might graduate to an HF radio for long-range contacts.</p>
-    </details>
-    
-    <details>
-    <summary>6. Do I need a license to transmit?</summary>
-    <p>Yes. In Canada, the Basic Amateur Certificate is the entry-level license. It lets you transmit on most VHF/UHF bands and many HF bands if you score above 80%. You can listen to any frequency without a license—receiving is always legal.</p>
-    </details>
-    
-    <details>
-    <summary>7. What kind of antenna do I need?</summary>
-    <p>That depends on what you want to do. For VHF/UHF, a simple vertical antenna on your car, roof, or even a magnetic mount on a metal surface works great. For HF, wire antennas like dipoles or end-fed half-waves are cheap, effective, and easy to build.</p>
-    </details>
-    
-    <details>
-    <summary>8. What’s the deal with all the weird letters (like FT8, SSB, APRS)?</summary>
-    <p>Those are modes. FT8 is a digital weak-signal mode, SSB is voice on HF, and APRS is used for sending position and text data over radio. Each mode has its own use case, tools, and community of operators.</p>
-    </details>
-    
-    <details>
-    <summary>9. What’s the NanoVNA and why do people keep talking about it?</summary>
-    <p>The NanoVNA is a compact, affordable tool used to analyze antennas. It helps you check the SWR (how well your antenna matches your radio) and tune antennas for the best performance. It’s a game-changer for new hams building or adjusting antennas.</p>
-    </details>
-    
-    <details>
-    <summary>10. How do hams normally use their radios day-to-day?</summary>
-    <p>Some chat on local repeaters during commutes. Others do long-range DX hunting on HF. Many get into digital modes, emergency communications, public service events, satellite contacts, or just experimenting with antennas and circuits.</p>
-    </details>
-    
-    </div>
-    
-    <style>
-    .faq details {
-      margin-bottom: 1rem;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      padding: 0.75rem;
-      border-radius: 8px;
-    }
-    .faq summary {
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-    .faq p {
-      margin: 0.5rem 0 0 0;
-    }
-    </style>
-    
+        <div class="faq">
+            <h1>Frequently Asked Questions</h1>
+            <details>
+                <summary>1. What's the difference between VHF and HF?</summary>
+                <p>VHF (Very High Frequency) is great for local communication—think talking across your town or region with repeaters. HF (High Frequency) is where long-distance (DX) communication happens, letting you talk across the country or the world, depending on band conditions and antenna setup.</p>
+            </details>
+            
+            <details>
+                <summary>2. How far can I talk with a ham radio?</summary>
+                <p>It depends on the band, your antenna, and propagation. With VHF, 20-50 km is typical via line of sight or repeater use. With HF, hundreds to thousands of kilometers are common—even global communication is possible with good conditions and modest gear.</p>
+            </details>
+            
+            <details>
+                <summary>3. Do I need the internet or cell service to use ham radio?</summary>
+                <p>Nope! That's one of the biggest benefits. Ham radio is independent of the internet, phone networks, and commercial infrastructure. That's why it's often used in emergencies.</p>
+            </details>
+            
+            <details>
+                <summary>4. Can I use ham radio for emergencies?</summary>
+                <p>Yes—and many hams do. Ham radio is a vital part of emergency communication networks. You can pass traffic, coordinate response, or just check in on others when the grid goes down.</p>
+            </details>
+            
+            <details>
+                <summary>5. What kind of radio should I start with?</summary>
+                <p>Most new hams start with a simple handheld VHF/UHF radio (like the Baofeng UV-5R or Yaesu FT-65). They're inexpensive, great for learning, and perfect for talking on local repeaters. Later, you might graduate to an HF radio for long-range contacts.</p>
+            </details>
+            
+            <details>
+                <summary>6. Do I need a license to transmit?</summary>
+                <p>Yes. In Canada, the Basic Amateur Certificate is the entry-level license. It lets you transmit on most VHF/UHF bands and many HF bands if you score above 80%. You can listen to any frequency without a license—receiving is always legal.</p>
+            </details>
+            
+            <details>
+                <summary>7. What kind of antenna do I need?</summary>
+                <p>That depends on what you want to do. For VHF/UHF, a simple vertical antenna on your car, roof, or even a magnetic mount on a metal surface works great. For HF, wire antennas like dipoles or end-fed half-waves are cheap, effective, and easy to build.</p>
+            </details>
+            
+            <details>
+                <summary>8. What's the deal with all the weird letters (like FT8, SSB, APRS)?</summary>
+                <p>Those are modes. FT8 is a digital weak-signal mode, SSB is voice on HF, and APRS is used for sending position and text data over radio. Each mode has its own use case, tools, and community of operators.</p>
+            </details>
+            
+            <details>
+                <summary>9. What's the NanoVNA and why do people keep talking about it?</summary>
+                <p>The NanoVNA is a compact, affordable tool used to analyze antennas. It helps you check the SWR (how well your antenna matches your radio) and tune antennas for the best performance. It's a game-changer for new hams building or adjusting antennas.</p>
+            </details>
+            
+            <details>
+                <summary>10. How do hams normally use their radios day-to-day?</summary>
+                <p>Some chat on local repeaters during commutes. Others do long-range DX hunting on HF. Many get into digital modes, emergency communications, public service events, satellite contacts, or just experimenting with antennas and circuits.</p>
+            </details>
+        </div>
     </main>
 
-   
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
+            <p class="egg"><a href="morse.html">-.-. .--</a></p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navList = document.querySelector('.nav-list');
+            
+            // Check if we're on mobile
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+            
+            // Setup mobile menu
+            function setupMobileMenu() {
+                // Clean up any existing mobile-specific elements
+                const existingMobileItems = document.querySelectorAll('.mobile-only');
+                existingMobileItems.forEach(item => item.remove());
+                
+                // Add "Get Started" as a separate menu item in mobile view
+                if (isMobile()) {
+                    // Create a new list item for Get Started
+                    const getStartedItem = document.createElement('li');
+                    getStartedItem.className = 'mobile-only';
+                    getStartedItem.innerHTML = '<a href="get-started.html" class="nav-link">GET STARTED</a>';
+                    
+                    // Create a new list item for Get Licensed 
+                    const getLicensedItem = document.createElement('li');
+                    getLicensedItem.className = 'mobile-only';
+                    getLicensedItem.innerHTML = '<a href="get-licensed.html" class="nav-link">GET LICENSED</a>';
+                    
+                    // Insert after the ABOUT item
+                    const aboutItem = document.querySelector('.nav-dropdown');
+                    if (aboutItem && aboutItem.nextSibling) {
+                        navList.insertBefore(getStartedItem, aboutItem.nextSibling);
+                        navList.appendChild(getLicensedItem);
+                    }
+                }
+            }
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function() {
+                navList.classList.toggle('show');
+                setupMobileMenu();
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (!isMobile()) {
+                    navList.classList.remove('show');
+                }
+            });
+            
+            // Initial setup
+            setupMobileMenu();
+        });
+    </script>
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let content of tabContents) {
+                content.classList.remove("active");
+            }
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let button of tabButtons) {
+                button.classList.remove("active");
+            }
+
+            // Show the selected tab content and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
-
-
---
