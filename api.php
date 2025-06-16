@@ -16,6 +16,7 @@ try {
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') {
+    // No changes needed here, the query will return special events as well
     $stmt = $pdo->query("SELECT * FROM events ORDER BY date ASC");
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     exit;
@@ -23,6 +24,7 @@ if ($method === 'GET') {
 
 if ($method === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
+    // No changes needed here, the SQL already accepts any type value
     $stmt = $pdo->prepare("INSERT INTO events (type, name, date, time, location, topic, details, presenter, link) 
                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([
@@ -42,6 +44,7 @@ if ($method === 'POST') {
 
 if ($method === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
+    // No changes needed here, the SQL already accepts any type value
     $stmt = $pdo->prepare("UPDATE events SET type=?, name=?, date=?, time=?, location=?, topic=?, 
                           details=?, presenter=?, link=? WHERE id=?");
     $stmt->execute([

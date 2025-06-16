@@ -163,14 +163,17 @@
     <form id="event-form">
       <input type="hidden" id="event-id" name="id">
       
-      <div class="form-group">
-        <label for="event-type">Type:</label>
-        <select id="event-type" name="type" required>
-          <option value="breakfast">Breakfast</option>
-          <option value="meeting">Meeting</option>
-          <option value="techie">Techie</option>
-        </select>
-      </div>
+   <!-- This is a snippet to update the event type selection in your admin form -->
+<div class="form-group">
+  <label for="event-type">Event Type:</label>
+  <select id="event-type" name="type" class="form-control" required>
+      <option value="">-- Select Event Type --</option>
+      <option value="breakfast">Breakfast</option>
+      <option value="meeting">Club Meeting</option>
+      <option value="techie">Techie Night</option>
+      <option value="special">Special Event</option> <!-- Added this option -->
+  </select>
+</div>
       
       <div class="form-group">
         <label for="event-name">Name (Tech Night, Club Meeting etc.):</label>

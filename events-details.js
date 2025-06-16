@@ -1,21 +1,11 @@
 class EventDetailsManager {
     constructor() {
        
-
-        this.recordings = [
-            {
-                title: 'Antenna Tuners and Transformers',
-                date: '2025-03-13',
-                description: 'Charlie walks us through some tuner and transformer examples, as well as the infamous smith chart.',
-                videoId: 'H8vR2uJfquE',
-                presenter: 'Charlie VE3XCC',
-                embedUrl: 'https://www.youtube.com/embed/H8vR2uJfquE'
-            },
-        ];
         this.events = {
             breakfast: { name: 'CLUB BREAKFAST', events: [] },
             meeting: { name: 'CLUB MEETING', dates: [] },
-            techie: { name: 'TECHIE NIGHT', events: [] }
+            techie: { name: 'TECHIE NIGHT', events: [] },
+            special: { name: 'SPECIAL EVENTS', events: [] }
         };
         
         // Fetch events immediately upon initialization
@@ -44,6 +34,7 @@ class EventDetailsManager {
         this.events.breakfast.events = [];
         this.events.meeting.dates = [];
         this.events.techie.events = [];
+        this.events.special.events = [];
         
         // Process each event from the database
         eventsFromDB.forEach(event => {
@@ -73,18 +64,32 @@ class EventDetailsManager {
                         specialNotes: event.topic // Using topic field for special notes
                     });
                     break;
-                    
-                case 'techie':
-                    this.events.techie.time = event.time;
-                    this.events.techie.location = 'ZOOM'; // Assuming techie nights are always on Zoom
-                    this.events.techie.events.push({
-                        date: event.date,
-                        topic: event.topic || '',
-                        details: event.details || '',
-                        presenter: event.presenter || '',
-                        zoomLink: event.link || 'https://tinyurl.com/RCARC-Events' // Default if not provided
-                    });
-                    break;
+                    case 'techie':
+                        this.events.techie.time = event.time;
+                        this.events.techie.location = 'ZOOM'; // Assuming techie nights are always on Zoom
+                        this.events.techie.events.push({
+                            date: event.date,
+                            topic: event.topic || '',
+                            details: event.details || '',
+                            presenter: event.presenter || '',
+                            zoomLink: event.link || 'https://tinyurl.com/RCARC-Events' // Default if not provided
+                        });
+                        break;
+                    case 'special':
+                        this.events.special.time = event.time; // Save a general time for the category
+                        this.events.special.location = event.location || 'TBD'; // Default or from event
+                        this.events.special.events.push({
+                            date: event.date,
+                            location: event.location,
+                            time: event.time || 'TBD',
+                            name: event.name || 'Special Event',
+                            topic: event.topic || '',
+                            details: event.details || '',
+                            presenter: event.presenter || '',
+                            address: this.extractAddress(event.location, event.details),
+                            mapLink: event.link || this.generateMapLink(event.location)
+                        });
+                        break;
             }
         });
         
@@ -119,7 +124,12 @@ class EventDetailsManager {
         this.events.techie.events.sort((a, b) => 
             this.parseLocalDate(a.date) - this.parseLocalDate(b.date)
         );
+        // Sort special events
+        this.events.special.events.sort((a, b) => 
+            this.parseLocalDate(a.date) - this.parseLocalDate(b.date)
+        );
     }
+
 
     parseLocalDate(dateString) {
         const [year, month, day] = dateString.split('-').map(Number);
@@ -129,13 +139,14 @@ class EventDetailsManager {
     getNextEvents() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-
+    
         const nextEvents = [];
-
-        // Get next breakfast event
-        const nextBreakfast = this.events.breakfast.events.find(event =>
-            this.parseLocalDate(event.date) >= today
-        );
+    
+        // Helper to find first future event in a list
+        const findNext = list => list.find(e => this.parseLocalDate(e.date) >= today);
+    
+        // Breakfast
+        const nextBreakfast = findNext(this.events.breakfast.events);
         if (nextBreakfast) {
             nextEvents.push({
                 type: this.events.breakfast.name,
@@ -148,29 +159,25 @@ class EventDetailsManager {
                 mapLink: nextBreakfast.mapLink
             });
         }
-
-        // Get next meeting event
-        const nextMeetingObj = this.events.meeting.dates.find(meetingDate =>
-            this.parseLocalDate(meetingDate.date) >= today
-        );
-        if (nextMeetingObj) {
+    
+        // Meeting
+        const nextMeeting = findNext(this.events.meeting.dates);
+        if (nextMeeting) {
             nextEvents.push({
                 type: this.events.meeting.name,
-                date: nextMeetingObj.date,
+                date: nextMeeting.date,
                 time: this.events.meeting.time,
                 location: this.events.meeting.location,
-                details: nextMeetingObj.details,
-                presenter: nextMeetingObj.presenter,
-                address: nextMeetingObj.address,
-                mapLink: nextMeetingObj.mapLink,
-                specialNotes: nextMeetingObj.specialNotes
+                details: nextMeeting.details,
+                presenter: nextMeeting.presenter,
+                address: nextMeeting.address,
+                mapLink: nextMeeting.mapLink,
+                specialNotes: nextMeeting.specialNotes
             });
         }
-
-        // Get next techie night event
-        const nextTechie = this.events.techie.events.find(event =>
-            this.parseLocalDate(event.date) >= today
-        );
+    
+        // Techie
+        const nextTechie = findNext(this.events.techie.events);
         if (nextTechie) {
             nextEvents.push({
                 type: this.events.techie.name,
@@ -183,10 +190,31 @@ class EventDetailsManager {
                 zoomLink: nextTechie.zoomLink
             });
         }
-
+    
+        // Special
+        const nextSpecial = findNext(this.events.special.events);
+        if (nextSpecial) {
+            nextEvents.push({
+                type: nextSpecial.name || this.events.special.name,
+                date: nextSpecial.date,
+                time: this.events.special.time,
+                location: this.events.special.location,
+                name: nextSpecial.name,
+                topic: nextSpecial.topic,
+                details: nextSpecial.details,
+                presenter: nextSpecial.presenter,
+                address: nextSpecial.address,
+                mapLink: nextSpecial.mapLink
+            });
+        }
+    
+        // Finally, sort the four next events by date
+        nextEvents.sort((a, b) => this.parseLocalDate(a.date) - this.parseLocalDate(b.date));
+    
         return nextEvents;
     }
-
+    
+    
     updateEventsDisplay() {
         const nextEvents = this.getNextEvents();
         const eventsListDiv = document.querySelector('.events-list');
@@ -235,6 +263,9 @@ class EventDetailsManager {
                     
                     if (event.specialNotes) {
                         eventHtml += `<p class="event-special-notes">${event.specialNotes}</p>`;
+                    }
+                    if (event.type === 'SPECIAL EVENTS' && event.name) {
+                        eventHtml += `<p><strong>${event.name}</strong></p>`;
                     }
                     
                     eventHtml += `</div>`;

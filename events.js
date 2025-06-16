@@ -3,7 +3,8 @@ class EventManager {
         this.events = {
             breakfast: { name: 'CLUB BREAKFAST', time: '9:30AM', events: [] },
             meeting: { name: 'CLUB MEETING', location: 'PETAWAWA CIVIC CENTRE', time: '1PM', dates: [] },
-            techie: { name: 'TECHIE NIGHT', location: 'ZOOM', time: '7:30PM', events: [] }
+            techie: { name: 'TECHIE NIGHT', location: 'ZOOM', time: '7:30PM', events: [] },
+            special: { name: 'SPECIAL EVENTS', events: [] }
         };
         this.fetchEvents();
     }
@@ -11,33 +12,21 @@ class EventManager {
     async fetchEvents() {
         try {
             const response = await fetch('api.php');
-            
-            // Log the raw response
             console.log('Response status:', response.status);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
+
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
             const fetchedEvents = await response.json();
-            
-            // Log the fetched events
             console.log('Fetched events:', fetchedEvents);
-            
-            // Check for error response from API
-            if (fetchedEvents.error) {
-                throw new Error(fetchedEvents.error);
-            }
-            
+
+            if (fetchedEvents.error) throw new Error(fetchedEvents.error);
+
             if (!fetchedEvents || fetchedEvents.length === 0) {
                 this.showErrorMessage('No events found');
                 return;
             }
-            
-            // Organize events by type
+
             this.organizeEvents(fetchedEvents);
-            
-            // Update display after fetching
             this.updateEventsDisplay();
         } catch (error) {
             console.error('Error fetching events:', error);
@@ -46,14 +35,13 @@ class EventManager {
     }
 
     organizeEvents(fetchedEvents) {
-        // Reset events
         this.events.breakfast.events = [];
         this.events.meeting.dates = [];
         this.events.techie.events = [];
+        this.events.special.events = [];
 
-        // Categorize events
         fetchedEvents.forEach(event => {
-            switch(event.type) {
+            switch (event.type) {
                 case 'breakfast':
                     this.events.breakfast.events.push({
                         date: event.date,
@@ -68,6 +56,15 @@ class EventManager {
                     this.events.techie.events.push({
                         date: event.date,
                         topic: event.topic
+                    });
+                    break;
+                case 'special':
+                    this.events.special.events.push({
+                        date: event.date,
+                        name: event.name || 'Special Event',
+                        details: event.details || '',
+                        location: event.location || '',
+                        time: event.time || ''
                     });
                     break;
                 default:
@@ -85,15 +82,14 @@ class EventManager {
 
     parseLocalDate(dateString) {
         const [year, month, day] = dateString.split('-').map(Number);
-        return new Date(year, month - 1, day); // Month is 0-based
+        return new Date(year, month - 1, day);
     }
 
     getNextEvents() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-
         const nextEvents = [];
-
+    
         const nextBreakfast = this.events.breakfast.events.find(event =>
             this.parseLocalDate(event.date) >= today
         );
@@ -105,7 +101,7 @@ class EventManager {
                 location: nextBreakfast.location
             });
         }
-
+    
         const nextMeeting = this.events.meeting.dates.find(date =>
             this.parseLocalDate(date) >= today
         );
@@ -117,7 +113,7 @@ class EventManager {
                 location: this.events.meeting.location
             });
         }
-
+    
         const nextTechie = this.events.techie.events.find(event =>
             this.parseLocalDate(event.date) >= today
         );
@@ -130,9 +126,27 @@ class EventManager {
                 topic: nextTechie.topic
             });
         }
-
+    
+        const nextSpecial = this.events.special.events.find(event =>
+            this.parseLocalDate(event.date) >= today
+        );
+        if (nextSpecial) {
+            nextEvents.push({
+                type: this.events.special.name,
+                date: nextSpecial.date,
+                time: nextSpecial.time,
+                location: nextSpecial.location,
+                details: nextSpecial.details,
+                name: nextSpecial.name
+            });
+        }
+    
+        // ✅ Sort all found events by date
+        nextEvents.sort((a, b) => this.parseLocalDate(a.date) - this.parseLocalDate(b.date));
+    
         return nextEvents;
     }
+    
 
     updateEventsDisplay() {
         const nextEvents = this.getNextEvents();
@@ -146,11 +160,13 @@ class EventManager {
                     month: 'long', day: 'numeric'
                 }).toUpperCase();
                 const topicText = event.topic ? ` – TOPIC: ${event.topic}` : '';
-                // Check if location is "ZOOM" and make it a link
-                const locationText = event.location === 'ZOOM' 
-                    ? `<a href="https://tinyurl.com/RCARC-Events" target="_blank">ZOOM</a>` 
+                const specialText = event.details ? ` – ${event.details}` : '';
+                const nameText = event.name && event.name !== event.type ? `: ${event.name}` : '';
+                const locationText = event.location === 'ZOOM'
+                    ? `<a href="https://tinyurl.com/RCARC-Events" target="_blank">ZOOM</a>`
                     : event.location;
-                return `<p>${event.type} - ${formattedDate}, ${event.time} – ${locationText}${topicText}</p>`;
+
+                return `<p>${event.type}${nameText} - ${formattedDate}, ${event.time} – ${locationText}${topicText}${specialText}</p>`;
             })
             .join('');
     }

@@ -59,6 +59,19 @@ class CalendarWidget {
                 time: this.eventDetailsManager.events.techie.time
             });
         });
+        // Get special events
+        this.eventDetailsManager.events.special.events.forEach(event => {
+            if (!this.events[event.date]) {
+                this.events[event.date] = [];
+            }
+            this.events[event.date].push({
+                type: 'special',
+                title: event.name,
+                location: event.location,
+                time: event.time,
+                details: event.details
+            });
+        });
     }
 
     getDaysInMonth(month, year) {
@@ -165,6 +178,7 @@ for (let day = 1; day <= daysInMonth; day++) {
             if (event.type === 'breakfast') shortTitle = "B";
             else if (event.type === 'meeting') shortTitle = "M";
             else if (event.type === 'techie') shortTitle = "T";
+            else if (event.type === 'special') shortTitle = event.title.length > 10 ? event.title.substring(0, 10) + '...' : event.title;
             
             calendarHTML += `<span class="event-label ${event.type}">${shortTitle}</span>`;
         });
@@ -199,6 +213,8 @@ calendarHTML += `
             <div class="legend-item">
                 <span class="event-label techie">Tech Night</span>
             </div>
+            <div class="legend-item">
+                <span class="event-label special">Special Event</span>
         </div>
     </div>
 `;

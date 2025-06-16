@@ -977,6 +977,17 @@ ul li .externalLink a{
     margin-right: 2px;
     white-space: nowrap;
     color: white;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .event-label {
+        font-size: 0.65rem;
+        max-width: 50px;
+    }
 }
 
 .event-label.breakfast {
@@ -990,7 +1001,9 @@ ul li .externalLink a{
 .event-label.techie {
     background-color: #2191c5;
 }
-
+.event-label.special {
+    background-color: #15a75e; 
+}
 .event-indicator {
     display: flex;
     width: 100%;

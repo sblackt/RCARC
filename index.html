@@ -201,6 +201,82 @@
         </div>
 
     </div>
+                    <!-- pop up Modal -->
+                    <div id="firstVisitPopup" class="first-visit-popup hidden">
+                    <div class="popup-content">
+                        <span class="popup-close" onclick="closeFirstVisitPopup()">&times;</span>
+                        <img src="img/fieldday2025.jpg" alt="Field Day">
+                        <p>Join the Renfrew County Amateur Radio Club at Riverside Park, Pembroke
+                from 2:00 PM Saturday, June 28 to 2:00 PM Sunday, June 29, 2025,
+                as we take part in the ARRL Field Day, a 24-hour event where hams across North America test their skills in friendly competition to see how many contacts they can make.
+                </p><p>
+                Come see this fascinating hobby in action:
+
+                Learn how radio works when everything else goes down
+
+                Watch real-time contacts across the continent
+
+                Explore how amateur radio supports emergency response
+
+                Try your hand at the mic and get on the air!
+                </p>
+                    </div>
+                </div>
+                <style>
+                .first-visit-popup {
+                    position: fixed;
+                    top: 0; left: 0;
+                    width: 100%; height: 100%;
+                    background: rgba(0, 0, 0, 0.6);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 9999;
+                }
+                .popup-content {
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 10px;
+                    max-width: 1000px;
+                    width: 90%;
+                    max-height: 90%;
+                    text-align: center;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    position: relative;
+                }
+                .popup-close {
+                    position: absolute;
+                    top: 8px;
+                    right: 12px;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+                .hidden {
+                    display: none;
+                }
+                .first-visit-popup img{
+                    max-width: 50%;
+                    height: auto;
+                    border-radius: 10px;
+                }
+                </style>
+
+                <script>
+                function showFirstVisitPopup() {
+                    const popupSeen = localStorage.getItem('rcarcPopupSeen');
+                    if (!popupSeen) {
+                        document.getElementById('firstVisitPopup')?.classList.remove('hidden');
+                        localStorage.setItem('rcarcPopupSeen', 'yes');
+                    }
+                }
+
+function closeFirstVisitPopup() {
+    document.getElementById('firstVisitPopup')?.classList.add('hidden');
+}
+
+document.addEventListener('DOMContentLoaded', showFirstVisitPopup);
+</script>
+
     <script src="events.js"></script>
     <script src="jointheclub.js"></script>
     <script>
