@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/rcarc/public_html/
+    - /bin/rsync -av --delete \
+        --exclude=".git" \
+        --exclude=".cpanel.yml" \
+        ./ $DEPLOYPATH
