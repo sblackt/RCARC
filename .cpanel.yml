@@ -3,11 +3,18 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/rcarc/public_html/
 
-    # Write a marker file so we KNOW deploy works
+    # Marker so we know this .cpanel.yml ran
     - echo "Deployed at $(date)" > $DEPLOYPATH/deploy-log.txt
 
-    # Sync everything from the repo to the live site
-    - /bin/rsync -av --delete \
+    # DEBUG: list repo contents
+    - pwd
+    - ls -la
+
+    # DEBUG: show contact.html in repo if it exists
+    - ls -la contact.html || echo "contact.html not found in repo root"
+
+    # Do the sync
+    - /bin/rsync -avc --delete \
         --exclude=".git" \
         --exclude=".cpanel.yml" \
         ./ $DEPLOYPATH
