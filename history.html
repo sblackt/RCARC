@@ -18,13 +18,15 @@
 </script>
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
+            <a href="/" class="logo" aria-label="Home">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li class="nav-dropdown">
@@ -40,43 +42,42 @@
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
-                   <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
-    <span class="menu-text">Menu</span>
-</div>
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-text">Menu</span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <div class="hero">
+    <div class="hero" role="img" aria-label="Map of Renfrew County">
         <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
     </div>
 
-    <main>
+    <main id="main-content" role="main">
         <div class="historyintro-content">
-        <div class="historyintro-section">
-            <div class="about-text">
-                <h1>HISTORY</h1>
-                <p>December 2, 1980, the Club was formed and incorporated under the name "Renfrew County Amateur Radio Club." For reasons unknown, the club became inactive in the early part of 1983. It stayed inactive until June 24, 1991, when VE3BV Ed Dobenko organized a meeting at the National Trust Building in Pembroke. The purpose of this meeting was to re-establish the amateur radio club and to develop a usable linking network system for Renfrew County. The number of amateurs who attended that meeting in 1991 was approximately forty. With many thanks to all those amateurs who were present, the club was re-formed as we know it today, and the decision was made to continue with the original club name RCARC.</p>
-            </div>
-            <div class="join-button-container">
-                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+            <div class="historyintro-section" role="region" aria-labelledby="history-intro-heading">
+                <div class="about-text">
+                    <h1 id="history-intro-heading">HISTORY</h1>
+                    <p>December 2, 1980, the Club was formed and incorporated under the name "Renfrew County Amateur Radio Club." For reasons unknown, the club became inactive in the early part of 1983. It stayed inactive until June 24, 1991, when VE3BV Ed Dobenko organized a meeting at the National Trust Building in Pembroke. The purpose of this meeting was to re-establish the amateur radio club and to develop a usable linking network system for Renfrew County. The number of amateurs who attended that meeting in 1991 was approximately forty. With many thanks to all those amateurs who were present, the club was re-formed as we know it today, and the decision was made to continue with the original club name RCARC.</p>
+                </div>
+                <div class="join-button-container">
+                    <button onclick="openModal()" class="join-button" aria-haspopup="dialog">JOIN THE CLUB!</button>
+                </div>
             </div>
         </div>
-    </div>
         <div class="content-wrapper">
-            <section class="history-section" id="repeater-history">
-                <h1>REPEATER HISTORY</h1>
+            <section class="history-section" id="repeater-history" role="region" aria-labelledby="repeater-heading">
+                <h1 id="repeater-heading">REPEATER HISTORY</h1>
                 
-                <div class="tabs">
-                    <button class="tab-button active" onclick="openTab(event, 've3nrr')">VE3NRR</button>
-                    <button class="tab-button" onclick="openTab(event, 'va3rbw')">VA3RBW</button>
-                    <button class="tab-button" onclick="openTab(event, 'va3zrr')">VE3ZRR</button>
-                    <button class="tab-button" onclick="openTab(event, 'va3ucr')">VE3UCR</button>
+                <div class="tabs" role="tablist" aria-label="Repeater history tabs">
+                    <button class="tab-button active" role="tab" aria-selected="true" aria-controls="ve3nrr" id="ve3nrr-tab" onclick="openTab(event, 've3nrr')">VE3NRR</button>
+                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="va3rbw" id="va3rbw-tab" onclick="openTab(event, 'va3rbw')">VA3RBW</button>
+                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="va3zrr" id="va3zrr-tab" onclick="openTab(event, 'va3zrr')">VE3ZRR</button>
+                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="va3ucr" id="va3ucr-tab" onclick="openTab(event, 'va3ucr')">VE3UCR</button>
                 </div>
 
                 <!-- VE3NRR Tab Content -->
-                <div id="ve3nrr" class="tab-content active">
+                <div id="ve3nrr" class="tab-content active" role="tabpanel" aria-labelledby="ve3nrr-tab">
                     <div class="history-content">
                         <p>In 1973 there was only VE3STP serving the upper Ottawa Valley. Jack VE3YX from Deep River had been involved in the development of STP. Mobile operation with STP was marginal in Deep River and the only reliable place to get into the repeater was at the waterfront. Base station operation with a YAGI was quite good. I had a 7 element homebrew YAGI mounted on a pole made from a fir tree that gave me a good signal into STP with 10 Watts from my Pye Cambridge.</p>
 
@@ -151,7 +152,7 @@
                 </div>
 
 
-                <div id="va3rbw" class="tab-content">
+                <div id="va3rbw" class="tab-content" role="tabpanel" aria-labelledby="va3rbw-tab" hidden>
                     <div class="history-content">
                         <p>When the Nuclear Emergency Plan for Deep River and Laurentian Hills was started, our ARES group was incorporated in the plan. To help with local comms, it was decided to install a local repeater. A JEPP grant provided funds to purchase a Hamtronics repeater, a Sinclair Reslok duplexer, a 68 ft DMX tower and a Til-Tek TA-150 4 bay antenna.</p>
 
@@ -228,13 +229,13 @@
                     </div>
                 </div>
 
-                <div id="va3zrr" class="tab-content">
+                <div id="va3zrr" class="tab-content" role="tabpanel" aria-labelledby="va3zrr-tab" hidden>
                     <div class="history-content">
                         <p>VE3ZRR repeater history coming soon</p>
                     </div>
                 </div>
 
-                <div id="va3ucr" class="tab-content">
+                <div id="va3ucr" class="tab-content" role="tabpanel" aria-labelledby="va3ucr-tab" hidden>
                     <div class="history-content">
                         <h2>Early History</h2>
                         <p>The VE3UCR repeater system originated in the summer of 1988 when a group of amateur radio operators, including VE3ES, UE, MJG, OSD, JCH, and WQ, installed a temporary digipeater at Foymount under the call VE3NRR. Recognizing its potential, they secured the VE3UCR call sign in February 1989. Initially, the system used a Kenwood TR-7200 running 15 watts into a four-bay collinear antenna, linked via a NET/ROM-upgraded MFJ-1270 TNC. This setup quickly proved successful, prompting expansion plans.</p>
@@ -255,71 +256,69 @@
                     </div>
                 </div>
             </section>
-            <!-- <div class="archive-section">
-                <div class="about-text">
-                    <h1>ARCHIVE</h1>
-                    <p>View the older ARES and RCARC sites <a href="/archive/index.html" target="_blank" style="text-decoration: none; text-transform: uppercase; color: black;" >here</a></p>
-                </div>
-                </div>-->
         </div>
       
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
             <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
-            <p class="egg"><a href="morse.html">-.-. .--</a></p>
+            <p class="egg"><a href="morse.html" aria-label="Morse code easter egg">-.-. .--</a></p>
             
         </div>
     </footer>
 
     <script>
         function openTab(evt, tabName) {
-            // Hide all tab content
             const tabContents = document.getElementsByClassName("tab-content");
-            for (let content of tabContents) {
-                content.classList.remove("active");
-            }
-
-            // Remove active class from all tab buttons
             const tabButtons = document.getElementsByClassName("tab-button");
-            for (let button of tabButtons) {
-                button.classList.remove("active");
-            }
-
-            // Show the selected tab content and mark button as active
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-      
-        function openTab(evt, tabName) {
-            const tabContents = document.getElementsByClassName("tab-content");
-            for (let content of tabContents) {
-                content.classList.remove("active");
-            }
-
-            const tabButtons = document.getElementsByClassName("tab-button");
-            for (let button of tabButtons) {
-                button.classList.remove("active");
-            }
-
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
             
+            // Update tab panels
+            for (let content of tabContents) {
+                content.classList.remove("active");
+                content.hidden = true;
+                content.setAttribute('aria-hidden', 'true');
+            }
+
+            // Update tab buttons
+            for (let button of tabButtons) {
+                button.classList.remove("active");
+                button.setAttribute('aria-selected', 'false');
+            }
+
+            // Show selected tab
+            const selectedTab = document.getElementById(tabName);
+            selectedTab.classList.add("active");
+            selectedTab.hidden = false;
+            selectedTab.setAttribute('aria-hidden', 'false');
+            
+            // Update selected button
+            evt.currentTarget.classList.add("active");
+            evt.currentTarget.setAttribute('aria-selected', 'true');
+            
+            // Smooth scroll
             document.getElementById('repeater-history').scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-            })
-            
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
-   
+
+        function openModal() {
+            const modal = document.getElementById('membershipModal');
+            modal.hidden = false;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('membershipModal');
+            modal.hidden = true;
+        }
     </script>
      <!-- The Modal -->
-     <div id="membershipModal" class="modal">
+     <div id="membershipModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Membership Application</h2>
+            <button class="close" onclick="closeModal()" aria-label="Close dialog">&times;</button>
+            <h2 id="modal-title">Membership Application</h2>
             <p>Thanks for your interest in our club! Becoming a member is simple and helps to support our projects and repeaters. <br>Membership is $30 yearly for an individual, or $40 per household. Membership dues can be etransfered to renfrewcountyarc@gmail.com</p>
-            <form id="membershipForm">
+            <form id="membershipForm" role="form">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
                     <input type="text" id="name" required>

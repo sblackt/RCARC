@@ -18,13 +18,15 @@
 </script>
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
+            <a href="/" class="logo" aria-label="Home">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li class="nav-dropdown">
@@ -40,191 +42,112 @@
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
-                <!-- mobile text "Menu" -->
-                <div id="hamburger-menu" class="hamburger-menu">
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
                     <span class="menu-text">Menu</span>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
 
-    <div class="hero">
+    <div class="hero" role="img" aria-label="Map of Renfrew County">
         <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
     </div>
 
-    <main class="about-content">
-        <div class="about-section">
+    <main id="main-content" class="about-content" role="main">
+        <div class="about-section" role="region" aria-labelledby="events-intro-heading">
             <div class="about-text">
-                <h1>Event Details</h1>
+                <h1 id="events-intro-heading">Event Details</h1>
                 <p>The Renfrew County Amateur Radio Club hosts regular events throughout the year. Check out the details of our upcoming events below, including location information, special notes, and links to related resources.</p>
             </div>
             <div class="join-button-container">
-                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+                <button onclick="openModal()" class="join-button" aria-haspopup="dialog">JOIN THE CLUB!</button>
             </div>
         </div>
 
         <div class="info-container">
-            <section class="events-section">
-                <h2>UPCOMING EVENTS</h2>
-                <div class="dotted-line"></div>
-                <div class="events-list">
+            <section class="events-section" role="region" aria-labelledby="upcoming-events-heading">
+                <h2 id="upcoming-events-heading">UPCOMING EVENTS</h2>
+                <div class="dotted-line" aria-hidden="true"></div>
+                <div class="events-list" role="list">
                     <!-- Events will be populated here automatically by events-details.js -->
                 </div>
             </section>
-            <section class="events-section">
-                <h2>EVENT CALENDAR</h2>
-                <div class="dotted-line"></div>
-                <div class="calendar-container">
+
+            <section class="events-section" role="region" aria-labelledby="calendar-heading">
+                <h2 id="calendar-heading">EVENT CALENDAR</h2>
+                <div class="dotted-line" aria-hidden="true"></div>
+                <div class="calendar-container" role="application" aria-label="Event calendar">
                     <!-- Calendar will be inserted here by JavaScript -->
                 </div>
                 <div class="calendar-info">
                     <p>Our events follow a regular schedule:</p>
-                    <ul class="event-schedule">
-                        <li><strong>Club Breakfast:</strong> Alternates between Deep River and Pembroke locations on the second Saturday of each month at 9:30AM</li>
-                        <li><strong>Club Meeting:</strong> Held at the Petawawa Civic Centre on the third Sunday of each month at 1PM</li>
-                        <li><strong>Techie Night:</strong> Online via Zoom on the second and fourth Thursday of each month at 7:30PM</li>
+                    <ul class="event-schedule" role="list">
+                        <li role="listitem"><strong>Club Breakfast:</strong> Alternates between Deep River and Pembroke locations on the second Saturday of each month at 9:30AM</li>
+                        <li role="listitem"><strong>Club Meeting:</strong> Held at the Petawawa Civic Centre on the third Sunday of each month at 1PM</li>
+                        <li role="listitem"><strong>Techie Night:</strong> Online via Zoom on the second and fourth Thursday of each month at 7:30PM</li>
                     </ul>
                 </div>
             </section>
         </div>
        
-    
-            <section id='youTube'class="youTubeVideos">
-            
-        <div>
-            <h1>RCARC YouTube Videos</h1>
-<div id="videoContainer" class="video-grid"></div>
-
-<script>
-    const API_KEY = 'AIzaSyAtNIp9P7AsGDUu6dwDJfhS5MsrNjoxQnQ';
-    const CHANNEL_ID = 'UCBSBpalG59lY1UdUSVvIJkg';
-
-    function fetchVideos() {
-        const maxResults = 50;
-        const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=viewCount&maxResults=${maxResults}&type=video`;
-
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (!data.items || data.items.length === 0) {
-                    showErrorMessage();
-                    return;
-                }
-                displayVideos(data.items);
-            })
-            .catch(error => {
-                console.error('Error fetching videos:', error);
-                showErrorMessage();
-            });
-    }
-
-    function displayVideos(videos) {
-        const container = document.getElementById('videoContainer');
-
-        videos.forEach(video => {
-            if (video.id.videoId) {
-                const videoCard = document.createElement('div');
-                videoCard.className = 'video-card';
-
-                const publishDate = new Date(video.snippet.publishedAt).toLocaleDateString();
-
-                videoCard.innerHTML = `
-                    <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
-                        <img class="video-thumbnail" src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.title}">
-                    </a>
-                    <div class="video-info">
-                        <div class="video-title">${video.snippet.title}</div>
-                        <div class="video-date">Published: ${publishDate}</div>
-                    </div>
-                `;
-
-                container.appendChild(videoCard);
-            }
-        });
-    }
-
-    function showErrorMessage() {
-        const container = document.getElementById('videoContainer');
-        container.innerHTML = `
-            <div class="video-error">
-                <p><strong>Videos failed to load.</strong></p>
-                <p>This may be caused by an ad blocker or tracking protection in your browser (especially on Firefox).</p>
-                <p>If you're using an ad blocker, try disabling it for this site or adding an exception.</p>
-                 <p>In the meantime, you can <a href="https://www.youtube.com/@theRCARC" target="_blank" rel="noopener">visit our YouTube channel directly here</a>.</p>
+        <section id="youTube" class="youTubeVideos" role="region" aria-labelledby="youtube-heading">
+            <h1 id="youtube-heading">RCARC YouTube Videos</h1>
+            <div id="videoContainer" class="video-grid" role="list">
+                <!-- Videos will be populated here by JavaScript -->
             </div>
-        `;
-    }
-
-    window.onload = fetchVideos;
-</script>
-
-        </div>
         </section>
-       <!-- <section class="recordings-section">
-            <h2>TECHIE NIGHT RECORDINGS</h2>
-            <div class="dotted-line"></div>
-            <div class="recordings-container">
-                Recordings will be populated here by events-details.js
-            </div>
-        </section>-->
 
         <!-- The Modal -->
-        <div id="membershipModal" class="modal">
+        <div id="membershipModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2>Membership Application</h2>
+                <button class="close" onclick="closeModal()" aria-label="Close dialog">&times;</button>
+                <h2 id="modal-title">Membership Application</h2>
                 <p>Thanks for your interest in our club! Becoming a member is simple and helps to support our projects and repeaters. <br>Membership is $30 yearly for an individual, or $40 per household. Membership dues can be etransfered to renfrewcountyarc@gmail.com</p>
-                <form id="membershipForm">
+                <form id="membershipForm" role="form">
                     <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" required>
+                        <label for="name" id="name-label">Full Name *</label>
+                        <input type="text" id="name" required aria-required="true" aria-labelledby="name-label">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" required>
+                        <label for="email" id="email-label">Email Address *</label>
+                        <input type="email" id="email" required aria-required="true" aria-labelledby="email-label">
                     </div>
 
                     <div class="form-group">
-                        <label for="callsign">Callsign</label>
-                        <input type="text" id="callsign">
+                        <label for="callsign" id="callsign-label">Callsign</label>
+                        <input type="text" id="callsign" aria-labelledby="callsign-label">
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone">
+                        <label for="phone" id="phone-label">Phone Number</label>
+                        <input type="tel" id="phone" aria-labelledby="phone-label">
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <textarea id="address" rows="3"></textarea>
+                        <label for="address" id="address-label">Address</label>
+                        <textarea id="address" rows="3" aria-labelledby="address-label"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="interests">Interests</label>
-                        <textarea id="interests" rows="3"></textarea>
+                        <label for="interests" id="interests-label">Interests</label>
+                        <textarea id="interests" rows="3" aria-labelledby="interests-label"></textarea>
                     </div>
 
-                    <button type="submit" class="submit-button">
+                    <button type="submit" class="submit-button" aria-label="Submit application">
                         Submit Application
-                        <div class="spinner"></div>
+                        <div class="spinner" aria-hidden="true"></div>
                     </button>
-                    <div id="formMessage" class="form-message"></div>
+                    <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
                 </form>
             </div>
         </div>
        
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
             <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
-            <p class="egg"><a href="morse.html">-.-. .--</a></p>
-            
+            <p class="egg"><a href="morse.html" aria-label="Morse code easter egg">-.-. .--</a></p>
         </div>
     </footer>
     <script src="events-details.js"></script>
@@ -283,6 +206,37 @@
             // Initial setup
             setupMobileMenu();
         });
+
+        // Update your video card creation in the displayVideos function
+        function displayVideos(videos) {
+            const container = document.getElementById('videoContainer');
+            
+            videos.forEach(video => {
+                if (video.id.videoId) {
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card';
+                    videoCard.setAttribute('role', 'listitem');
+
+                    const publishDate = new Date(video.snippet.publishedAt).toLocaleDateString();
+
+                    videoCard.innerHTML = `
+                        <a href="https://www.youtube.com/watch?v=${video.id.videoId}" 
+                           target="_blank" 
+                           aria-label="Watch ${video.snippet.title} (opens in new tab)">
+                            <img class="video-thumbnail" 
+                                 src="${video.snippet.thumbnails.high.url}" 
+                                 alt="${video.snippet.title}">
+                        </a>
+                        <div class="video-info">
+                            <div class="video-title">${video.snippet.title}</div>
+                            <div class="video-date" aria-label="Published on ${publishDate}">Published: ${publishDate}</div>
+                        </div>
+                    `;
+
+                    container.appendChild(videoCard);
+                }
+            });
+        }
     </script>
 </body>
 </html>

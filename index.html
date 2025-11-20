@@ -18,13 +18,15 @@
 </script>
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
             <a href="/" class="logo">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link active">HOME</a></li>
                     <li class="nav-dropdown">
@@ -43,9 +45,9 @@
      
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
    <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
+<button id="hamburger-menu" class="hamburger-menu">
     <span class="menu-text">Menu</span>
-</div>
+</button>
 
             </nav>
         </div>
@@ -55,11 +57,12 @@
         <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
     </div>
 
-    <main>
+    <main role="main" id="main-content">
+        
         <div class="content-wrapper">
             <div class="welcome-container">
-                <section class="welcome-section">
-                    <h1>WELCOME!</h1>
+                <section class="welcome-section" role="region" aria-labelledby="welcome-heading">
+                    <h1 id="welcome-heading">WELCOME!</h1>
                     <p class="welcome-text">
                         Thanks for checking out the Renfrew County Amateur Radio Club. We are a group of 
                         radio amateurs located in Renfrew County who meet regularly to discuss all aspects of 
@@ -71,16 +74,17 @@
             </div>
 
             <div class="info-container">
-                <section class="events-section">
-                    <h2><a href="events.html" class="link">UPCOMING EVENTS</a></h2>
+                <section class="events-section" role="region" aria-labelledby="events-heading">
+                    <h2 id="events-heading"><a href="events.html" class="link">UPCOMING EVENTS</a></h2>
                     <div class="dotted-line"></div>
                     <div class="events-list">
                         <!-- Events will be populated here automatically by events.js -->
                     </div>
                 </section>
 
-                <section class="nets-section">
-                   <div class="netheader"> <h2>NETS</h2>
+                <section class="nets-section" role="region" aria-labelledby="nets-heading">
+                   <div class="netheader"> 
+                    <h2 id="nets-heading">NETS</h2>
                     <a href="netinfo.html" class="netinfo">Net Info</a>
                   </div>
                     <div class="dotted-line"></div>
@@ -89,8 +93,8 @@
             </div>
         </div>
         <div class="content-wrapper">
-            <section class="what-is-section">
-                <h2>WHAT IS AMATEUR RADIO?</h2>
+            <section class="what-is-section" role="region" aria-labelledby="what-is-heading">
+                <h2 id="what-is-heading">WHAT IS AMATEUR RADIO?</h2>
                 <div class="dotted-line"></div>
                 
                 <div class="radio-info-container">
@@ -148,7 +152,7 @@
         </div>
        
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
             <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
             <p class="egg"><a href="morse.html">-.-. .--</a></p>
@@ -156,9 +160,9 @@
         </div>
     </footer>
     <!-- The Modal -->
-    <div id="membershipModal" class="modal">
+    <div id="membershipModal" class="modal"role="dialog" aria-modal="true">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" role="button" aria-label="Close"onclick="closeModal()">&times;</span>
             <h2>Membership Application</h2>
             <p>Thanks for your interest in our club! Becoming a member is simple and helps to support our projects and repeaters. <br>Membership is $30 yearly for an individual, or $40 per household. Membership dues can be etransfered to renfrewcountyarc@gmail.com</p>
             <form id="membershipForm">
@@ -201,7 +205,7 @@
         </div>
 
     </div>
-                    <!-- pop up Modal -->
+                    <!-- pop up Modal
                     <div id="firstVisitPopup" class="first-visit-popup hidden">
                     <div class="popup-content">
                         <span class="popup-close" onclick="closeFirstVisitPopup()">&times;</span>
@@ -275,7 +279,7 @@ function closeFirstVisitPopup() {
 }
 
 document.addEventListener('DOMContentLoaded', showFirstVisitPopup);
-</script>
+</script>-->
 
     <script src="events.js"></script>
     <script src="jointheclub.js"></script>

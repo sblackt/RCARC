@@ -18,13 +18,15 @@
 </script>
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
+            <a href="/" class="logo" aria-label="Home">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li class="nav-dropdown">
@@ -40,276 +42,249 @@
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
-                   <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
-    <span class="menu-text">Menu</span>
-</div>
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-text">Menu</span>
+                </button>
             </nav>
-            
         </div>
     </header>
 
-    <div class="hero">
+    <div class="hero" role="img" aria-label="Map of Renfrew County">
         <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
     </div>
 
-    <main class="about-content">
-        <div class="about-section">
+    <main id="main-content" class="about-content" role="main">
+        <div class="about-section" role="region" aria-labelledby="about-heading">
             <div class="about-text">
-                <h1>ABOUT</h1>
+                <h1 id="about-heading">ABOUT</h1>
                 <p>The Renfrew County Amateur Radio Club Inc. is the official Radio Amateurs of Canada affiliated club for Renfrew County in Ontario, Canada. We’re a community of radio enthusiasts dedicated to promoting amateur radio through on-air activity, technical learning, and local connection.</p>
                 <h2>NET</h2>
-                   <p> We host a weekly net every Monday at 7:30 PM across all club repeaters—everyone is welcome to check in and join the conversation.
-                    </p>
-                    <h2>BREAKFAST</h2>
-                    <p>Each month, members gather for an informal breakfast meet-up in either Deep River or Pembroke—an easy way to connect face-to-face with fellow hams.
-                    </p>
-                    <h2>TECH NIGHT</h2>
-                    <p>We also run Tech Night, a Zoom call held twice a month on Thursday evenings, where members share projects, troubleshoot problems, and explore new ideas in amateur radio and electronics.</p>
-                    
-                    <p>Curious about our roots? Check out the <a href="history.html" class="link">History</a> or visit the <a href="events.html"class="link">Events</a> page for upcoming activities and a library of past <a href="events.html#youTube" class="link">Tech Night</a> recordings.</p>
+                <p> We host a weekly net every Monday at 7:30 PM across all club repeaters—everyone is welcome to check in and join the conversation.</p>
+                <h2>BREAKFAST</h2>
+                <p>Each month, members gather for an informal breakfast meet-up in either Deep River or Pembroke—an easy way to connect face-to-face with fellow hams.</p>
+                <h2>TECH NIGHT</h2>
+                <p>We also run Tech Night, a Zoom call held twice a month on Thursday evenings, where members share projects, troubleshoot problems, and explore new ideas in amateur radio and electronics.</p>
+                <p>Curious about our roots? Check out the <a href="history.html" class="link">History</a> or visit the <a href="events.html"class="link">Events</a> page for upcoming activities and a library of past <a href="events.html#youTube" class="link">Tech Night</a> recordings.</p>
             </div>
             <div class="join-button-container">
-                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+                <button onclick="openModal()" class="join-button" aria-haspopup="dialog">JOIN THE CLUB!</button>
             </div>
         </div>
 
-        <section class="executive-section">
-            <h2>EXECUTIVE</h2>
-            <div class="executive-list">
-                <div class="executive-item">
-                    <span class="executive-title">President</span>
-                    <span>Charles Gale VE3XCC</span>
+        <section class="executive-section" role="region" aria-labelledby="executive-heading">
+            <h2 id="executive-heading">EXECUTIVE</h2>
+            <div class="executive-list" role="list">
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">President</span>
+                    <span aria-label="Name and Callsign">Charles Gale VE3XCC</span>
                 </div>
-                <div class="executive-item">
-                    <span class="executive-title">Vice President</span>
-                    <span>Yvonne Adam VE3RYA</span>
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">Vice President</span>
+                    <span aria-label="Name and Callsign">Yvonne Adam VE3RYA</span>
                 </div>
-                <div class="executive-item">
-                    <span class="executive-title">Treasurer</span>
-                    <span>Ean Robertson VE3TLG</span>
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">Treasurer</span>
+                    <span aria-label="Name and Callsign">Ean Robertson VE3TLG</span>
                 </div>
-                <div class="executive-item">
-                    <span class="executive-title">Secretary</span>
-                    <span>Steve White VA3WAV</span>
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">Secretary</span>
+                    <span aria-label="Name and Callsign">Steve White VA3WAV</span>
                 </div>
-                <div class="executive-item">
-                    <span class="executive-title">Past President</span>
-                    <span>Robert MacFarlane VA3AGN</span>
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">Past President</span>
+                    <span aria-label="Name and Callsign">Robert MacFarlane VA3AGN</span>
                 </div>
-                <div class="executive-item">
-                    <span class="executive-title">Technical Director</span>
-                    <span>Mike St. Amand VE3ODJ</span>
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">Technical Director</span>
+                    <span aria-label="Name and Callsign">Mike St. Amand VE3ODJ</span>
                 </div>
-                <div class="executive-item">
-                    <span class="executive-title">Emerg Comms Director</span>
-                    <span>Bob Howard VE3YX</span>
+                <div class="executive-item" role="listitem">
+                    <span class="executive-title" aria-label="Position">Emerg Comms Director</span>
+                    <span aria-label="Name and Callsign">Bob Howard VE3YX</span>
                 </div>
             </div>
         </section>
 
-        <section class="repeaters-section" id="repeaters">
-            <h2>RCARC REPEATERS</h2>
+        <section class="repeaters-section" id="repeaters" role="region" aria-labelledby="repeaters-heading">
+            <h2 id="repeaters-heading">RCARC REPEATERS</h2>
             <p>The Renfrew County Amateur Radio Club is located in the County of Renfrew in the Province of Ontario, Canada. We own and maintain four 2 metre repeaters and one 70 cm repeater in the area:</p>
             
-            <table class="repeaters-table">
-                <thead>
-                    <tr>
-                        <th>Repeater</th>
-                        <th>Frequency</th>
-                        <th>Location</th>
-                        <th>Packet Node</th>
-                        <th>Packet BBS</th>
-                        <th>Packet Freq.</th>
-                        <th>APRS</th>
-                        <th>APRS Freq.</th>
-                        <th>AllStar Node</th>
+            <table class="repeaters-table" role="table" aria-label="RCARC Repeater Information">
+                <thead role="rowgroup">
+                    <tr role="row">
+                        <th role="columnheader" scope="col">Repeater</th>
+                        <th role="columnheader" scope="col">Frequency</th>
+                        <th role="columnheader" scope="col">Location</th>
+                        <th role="columnheader" scope="col">Tone</th>
+                        <th role="columnheader" scope="col">Packet Node</th>
+                        <th role="columnheader" scope="col">Packet BBS</th>
+                        <th role="columnheader" scope="col">Packet Freq.</th>
+                        <th role="columnheader" scope="col">APRS</th>
+                        <th role="columnheader" scope="col">APRS Freq.</th>
+                        <th role="columnheader" scope="col">AllStar Node</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>VE3NRR</td>
-                        <td>146.760 -</td>
-                        <td>Pembroke</td>
-                        <td>VE3NRR-7 (KA)</td>
-                        <td>VE3NRR-1</td>
-                        <td>145.010</td>
-                        <td></td>
-                        <td></td>
-                        <td>60398</td>
+                <tbody role="rowgroup">
+                    <tr role="row">
+                        <td role="cell">VE3NRR</td>
+                        <td role="cell">146.760 -</td>
+                        <td role="cell">Pembroke</td>
+                        <td role="cell">114.8hz</td>
+                        <td role="cell">VE3NRR-7 (KA)</td>
+                        <td role="cell">VE3NRR-1</td>
+                        <td role="cell">145.010</td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell">60398</td>
                     </tr>
-                    <tr>
-                        <td>VE3NRR</td>
-                        <td>448.025 -</td>
-                        <td>Pembroke</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr role="row">
+                        <td role="cell">VE3NRR</td>
+                        <td role="cell">448.025 -</td>
+                        <td role="cell">Pembroke</td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
                     </tr>
-                    <tr>
-                        <td>VE3UCR</td>
-                        <td>145.430 -</td>
-                        <td>Foymount</td>
-                        <td>VE3UCR-7 (KA)</td>
-                        <td>VE3UCR-1</td>
-                        <td>145.010</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr role="row">
+                        <td role="cell">VE3UCR</td>
+                        <td role="cell">145.430 -</td>
+                        <td role="cell">Foymount</td>
+                        <td role="cell"></td>
+                        <td role="cell">VE3UCR-7 (KA)</td>
+                        <td role="cell">VE3UCR-1</td>
+                        <td role="cell">145.010</td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
                     </tr>
-                    <tr>
-                        <td>VA3RBW</td>
-                        <td>146.790 -</td>
-                        <td>Point Alexander</td>
-                        <td>VA3RBW-7 (KA)</td>
-                        <td>VA3RBW-1</td>
-                        <td>145.010</td>
-                        <td>VA3RBW-3</td>
-                        <td>144.390</td>
-                        <td></td>
+                    <tr role="row">
+                        <td role="cell">VA3RBW</td>
+                        <td role="cell">146.790 -</td>
+                        <td role="cell">Point Alexander</td>
+                        <td role="cell"></td>
+                        <td role="cell">VA3RBW-7 (KA)</td>
+                        <td role="cell">VA3RBW-1</td>
+                        <td role="cell">145.010</td>
+                        <td role="cell">VA3RBW-3</td>
+                        <td role="cell">144.390</td>
+                        <td role="cell"></td>
                     </tr>
-                    <tr>
-                        <td>VA3ZRR</td>
-                        <td>147.120 +</td>
-                        <td>Renfrew</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr role="row">
+                        <td role="cell">VA3ZRR</td>
+                        <td role="cell">147.120 +</td>
+                        <td role="cell">Renfrew</td>
+                        <td role="cell">114.8hz</td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
                     </tr>
                 </tbody>
             </table>
             <div class="repeater-notes">
                 <p>VE3ZRR is hard linked to VE3NRR. The other repeaters can be linked with DTMF codes to VE3NRR.</p>
-                <p>VE3NRR VHF has an IRLP node (2520). Node Status:</p>
+                <p>VE3NRR VHF has an IRLP node (2520). Node Status: Online</p>
                 <p>Note that the IRLP can only be used on NRR VHF. It won't work through the links or the UHF.</p>
                 <p>VE3NRR VHF also has an AllStar Link Node: 60398, and an Echolink node: 212717.</p>
             </div>
             <h2>OTHER LOCAL REPEATERS</h2>
             <p>Other repeaters of note in Renfrew County.</p>
             
-            <table class="repeaters-table">
-                <thead>
-                    <tr>
-                        <th>Repeater</th>
-                        <th>Frequency</th>
-                        <th>Location</th>
-                        <th>Tone</th>
-                        <th>Packet Node</th>
-                        <th>Packet BBS</th>
-                        <th>Packet Freq.</th>
-                        <th>APRS</th>
-                        <th>APRS Freq.</th>
-                        <th>AllStar Node</th>
+            <table class="repeaters-table" role="table" aria-label="Other Local Repeaters">
+                <thead role="rowgroup">
+                    <tr role="row">
+                        <th role="columnheader" scope="col">Repeater</th>
+                        <th role="columnheader" scope="col">Frequency</th>
+                        <th role="columnheader" scope="col">Location</th>
+                        <th role="columnheader" scope="col">Tone</th>
+                        <th role="columnheader" scope="col">Packet Node</th>
+                        <th role="columnheader" scope="col">Packet BBS</th>
+                        <th role="columnheader" scope="col">Packet Freq.</th>
+                        <th role="columnheader" scope="col">APRS</th>
+                        <th role="columnheader" scope="col">APRS Freq.</th>
+                        <th role="columnheader" scope="col">AllStar Node</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>VE3STP</td>
-                        <td>147.060 +</td>
-                        <td>Mt. St. Patrick</td>
-                        <td>114.8hz</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                <tbody role="rowgroup">
+                    <tr role="row">
+                        <td role="cell">VE3STP</td>
+                        <td role="cell">147.060 +</td>
+                        <td role="cell">Mt. St. Patrick</td>
+                        <td role="cell">114.8hz</td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
                     </tr>
-                   <!-- <tr>
-                        <td>VE3JLR</td>
-                        <td>145.350 -</td>
-                        <td>Pembroke</td>
-                        <td>114.8hz</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>VE3JLR</td>
-                        <td>29.650 -100hz</td>
-                        <td>Pembroke</td>
-                        <td>114.8hz</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>-->
                 </tbody>
             </table>
             <div class="repeater-notes">
                 <p>VE3STP has a net weekdays Monday to Saturday at 7pm.</p>
-               <!-- <p>VE3JLR has three linked repeaters, 2m, 6m and 10m. On VHF will also do digital voice in DMR D-Star and Fusion flavours.</p>-->
             </div>
 
             <div class="map-container">
                 <img src="img/RenfrewMap2.jpg" alt="Repeater Coverage Map">
             </div>
         </section>
-      
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
             <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
             <p class="egg"><a href="morse.html">-.-. .--</a></p>
-            
         </div>
     </footer>
      <!-- The Modal -->
-     <div id="membershipModal" class="modal">
+     <div id="membershipModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Membership Application</h2>
+            <span class="close" onclick="closeModal()" role="button" aria-label="Close dialog">&times;</span>
+            <h2 id="modal-title">Membership Application</h2>
             <p>Thanks for your interest in our club! Becoming a member is simple and helps to support our projects and repeaters. <br>Membership is $30 yearly for an individual, or $40 per household. Membership dues can be etransfered to renfrewcountyarc@gmail.com</p>
-            <form id="membershipForm">
+            <form id="membershipForm" role="form">
                 <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" required>
+                    <label for="name" id="name-label">Full Name *</label>
+                    <input type="text" id="name" required aria-required="true" aria-labelledby="name-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" required>
+                    <label for="email" id="email-label">Email Address *</label>
+                    <input type="email" id="email" required aria-required="true" aria-labelledby="email-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="callsign">Callsign</label>
-                    <input type="text" id="callsign">
+                    <label for="callsign" id="callsign-label">Callsign</label>
+                    <input type="text" id="callsign" aria-labelledby="callsign-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone">
+                    <label for="phone" id="phone-label">Phone Number</label>
+                    <input type="tel" id="phone" aria-labelledby="phone-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" rows="3"></textarea>
+                    <label for="address" id="address-label">Address</label>
+                    <textarea id="address" rows="3" aria-labelledby="address-label"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="interests">Interests</label>
-                    <textarea id="interests" rows="3"></textarea>
+                    <label for="interests" id="interests-label">Interests</label>
+                    <textarea id="interests" rows="3" aria-labelledby="interests-label"></textarea>
                 </div>
 
-                <button type="submit" class="submit-button">
+                <button type="submit" class="submit-button" aria-label="Submit application">
                     Submit Application
-                    <div class="spinner"></div>
+                    <div class="spinner" aria-hidden="true"></div>
                 </button>
-                <div id="formMessage" class="form-message"></div>
+                <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
             </form>
         </div>
-
     </div>
     <script src="events.js"></script>
     <script src="jointheclub.js"></script>

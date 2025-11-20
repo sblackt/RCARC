@@ -18,13 +18,15 @@
 </script>
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
+            <a href="/" class="logo" aria-label="Home">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li class="nav-dropdown">
@@ -40,118 +42,112 @@
                     <li><a href="contact.html" class="nav-link active">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
-                   <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
-    <span class="menu-text">Menu</span>
-</div>
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-text">Menu</span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <div class="hero">
+    <div class="hero" role="img" aria-label="Map of Renfrew County">
         <img src="img/renfrew.jpg" alt="Renfrew County Map" class="hero-image">
     </div>
 
-    <main class="contact-content">
-        <div class="contact-section">
+    <main id="main-content" class="contact-content" role="main">
+        <div class="contact-section" role="region" aria-labelledby="contact-heading">
             <div class="contact-text">
-                <h1>CONTACT</h1>
+                <h1 id="contact-heading">CONTACT</h1>
                 
                 <p>Get in touch with the Renfrew County Amateur Radio Club. We'd love to hear from you!</p>
 
                 <div class="contact-email">
                     <p>Email us at:<br>
-                    <a href="mailto:renfrewcountyarc@gmail.com">renfrewcountyarc@gmail.com</a></p>
+                    <a href="mailto:renfrewcountyarc@gmail.com" aria-label="Email RCARC">renfrewcountyarc@gmail.com</a></p>
                 </div>
 
                 <p>Whether you're interested in joining the club, have questions about amateur radio, or want to learn more about our activities, we're here to help.</p>
           
-            <h1>LINKS</h1>
+                <h2 id="links-heading">LINKS</h2>
                 
-            <p>Some other links, resources and sites of interest</p>
+                <p>Some other links, resources and sites of interest</p>
 
-            <div class="externalLink">
-                <p><a href="https://www.rac.ca/">Radio Amateurs of Canada</a></p>
+                <div class="external-links" role="list">
+                    <div class="externalLink" role="listitem">
+                        <p><a href="https://www.rac.ca/" aria-label="Visit Radio Amateurs of Canada website">Radio Amateurs of Canada</a></p>
+                    </div>
+                    <div class="externalLink" role="listitem">
+                        <p><a href="https://www.qrz.com/" aria-label="Visit QRZ Ham Database website">QRZ Ham Database</a></p>
+                    </div>
+                    <div class="externalLink" role="listitem">
+                        <p><a href="https://alertfind.com/amateur-radio-and-emergency-communications/" aria-label="Visit Ham Radio and Emergency Communications website">Ham Radio and Emergency Comms</a></p>
+                    </div>
+                    <div class="externalLink" role="listitem">
+                        <p><a href="https://www.kwarc.org/swapshop/" aria-label="Visit KWARC Swapshop website">KWARC Swapshop</a></p>
+                    </div>
+                    <div class="externalLink" role="listitem">
+                        <p><a href="https://hamshack.ca/" aria-label="Visit Hamshack Shop website">Hamshack Shop</a></p>
+                    </div>
+                    <div class="externalLink" role="listitem">
+                        <p><a href="https://champlainrepeater.ca/" aria-label="Visit Champlain Region Repeater Association website">Champlain Region Repeater Association</a></p>
+                    </div>
+                </div>
             </div>
-            <div class="externalLink">
-                <p><a href="https://www.qrz.com/">QRZ Ham Database</a></p>
-            </div>
-            <div class="externalLink">
-                <p><a href="https://alertfind.com/amateur-radio-and-emergency-communications/">Ham Radio and Emergency Comms
-                </a></p>
-            </div>
-            <div class="externalLink">
-                <p><a href="https://www.kwarc.org/swapshop/">KWARC Swapshop</a></p>
-            </div>
-            <div class="externalLink">
-                <p><a href="https://hamshack.ca/">Hamshack Shop</a></p>
-            </div>
-            <div class="externalLink">
-                <p><a href="https://champlainrepeater.ca/">Champlain Region Repeater Association</a></p>
-            </div>
-
-
-        </div>
-   
             
             <div class="join-button-container">
-                <button onclick="openModal()" class="join-button">JOIN THE CLUB!</button>
+                <button onclick="openModal()" class="join-button" aria-haspopup="dialog">JOIN THE CLUB!</button>
             </div>
         </div>
-       
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
             <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
-            <p class="egg"><a href="morse.html">-.-. .--</a></p>
-            
+            <p class="egg"><a href="morse.html" aria-label="Morse code easter egg">-.-. .--</a></p>
         </div>
     </footer>
      <!-- The Modal -->
-     <div id="membershipModal" class="modal">
+     <div id="membershipModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Membership Application</h2>
+            <button class="close" onclick="closeModal()" aria-label="Close dialog">&times;</button>
+            <h2 id="modal-title">Membership Application</h2>
             <p>Thanks for your interest in our club! Becoming a member is simple and helps to support our projects and repeaters. <br>Membership is $30 yearly for an individual, or $40 per household. Membership dues can be etransfered to renfrewcountyarc@gmail.com</p>
-            <form id="membershipForm">
+            <form id="membershipForm" role="form">
                 <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" required>
+                    <label for="name" id="name-label">Full Name *</label>
+                    <input type="text" id="name" required aria-required="true" aria-labelledby="name-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" required>
+                    <label for="email" id="email-label">Email Address *</label>
+                    <input type="email" id="email" required aria-required="true" aria-labelledby="email-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="callsign">Callsign</label>
-                    <input type="text" id="callsign">
+                    <label for="callsign" id="callsign-label">Callsign</label>
+                    <input type="text" id="callsign" aria-labelledby="callsign-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone">
+                    <label for="phone" id="phone-label">Phone Number</label>
+                    <input type="tel" id="phone" aria-labelledby="phone-label">
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" rows="3"></textarea>
+                    <label for="address" id="address-label">Address</label>
+                    <textarea id="address" rows="3" aria-labelledby="address-label"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="interests">Interests</label>
-                    <textarea id="interests" rows="3"></textarea>
+                    <label for="interests" id="interests-label">Interests</label>
+                    <textarea id="interests" rows="3" aria-labelledby="interests-label"></textarea>
                 </div>
 
-                <button type="submit" class="submit-button">
+                <button type="submit" class="submit-button" aria-label="Submit application">
                     Submit Application
-                    <div class="spinner"></div>
+                    <div class="spinner" aria-hidden="true"></div>
                 </button>
-                <div id="formMessage" class="form-message"></div>
+                <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
             </form>
         </div>
-
     </div>
     <script src="events.js"></script>
     <script src="jointheclub.js"></script>
@@ -194,6 +190,8 @@
             
             // Toggle mobile menu
             hamburger.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
                 navList.classList.toggle('show');
                 setupMobileMenu();
             });
