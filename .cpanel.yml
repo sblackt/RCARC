@@ -1,8 +1,14 @@
 ---
 deployment:
   tasks:
+    # Where your live site is
     - export DEPLOYPATH=/home/rcarc/public_html/
-    - /bin/rsync -av --delete \
+
+    # Quick marker file so we KNOW deploy ran
+    - echo "Last deploy: $(date)" > $DEPLOYPATH/deploy-test.txt
+
+    # Sync repo → public_html
+    - rsync -av --delete \
         --exclude=".git" \
         --exclude=".cpanel.yml" \
         ./ $DEPLOYPATH
