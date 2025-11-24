@@ -68,6 +68,22 @@ header {
     align-items: center;
 }
 
+.membership-banner {
+    background-color: #cb433f;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+.membership-banner p {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0.45rem 2rem;
+    font-size: inherit;
+}
+
 .logo {
     width: 270px;
     height: auto;
