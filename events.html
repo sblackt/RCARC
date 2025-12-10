@@ -157,6 +157,10 @@
     <script src="jointheclub.js"></script>
     <script src="event-calendar.js"></script>
     <script>
+        const YOUTUBE_API_KEY = 'AIzaSyAtNIp9P7AsGDUu6dwDJfhS5MsrNjoxQnQ';
+        const YOUTUBE_CHANNEL_ID = 'UCBSBpalG59lY1UdUSVvIJkg';
+        const MAX_YOUTUBE_RESULTS = 12;
+
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger-menu');
             const navList = document.querySelector('.nav-list');
@@ -208,11 +212,51 @@
             
             // Initial setup
             setupMobileMenu();
+            fetchYouTubeVideos();
         });
+
+        function fetchYouTubeVideos() {
+            const container = document.getElementById('videoContainer');
+            if (!container) return;
+
+            container.innerHTML = '<p class="video-status">Loading the latest videos&hellip;</p>';
+
+            const params = new URLSearchParams({
+                key: YOUTUBE_API_KEY,
+                channelId: YOUTUBE_CHANNEL_ID,
+                part: 'snippet,id',
+                order: 'date',
+                maxResults: MAX_YOUTUBE_RESULTS,
+                type: 'video'
+            });
+
+            fetch(`https://www.googleapis.com/youtube/v3/search?${params.toString()}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`YouTube API error: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.items || data.items.length === 0) {
+                        container.innerHTML = '<p class="video-status">No videos available right now. Please check back soon.</p>';
+                        return;
+                    }
+                    container.innerHTML = '';
+                    displayVideos(data.items);
+                })
+                .catch(error => {
+                    console.error('Error fetching YouTube videos:', error);
+                    container.innerHTML = '<p class="video-status">Unable to load videos at the moment. Please try again later.</p>';
+                });
+        }
 
         // Update your video card creation in the displayVideos function
         function displayVideos(videos) {
             const container = document.getElementById('videoContainer');
+            if (!container) return;
+            
+            const fragment = document.createDocumentFragment();
             
             videos.forEach(video => {
                 if (video.id.videoId) {
@@ -236,9 +280,11 @@
                         </div>
                     `;
 
-                    container.appendChild(videoCard);
+                    fragment.appendChild(videoCard);
                 }
             });
+
+            container.appendChild(fragment);
         }
     </script>
 </body>
