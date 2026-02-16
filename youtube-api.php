@@ -32,12 +32,21 @@ $params = http_build_query([
 
 $url = "https://www.googleapis.com/youtube/v3/search?{$params}";
 
-// Fetch from YouTube API
-$response = @file_get_contents($url);
+// Fetch from YouTube API using cURL (more compatible than file_get_contents)
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-if ($response === false) {
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
+curl_close($ch);
+
+if ($response === false || $httpCode !== 200) {
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to fetch YouTube data']);
+    echo json_encode(['error' => 'Failed to fetch YouTube data', 'details' => $error]);
     exit;
 }
 
