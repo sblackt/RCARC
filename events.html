@@ -259,12 +259,14 @@
 
                     const publishDate = new Date(video.snippet.publishedAt).toLocaleDateString();
 
+                    const thumbnailUrl = video.snippet.thumbnails.high?.url || video.snippet.thumbnails.medium?.url || '';
+
                     videoCard.innerHTML = `
-                        <a href="https://www.youtube.com/watch?v=${video.id.videoId}" 
-                           target="_blank" 
+                        <a href="https://www.youtube.com/watch?v=${video.id.videoId}"
+                           target="_blank"
                            aria-label="Watch ${video.snippet.title} (opens in new tab)">
-                            <img class="video-thumbnail" 
-                                 src="${video.snippet.thumbnails.high.url}" 
+                            <img class="video-thumbnail"
+                                 src="${thumbnailUrl}"
                                  alt="${video.snippet.title}">
                         </a>
                         <div class="video-info">
