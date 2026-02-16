@@ -223,7 +223,7 @@
                 maxResults: MAX_YOUTUBE_RESULTS
             });
 
-            fetch(`youtube-api.php?${params.toString()}`)
+            fetch(`youtube-rss.php?${params.toString()}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`YouTube API error: ${response.status}`);

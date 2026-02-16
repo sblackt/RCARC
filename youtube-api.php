@@ -38,17 +38,19 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_REFERER, 'https://rcarc.ca/');
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $error = curl_error($ch);
 curl_close($ch);
 
-if ($response === false || $httpCode !== 200) {
+if ($response === false) {
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to fetch YouTube data', 'details' => $error]);
+    echo json_encode(['error' => 'Failed to fetch YouTube data', 'details' => $error, 'http_code' => $httpCode]);
     exit;
 }
 
-// Return the YouTube API response
+// Return the YouTube API response (even if not 200, let the client handle it)
+http_response_code($httpCode);
 echo $response;
