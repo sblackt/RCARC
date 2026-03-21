@@ -1,3 +1,9 @@
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+              .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
 class CalendarWidget {
     constructor(containerSelector) {
         this.container = document.querySelector(containerSelector);
@@ -189,10 +195,10 @@ for (let day = 1; day <= daysInMonth; day++) {
         calendarHTML += `<div class="event-tooltip">`;
         dayEvents.forEach(event => {
             calendarHTML += `
-                <div class="event-item ${event.type}">
-                    <span class="event-title">${event.title}</span>
-                    <span class="event-time">${event.time}</span>
-                    <span class="event-location">${event.location}</span>
+                <div class="event-item ${escapeHtml(event.type)}">
+                    <span class="event-title">${escapeHtml(event.title)}</span>
+                    <span class="event-time">${escapeHtml(event.time)}</span>
+                    <span class="event-location">${escapeHtml(event.location)}</span>
                 </div>`;
         });
         calendarHTML += `</div>`;

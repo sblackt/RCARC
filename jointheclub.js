@@ -69,9 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 mode: 'no-cors' // Add this line
             });
 
-            // Since we're using no-cors, we won't get response data
-            // Instead, assume success if the request didn't throw an error
-            formMessage.textContent = 'Thank you for your application! We will be in touch soon.';
+            // no-cors mode means we cannot inspect the response — assume success if no error thrown
+            formMessage.textContent = 'Submitted! If you don\'t hear back within a week, email us at renfrewcountyarc@gmail.com.';
             formMessage.className = 'form-message success';
             formMessage.style.display = 'block';
             form.reset();

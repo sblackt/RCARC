@@ -52,14 +52,22 @@
             margin-top: 5px;
         }
     </style>
+    <meta name="description" content="New to amateur radio? Learn how to get started – equipment, licensing, and joining the RCARC community.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Getting Started in Amateur Radio – RCARC">
+    <meta property="og:description" content="New to amateur radio? Learn how to get started – equipment, licensing, and joining the RCARC community.">
+    <meta property="og:url" content="https://rcarc.ca/get-started.html">
+    <meta property="og:image" content="https://rcarc.ca/img/rcarclogo.svg">
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
-                <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
+            <a href="/" class="logo" aria-label="Home">
+                <object type="image/svg+xml" data="img/rcarclogo.svg" class="logo-image" aria-label="RCARC Logo"><img src="img/rcarclogo.svg" alt="RCARC Logo"></object>
             </a>
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li class="nav-dropdown">
@@ -71,27 +79,33 @@
                     </li>
                     <li><a href="history.html" class="nav-link">HISTORY</a></li>
                     <li><a href="events.html" class="nav-link">EVENTS</a></li>
-                    <li><a href="gallery.php" class="nav-link">GALLERY</a></li>
+                    <li><a href="gallery.html" class="nav-link">GALLERY</a></li>
                     <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
-                <div id="hamburger-menu" class="hamburger-menu">
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
                     <span class="menu-text">Menu</span>
-                </div>
+                </button>
             </nav>
-        </div>
-        <div class="membership-banner" role="status" aria-live="polite">
-            <p>New membership fees starting January 1, 2026 &ndash; $35 for Individual, $50 for a family.</p>
         </div>
     </header>
 
-    <main class="about-content">
+    <main class="about-content" role="main" id="main-content">
         <section class="hero">
             <img src="img/hamshakbYF.jpg" alt="Ham Shack" class="hero-image">
               </section>
 
        <div class="getstarted" style="padding-top: 20px;">
-            <h1>Getting Started in Amateur Radio</h1>
+            <h1 class="heading-with-icon">
+                Getting Started in Amateur Radio
+                <svg class="antenna-illustration" width="28" height="44" viewBox="0 0 64 100" fill="none" aria-hidden="true">
+                    <g class="antenna-piece"><rect x="22" y="85" width="20" height="7" rx="2" fill="#4B3E36"/></g>
+                    <g class="antenna-piece"><line x1="32" y1="60" x2="32" y2="85" stroke="#4B3E36" stroke-width="3" stroke-linecap="round"/></g>
+                    <g class="antenna-piece"><line x1="32" y1="60" x2="18" y2="82" stroke="#4B3E36" stroke-width="2" stroke-linecap="round"/></g>
+                    <g class="antenna-piece"><line x1="32" y1="60" x2="46" y2="82" stroke="#4B3E36" stroke-width="2" stroke-linecap="round"/></g>
+                    <g class="antenna-piece"><line x1="32" y1="20" x2="32" y2="60" stroke="#4B3E36" stroke-width="3" stroke-linecap="round"/><path d="M32 15 Q22 8 32 1 Q42 8 32 15" stroke="#CB433F" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+                </svg>
+            </h1>
             <p>New to ham radio? Here's a deep dive into how to get started, what gear you'll need, and what it's all about—from the first transmission to long-distance contacts around the world.</p>
        </div>
             <section class="history-section">
@@ -302,66 +316,35 @@
         </div>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
-            <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
-            <p class="egg"><a href="morse.html">-.-. .--</a></p>
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="get-licensed.html">Get Licensed</a></li>
+                    </ul>
+                </div>
+                <div class="footer-club-info">
+                    <h3>VE3NRR</h3>
+                    <p>Renfrew County, ON</p>
+                    <p>Club Net: Mondays 7:30 PM</p>
+                    <p>146.760 MHz</p>
+                    <p class="footer-signoff">73 de VE3NRR</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Renfrew County Amateur Radio Club. All rights reserved.</p>
+                <p class="egg"><a href="morse.html" aria-label="Morse code easter egg">-.-. .--</a></p>
+            </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger-menu');
-            const navList = document.querySelector('.nav-list');
-            
-            // Check if we're on mobile
-            function isMobile() {
-                return window.innerWidth <= 768;
-            }
-            
-            // Setup mobile menu
-            function setupMobileMenu() {
-                // Clean up any existing mobile-specific elements
-                const existingMobileItems = document.querySelectorAll('.mobile-only');
-                existingMobileItems.forEach(item => item.remove());
-                
-                // Add "Get Started" as a separate menu item in mobile view
-                if (isMobile()) {
-                    // Create a new list item for Get Started
-                    const getStartedItem = document.createElement('li');
-                    getStartedItem.className = 'mobile-only';
-                    getStartedItem.innerHTML = '<a href="get-started.html" class="nav-link">GET STARTED</a>';
-                    
-                    // Create a new list item for Get Licensed 
-                    const getLicensedItem = document.createElement('li');
-                    getLicensedItem.className = 'mobile-only';
-                    getLicensedItem.innerHTML = '<a href="get-licensed.html" class="nav-link">GET LICENSED</a>';
-                    
-                    // Insert after the ABOUT item
-                    const aboutItem = document.querySelector('.nav-dropdown');
-                    if (aboutItem && aboutItem.nextSibling) {
-                        navList.insertBefore(getStartedItem, aboutItem.nextSibling);
-                        navList.appendChild(getLicensedItem);
-                    }
-                }
-            }
-            
-            // Toggle mobile menu
-            hamburger.addEventListener('click', function() {
-                navList.classList.toggle('show');
-                setupMobileMenu();
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (!isMobile()) {
-                    navList.classList.remove('show');
-                }
-            });
-            
-            // Initial setup
-            setupMobileMenu();
-        });
-    </script>
+    <script src="mobile-menu.js"></script>
     <script>
         function openTab(evt, tabName) {
             // Hide all tab content
@@ -381,5 +364,7 @@
             evt.currentTarget.classList.add("active");
         }
     </script>
+    <script src="scroll-animations.js"></script>
+    <script src="easter-eggs.js"></script>
 </body>
 </html>
