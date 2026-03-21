@@ -17,15 +17,23 @@
 
   gtag('config', 'G-QRZJ62CCZR');
 </script>
+    <meta name="description" content="Photo gallery from Renfrew County Amateur Radio Club events and field days.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gallery – Renfrew County Amateur Radio Club">
+    <meta property="og:description" content="Photo gallery from Renfrew County Amateur Radio Club events and field days.">
+    <meta property="og:url" content="https://rcarc.ca/gallery.php">
+    <meta property="og:image" content="https://rcarc.ca/img/rcarclogo.svg">
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
+            <a href="/" class="logo" aria-label="Home">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li class="nav-dropdown">
@@ -42,9 +50,9 @@
                 </ul>
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
                    <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
+<button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
     <span class="menu-text">Menu</span>
-</div>
+</button>
             </nav>
         </div>
         <div class="membership-banner" role="status" aria-live="polite">
@@ -52,7 +60,7 @@
         </div>
     </header>
 
-    <main>
+    <main role="main" id="main-content">
         <div class="content-wrapper">
             <h1>Club Gallery</h1>
             <p class="welcome-text">Events and photos from throughout the club's history.</p>
@@ -62,7 +70,8 @@
                 <?php
                 $images = glob("img/gallery/*.{jpg,png,gif,jpeg}", GLOB_BRACE);
                 foreach ($images as $image) {
-                 echo '<a href="'.$image.'" data-lightbox="gallery"><img src="'.$image.'" class="gallery-image"></a>';
+                    $alt = htmlspecialchars(ucwords(str_replace(['-', '_'], ' ', pathinfo($image, PATHINFO_FILENAME))));
+                    echo '<a href="' . htmlspecialchars($image) . '" data-lightbox="gallery"><img src="' . htmlspecialchars($image) . '" alt="' . $alt . '" class="gallery-image"></a>';
                 }
                 ?>
             </div>
@@ -71,68 +80,15 @@
         </div>
         
     </main>
-    <footer>
+    <footer role="contentinfo">
             <div class="footer-content">
-                <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Renfrew County Amateur Radio Club. All rights reserved.</p>
                 <p class="egg"><a href="morse.html">-.-. .--</a></p>
                 
             </div>
         </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger-menu');
-            const navList = document.querySelector('.nav-list');
-            
-            // Check if we're on mobile
-            function isMobile() {
-                return window.innerWidth <= 768;
-            }
-            
-            // Setup mobile menu
-            function setupMobileMenu() {
-                // Clean up any existing mobile-specific elements
-                const existingMobileItems = document.querySelectorAll('.mobile-only');
-                existingMobileItems.forEach(item => item.remove());
-                
-                // Add "Get Started" as a separate menu item in mobile view
-                if (isMobile()) {
-                    // Create a new list item for Get Started
-                    const getStartedItem = document.createElement('li');
-                    getStartedItem.className = 'mobile-only';
-                    getStartedItem.innerHTML = '<a href="get-started.html" class="nav-link">GET STARTED</a>';
-                    
-                    // Create a new list item for Get Licensed 
-                    const getLicensedItem = document.createElement('li');
-                    getLicensedItem.className = 'mobile-only';
-                    getLicensedItem.innerHTML = '<a href="get-licensed.html" class="nav-link">GET LICENSED</a>';
-                    
-                    // Insert after the ABOUT item
-                    const aboutItem = document.querySelector('.nav-dropdown');
-                    if (aboutItem && aboutItem.nextSibling) {
-                        navList.insertBefore(getStartedItem, aboutItem.nextSibling);
-                        navList.appendChild(getLicensedItem);
-                    }
-                }
-            }
-            
-            // Toggle mobile menu
-            hamburger.addEventListener('click', function() {
-                navList.classList.toggle('show');
-                setupMobileMenu();
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (!isMobile()) {
-                    navList.classList.remove('show');
-                }
-            });
-            
-            // Initial setup
-            setupMobileMenu();
-        });
-    </script>
+    <script src="mobile-menu.js"></script>
 </body>
 </html>

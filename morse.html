@@ -154,15 +154,23 @@ button, select, input[type=number] {
 }
 
   </style>
+    <meta name="description" content="Practice Morse code with the RCARC online Morse Code Trainer. Adjust speed, character sets, and tone frequency.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Morse Code Trainer – Renfrew County Amateur Radio Club">
+    <meta property="og:description" content="Practice Morse code with the RCARC online Morse Code Trainer. Adjust speed, character sets, and tone frequency.">
+    <meta property="og:url" content="https://rcarc.ca/morse.html">
+    <meta property="og:image" content="https://rcarc.ca/img/rcarclogo.svg">
 </head>
 <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
         <div class="header-container">
-            <a href="/" class="logo">
+            <a href="/" class="logo" aria-label="Home">
                 <img src="img/rcarclogo.svg" alt="RCARC Logo" class="logo-image">
             </a>
             
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link active">HOME</a></li>
                     <li><a href="about.html" class="nav-link">ABOUT</a></li>
@@ -175,9 +183,9 @@ button, select, input[type=number] {
      
                 <a href="get-licensed.html" class="license-button">GET LICENSED</a>
    <!-- mobile text "Menu" -->
-<div id="hamburger-menu" class="hamburger-menu">
+<button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
     <span class="menu-text">Menu</span>
-</div>
+</button>
 
             </nav>
         </div>
@@ -233,9 +241,9 @@ button, select, input[type=number] {
 <div class="blurb">
     <p style="font-size: 16px;"> <br> Letter group size will play multiple characters one after the other for you to decode and type. <br> The WPM (words per minute) setting will adjust the speed of the sound. <br> The tone setting will adjust the frequency of the sound. <br> You can also replay the last character by clicking the Replay button.</p>
 </div>
-<footer>
+<footer role="contentinfo">
     <div class="footer-content">
-        <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Renfrew County Amateur Radio Club. All rights reserved.</p>
         <p class="egg"><a href="morse.html">-.-. .--</a></p>
         
     </div>
@@ -365,5 +373,6 @@ function updateInitialSelection() {
       playMorseSequence(currentGroup);
     }
   </script>
+    <script src="mobile-menu.js"></script>
 </body>
 </html>

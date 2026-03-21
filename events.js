@@ -1,3 +1,9 @@
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+              .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
 class EventManager {
     constructor() {
         this.events = {
@@ -10,6 +16,10 @@ class EventManager {
     }
 
     async fetchEvents() {
+        const eventsListDiv = document.querySelector('.events-list');
+        if (eventsListDiv) {
+            eventsListDiv.innerHTML = '<p>Loading events&hellip;</p>';
+        }
         try {
             const response = await fetch('api.php');
             console.log('Response status:', response.status);
@@ -76,7 +86,7 @@ class EventManager {
     showErrorMessage(message = 'Unable to load events. Please try again later.') {
         const eventsListDiv = document.querySelector('.events-list');
         if (eventsListDiv) {
-            eventsListDiv.innerHTML = `<p style="color: red;">${message}</p>`;
+            eventsListDiv.innerHTML = `<p style="color: red;">${escapeHtml(message)}</p>`;
         }
     }
 
@@ -159,14 +169,14 @@ class EventManager {
                 const formattedDate = date.toLocaleDateString('en-US', {
                     month: 'long', day: 'numeric'
                 }).toUpperCase();
-                const topicText = event.topic ? ` – TOPIC: ${event.topic}` : '';
-                const specialText = event.details ? ` – ${event.details}` : '';
-                const nameText = event.name && event.name !== event.type ? `: ${event.name}` : '';
+                const topicText = event.topic ? ` – TOPIC: ${escapeHtml(event.topic)}` : '';
+                const specialText = event.details ? ` – ${escapeHtml(event.details)}` : '';
+                const nameText = event.name && event.name !== event.type ? `: ${escapeHtml(event.name)}` : '';
                 const locationText = event.location === 'ZOOM'
                     ? `<a href="https://tinyurl.com/RCARC-Events" target="_blank">ZOOM</a>`
-                    : event.location;
+                    : escapeHtml(event.location);
 
-                return `<p>${event.type}${nameText} - ${formattedDate}, ${event.time} – ${locationText}${topicText}${specialText}</p>`;
+                return `<p>${escapeHtml(event.type)}${nameText} - ${formattedDate}, ${escapeHtml(event.time)} – ${locationText}${topicText}${specialText}</p>`;
             })
             .join('');
     }

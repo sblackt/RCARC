@@ -16,6 +16,12 @@
 
   gtag('config', 'G-QRZJ62CCZR');
 </script>
+    <meta name="description" content="The Renfrew County Amateur Radio Club – a community of radio amateurs in Renfrew County, Ontario. Join us for meetings, events, and on-air activities.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Renfrew County Amateur Radio Club">
+    <meta property="og:description" content="The Renfrew County Amateur Radio Club – a community of radio amateurs in Renfrew County, Ontario. Join us for meetings, events, and on-air activities.">
+    <meta property="og:url" content="https://rcarc.ca/">
+    <meta property="og:image" content="https://rcarc.ca/img/rcarclogo.svg">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -157,7 +163,7 @@
     </main>
     <footer role="contentinfo">
         <div class="footer-content">
-            <p>&copy; 2025 Renfrew County Amateur Radio Club. All rights reserved.</p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Renfrew County Amateur Radio Club. All rights reserved.</p>
             <p class="egg"><a href="morse.html">-.-. .--</a></p>
             
         </div>
@@ -165,7 +171,7 @@
     <!-- The Modal -->
     <div id="membershipModal" class="modal" role="dialog" aria-modal="true">
         <div class="modal-content">
-            <span class="close" role="button" aria-label="Close" onclick="closeModal()">&times;</span>
+            <button class="close" role="button" aria-label="Close" onclick="closeModal()" aria-label="Close">&times;</button>
             <h2>Membership Application</h2>
             <p>Thanks for your interest in our club! Becoming a member is simple and helps to support our projects and repeaters. <br>Membership is $35 yearly for an individual, or $50 per household. Membership dues can be e-transferred to renfrewcountyarc@gmail.com</p>
             <form id="membershipForm">
@@ -286,60 +292,7 @@ document.addEventListener('DOMContentLoaded', showFirstVisitPopup);
 
     <script src="events.js"></script>
     <script src="jointheclub.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger-menu');
-            const navList = document.querySelector('.nav-list');
-            
-            // Check if we're on mobile
-            function isMobile() {
-                return window.innerWidth <= 768;
-            }
-            
-            // Setup mobile menu
-            function setupMobileMenu() {
-                // Clean up any existing mobile-specific elements
-                const existingMobileItems = document.querySelectorAll('.mobile-only');
-                existingMobileItems.forEach(item => item.remove());
-                
-                // Add "Get Started" as a separate menu item in mobile view
-                if (isMobile()) {
-                    // Create a new list item for Get Started
-                    const getStartedItem = document.createElement('li');
-                    getStartedItem.className = 'mobile-only';
-                    getStartedItem.innerHTML = '<a href="get-started.html" class="nav-link">GET STARTED</a>';
-                    
-                    // Create a new list item for Get Licensed 
-                    const getLicensedItem = document.createElement('li');
-                    getLicensedItem.className = 'mobile-only';
-                    getLicensedItem.innerHTML = '<a href="get-licensed.html" class="nav-link">GET LICENSED</a>';
-                    
-                    // Insert after the ABOUT item
-                    const aboutItem = document.querySelector('.nav-dropdown');
-                    if (aboutItem && aboutItem.nextSibling) {
-                        navList.insertBefore(getStartedItem, aboutItem.nextSibling);
-                        navList.appendChild(getLicensedItem);
-                    }
-                }
-            }
-            
-            // Toggle mobile menu
-            hamburger.addEventListener('click', function() {
-                navList.classList.toggle('show');
-                setupMobileMenu();
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (!isMobile()) {
-                    navList.classList.remove('show');
-                }
-            });
-            
-            // Initial setup
-            setupMobileMenu();
-        });
-    </script>
+    <script src="mobile-menu.js"></script>
     
 </body>
 </html>

@@ -1,3 +1,17 @@
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+              .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function sanitizeUrl(url) {
+    if (!url) return '';
+    try {
+        const u = new URL(url);
+        return (u.protocol === 'https:' || u.protocol === 'http:') ? url : '';
+    } catch { return ''; }
+}
+
 class EventDetailsManager {
     constructor() {
        
@@ -231,41 +245,43 @@ class EventDetailsManager {
                 let eventHtml = `<div class="event-item">`;
                 
                 // Check if topic exists (for techie nights)
-                const topicText = event.topic ? ` – TOPIC: ${event.topic}` : '';
-                
+                const topicText = event.topic ? ` – TOPIC: ${escapeHtml(event.topic)}` : '';
+
                 // Check if location is "ZOOM" and make it a link
-                const locationText = event.location === 'ZOOM' 
-                    ? `<a href="${event.zoomLink}" target="_blank">ZOOM</a>` 
-                    : event.location;
-                
+                const safeZoomLink = sanitizeUrl(event.zoomLink);
+                const locationText = event.location === 'ZOOM'
+                    ? `<a href="${safeZoomLink}" target="_blank">ZOOM</a>`
+                    : escapeHtml(event.location);
+
                 // Add main event info
-                eventHtml += `<p>${event.type} - ${formattedDate}, ${event.time} – ${locationText}${topicText}</p>`;
-                
+                eventHtml += `<p>${escapeHtml(event.type)} - ${formattedDate}, ${escapeHtml(event.time)} – ${locationText}${topicText}</p>`;
+
                 // Add event details section if details exist
                 if (event.details || event.address || event.specialNotes || event.presenter) {
                     eventHtml += `<div class="event-details">`;
-                    
+
                     if (event.details) {
-                        eventHtml += `<p>${event.details}</p>`;
+                        eventHtml += `<p>${escapeHtml(event.details)}</p>`;
                     }
-                    
+
                     if (event.presenter) {
-                        eventHtml += `<p>Presenter: ${event.presenter}</p>`;
+                        eventHtml += `<p>Presenter: ${escapeHtml(event.presenter)}</p>`;
                     }
-                    
+
                     if (event.address) {
-                        eventHtml += `<p class="event-location-details">Address: ${event.address}`;
-                        if (event.mapLink) {
-                            eventHtml += ` (<a href="${event.mapLink}" target="_blank">Map</a>)`;
+                        eventHtml += `<p class="event-location-details">Address: ${escapeHtml(event.address)}`;
+                        const safeMapLink = sanitizeUrl(event.mapLink);
+                        if (safeMapLink) {
+                            eventHtml += ` (<a href="${safeMapLink}" target="_blank">Map</a>)`;
                         }
                         eventHtml += `</p>`;
                     }
-                    
+
                     if (event.specialNotes) {
-                        eventHtml += `<p class="event-special-notes">${event.specialNotes}</p>`;
+                        eventHtml += `<p class="event-special-notes">${escapeHtml(event.specialNotes)}</p>`;
                     }
                     if (event.type === 'SPECIAL EVENTS' && event.name) {
-                        eventHtml += `<p><strong>${event.name}</strong></p>`;
+                        eventHtml += `<p><strong>${escapeHtml(event.name)}</strong></p>`;
                     }
                     
                     eventHtml += `</div>`;
