@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - The Renfrew County Amateur Radio Club</title>
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRZJ62CCZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRZJ62CCZR');
+</script>
+    <meta name="description" content="Photo gallery from Renfrew County Amateur Radio Club events and field days.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gallery – Renfrew County Amateur Radio Club">
+    <meta property="og:description" content="Photo gallery from Renfrew County Amateur Radio Club events and field days.">
+    <meta property="og:url" content="https://rcarc.ca/gallery.html">
+    <meta property="og:image" content="https://rcarc.ca/img/rcarclogo.svg">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <a href="/" class="logo" aria-label="Home">
+                <object type="image/svg+xml" data="img/rcarclogo.svg" class="logo-image" aria-label="RCARC Logo"><img src="img/rcarclogo.svg" alt="RCARC Logo"></object>
+            </a>
+
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" class="nav-link">ABOUT</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About RCARC</a></li>
+                            <li><a href="get-started.html">Getting Started</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="history.html" class="nav-link">HISTORY</a></li>
+                    <li><a href="events.html" class="nav-link">EVENTS</a></li>
+                    <li><a href="gallery.html" class="nav-link active">GALLERY</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+                <a href="get-licensed.html" class="license-button">GET LICENSED</a>
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-text">Menu</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" id="main-content">
+        <div class="content-wrapper">
+            <h1>Club Gallery</h1>
+            <p class="welcome-text">Events and photos from throughout the club&rsquo;s history.</p>
+
+            <div class="tabs" role="tablist" aria-label="Filter gallery by category">
+                <button class="tab-button active" data-filter="all" role="tab" aria-selected="true">All</button>
+            </div>
+
+            <div class="gallery-container" id="gallery-container">
+                <p class="gallery-loading">Loading photos&hellip;</p>
+            </div>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="get-licensed.html">Get Licensed</a></li>
+                    </ul>
+                </div>
+                <div class="footer-club-info">
+                    <h3>VE3NRR</h3>
+                    <p>Renfrew County, ON</p>
+                    <p>Club Net: Mondays 7:30 PM</p>
+                    <p>146.760 MHz</p>
+                    <p class="footer-signoff">73 de VE3NRR</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Renfrew County Amateur Radio Club. All rights reserved.</p>
+                <p class="egg"><a href="morse.html" aria-label="Morse code easter egg">-.-. .--</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script>
+    (function () {
+        var currentFilter = 'all';
+
+        fetch('gallery-config.json')
+            .then(function (r) { return r.json(); })
+            .then(function (config) {
+                buildFilterBar(config.categories);
+                buildGallery(config.categories, config.images);
+            })
+            .catch(function () {
+                document.getElementById('gallery-container').innerHTML =
+                    '<p>Unable to load gallery. Please try again later.</p>';
+            });
+
+        function buildFilterBar(categories) {
+            var bar = document.querySelector('.tabs');
+            categories.forEach(function (cat) {
+                var btn = document.createElement('button');
+                btn.className = 'tab-button';
+                btn.dataset.filter = cat.id;
+                btn.setAttribute('role', 'tab');
+                btn.setAttribute('aria-selected', 'false');
+                btn.textContent = cat.label;
+                bar.appendChild(btn);
+            });
+
+            bar.addEventListener('click', function (e) {
+                var btn = e.target.closest('.tab-button');
+                if (!btn) return;
+                bar.querySelectorAll('.tab-button').forEach(function (b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                currentFilter = btn.dataset.filter;
+                filterGallery(currentFilter);
+            });
+        }
+
+        function buildGallery(categories, images) {
+            var container = document.getElementById('gallery-container');
+            container.innerHTML = '';
+
+            // Group images by category
+            var grouped = {};
+            categories.forEach(function (cat) { grouped[cat.id] = []; });
+
+            Object.keys(images).forEach(function (filename) {
+                var cat = images[filename].category;
+                if (grouped[cat]) grouped[cat].push(filename);
+            });
+
+            // Build a section per category
+            categories.forEach(function (cat) {
+                var files = grouped[cat.id];
+                if (!files.length) return;
+
+                var section = document.createElement('div');
+                section.className = 'gallery-section';
+                section.dataset.category = cat.id;
+
+                var heading = document.createElement('h2');
+                heading.className = 'gallery-section-heading';
+                heading.textContent = cat.label;
+                section.appendChild(heading);
+
+                var grid = document.createElement('div');
+                grid.className = 'gallery';
+
+                files.forEach(function (filename) {
+                    var path = 'img/gallery/' + filename;
+                    var alt = filename
+                        .replace(/\.[^.]+$/, '')
+                        .replace(/[-_]/g, ' ')
+                        .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+
+                    var a = document.createElement('a');
+                    a.href = path;
+                    a.dataset.lightbox = 'gallery-' + cat.id;
+                    a.dataset.title = cat.label;
+
+                    var img = document.createElement('img');
+                    img.src = path;
+                    img.alt = alt;
+                    img.className = 'gallery-image';
+                    img.loading = 'lazy';
+
+                    a.appendChild(img);
+                    grid.appendChild(a);
+                });
+
+                section.appendChild(grid);
+                container.appendChild(section);
+            });
+        }
+
+        function filterGallery(filter) {
+            var sections = document.querySelectorAll('.gallery-section');
+            sections.forEach(function (section) {
+                var visible = filter === 'all' || section.dataset.category === filter;
+                section.style.display = visible ? '' : 'none';
+                // Hide section headings when viewing a single category (tab label makes it clear)
+                var heading = section.querySelector('.gallery-section-heading');
+                if (heading) heading.style.display = filter === 'all' ? '' : 'none';
+            });
+        }
+    })();
+    </script>
+    <script src="mobile-menu.js"></script>
+    <script src="scroll-animations.js"></script>
+    <script src="easter-eggs.js"></script>
+</body>
+</html>
