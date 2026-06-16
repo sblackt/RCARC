@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // no-cors mode means we cannot inspect the response — assume success if no error thrown
-            formMessage.textContent = 'Submitted! If you don\'t hear back within a week, email us at renfrewcountyarc@gmail.com.';
+            formMessage.textContent = 'Submitted! If you don\'t hear back within a week, email us at membership@rcarc.ca.';
             formMessage.className = 'form-message success';
             formMessage.style.display = 'block';
             form.reset();
