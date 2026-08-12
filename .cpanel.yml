@@ -7,9 +7,17 @@ deployment:
     # Marker so we know deploy ran
     - echo "Deployed at $(date)" > $DEPLOYPATH/deploy-log.txt
 
-    # Mirror the repo into public_html, but leave img/gallery/ alone --
-    # admin-uploaded photos live there and must survive redeploys.
-    - rsync -a --delete --exclude 'img/gallery/' . "$DEPLOYPATH"
+    # Make sure img/gallery/ exists before we start wiping, so the excludes below never fail
+    - mkdir -p "$DEPLOYPATH/img/gallery"
+
+    # WARNING: wipe the existing site contents, except img/ (admin-uploaded
+    # photos live in img/gallery/ and must survive redeploys)
+    - find "$DEPLOYPATH" -mindepth 1 -maxdepth 1 ! -name 'img' -exec rm -rf {} \;
+    - find "$DEPLOYPATH/img" -mindepth 1 -maxdepth 1 ! -name 'gallery' -exec rm -rf {} \;
+
+    # Copy everything from the repo into public_html (won't delete the live
+    # gallery uploads, just adds/overwrites files tracked in git)
+    - cp -R . "$DEPLOYPATH"
 
     # Clean up stuff we don't want live
     - rm -rf "$DEPLOYPATH/.git"
