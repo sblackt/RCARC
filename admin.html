@@ -483,7 +483,7 @@
           .then(data => {
             renderCategoryList(data.categories || []);
             renderCategorySelect(data.categories || []);
-            renderPhotoGrid(data.images || {});
+            renderPhotoGrid(data.images || {}, data.categories || []);
           })
           .catch(error => showGalleryError('Error loading gallery: ' + error.message));
       }
@@ -511,7 +511,7 @@
         });
       }
 
-      function renderPhotoGrid(images) {
+      function renderPhotoGrid(images, categories) {
         const grid = document.getElementById('photo-grid');
         grid.innerHTML = '';
         const filenames = Object.keys(images);
@@ -519,18 +519,51 @@
           grid.innerHTML = '<p>No photos yet.</p>';
           return;
         }
+        const slugToDbId = {};
+        categories.forEach(cat => { slugToDbId[cat.id] = cat.db_id; });
+
         filenames.forEach(filename => {
           const photo = images[filename];
           const card = document.createElement('div');
           card.className = 'photo-card';
           card.innerHTML = `
             <img src="img/gallery/${filename}" alt="${photo.caption || filename}" loading="lazy">
-            <div class="photo-meta">${photo.category}</div>
+            <select class="photo-category-select"></select>
             <button type="button" class="delete-button">Delete</button>
           `;
+
+          const select = card.querySelector('.photo-category-select');
+          categories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.db_id;
+            option.textContent = cat.label;
+            if (slugToDbId[photo.category] === cat.db_id) option.selected = true;
+            select.appendChild(option);
+          });
+          select.addEventListener('change', () => updatePhotoCategory(photo.id, select.value));
+
           card.querySelector('.delete-button').addEventListener('click', () => deletePhoto(photo.id));
           grid.appendChild(card);
         });
+      }
+
+      function updatePhotoCategory(id, categoryId) {
+        fetch('gallery-api.php', {
+          method: 'PUT',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, adminHeaders()),
+          body: JSON.stringify({ id, category_id: categoryId })
+        })
+          .then(response => response.json())
+          .then(result => {
+            if (!result.success) {
+              showGalleryError(result.error || 'Error updating category');
+              fetchGallery();
+            }
+          })
+          .catch(error => {
+            showGalleryError('Error updating category: ' + error.message);
+            fetchGallery();
+          });
       }
 
       document.getElementById('category-form').addEventListener('submit', function (e) {

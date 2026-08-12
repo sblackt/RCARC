@@ -171,6 +171,26 @@ if ($method === 'POST') {
     exit;
 }
 
+if ($method === 'PUT') {
+    requireAdmin();
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    $id = $data['id'] ?? 0;
+    $categoryId = (int) ($data['category_id'] ?? 0);
+
+    if (!$id || !$categoryId) {
+        http_response_code(400);
+        echo json_encode(['error' => 'id and category_id are required']);
+        exit;
+    }
+
+    $stmt = $pdo->prepare("UPDATE photos SET category_id = ? WHERE id = ?");
+    $stmt->execute([$categoryId, $id]);
+
+    echo json_encode(['success' => true]);
+    exit;
+}
+
 if ($method === 'DELETE') {
     requireAdmin();
 
