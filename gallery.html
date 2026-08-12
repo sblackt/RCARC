@@ -105,7 +105,7 @@
     (function () {
         var currentFilter = 'all';
 
-        fetch('gallery-config.json')
+        fetch('gallery-api.php')
             .then(function (r) { return r.json(); })
             .then(function (config) {
                 buildFilterBar(config.categories);

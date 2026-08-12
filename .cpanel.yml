@@ -7,11 +7,9 @@ deployment:
     # Marker so we know deploy ran
     - echo "Deployed at $(date)" > $DEPLOYPATH/deploy-log.txt
 
-    # WARNING: wipe the existing site contents
-    - find "$DEPLOYPATH" -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
-
-    # Copy everything from the repo into public_html
-    - cp -R . "$DEPLOYPATH"
+    # Mirror the repo into public_html, but leave img/gallery/ alone --
+    # admin-uploaded photos live there and must survive redeploys.
+    - rsync -a --delete --exclude 'img/gallery/' . "$DEPLOYPATH"
 
     # Clean up stuff we don't want live
     - rm -rf "$DEPLOYPATH/.git"

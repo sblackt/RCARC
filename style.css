@@ -1267,6 +1267,7 @@ ul li .externalLink a {
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 2000;
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 60px;
