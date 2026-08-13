@@ -98,9 +98,19 @@ if ($method === 'POST') {
     }
 
     // Uploading a photo
-    if (empty($_FILES['photo']) || $_FILES['photo']['error'] !== UPLOAD_ERR_OK) {
+    if (empty($_FILES['photo'])) {
         http_response_code(400);
         echo json_encode(['error' => 'photo file is required']);
+        exit;
+    }
+    if ($_FILES['photo']['error'] === UPLOAD_ERR_INI_SIZE || $_FILES['photo']['error'] === UPLOAD_ERR_FORM_SIZE) {
+        http_response_code(400);
+        echo json_encode(['error' => 'File is too large for the server to accept']);
+        exit;
+    }
+    if ($_FILES['photo']['error'] !== UPLOAD_ERR_OK) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Upload failed, please try again']);
         exit;
     }
 
