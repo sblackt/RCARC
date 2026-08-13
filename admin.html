@@ -201,6 +201,13 @@
         </a>
       </div>
     </header>
+
+    <div class="tabs" role="tablist" aria-label="Admin sections">
+      <button type="button" class="tab-button active" data-tab="tab-events" role="tab" aria-selected="true">Events</button>
+      <button type="button" class="tab-button" data-tab="tab-photos" role="tab" aria-selected="false">Photos</button>
+    </div>
+
+    <div id="tab-events" class="tab-content active">
     <h1>Event Manager</h1>
     <p>Leave irrelevant fields blank</p>
     <form id="event-form">
@@ -272,7 +279,9 @@
       </label>
     </div>
     <div id="events-list"></div>
+    </div>
 
+    <div id="tab-photos" class="tab-content">
     <h2 class="section-heading">Photo Gallery</h2>
     <div id="gallery-error" class="error"></div>
 
@@ -305,6 +314,7 @@
 
     <h3 style="margin-top: 25px;">Existing Photos</h3>
     <div id="photo-grid" class="photo-grid"></div>
+    </div>
 
     <!-- Event Manager JavaScript -->
     <script>
@@ -631,6 +641,21 @@
       }
 
       fetchGallery();
+
+      // ---------- Tabs ----------
+      document.querySelectorAll('.tabs .tab-button').forEach(btn => {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.tabs .tab-button').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          document.querySelectorAll('.tab-content').forEach(panel => panel.classList.remove('active'));
+
+          this.classList.add('active');
+          this.setAttribute('aria-selected', 'true');
+          document.getElementById(this.dataset.tab).classList.add('active');
+        });
+      });
     </script>
   </div>
   
