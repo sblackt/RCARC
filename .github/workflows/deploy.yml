@@ -14,7 +14,8 @@ jobs:
           curl -sf \
             -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
             "${{ secrets.CPANEL_HOST }}/execute/VersionControl/update" \
-            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}"
+            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}" \
+            --data-urlencode "branch=main"
 
       - name: Deploy HEAD commit (runs .cpanel.yml)
         run: |
