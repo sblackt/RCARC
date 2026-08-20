@@ -1,0 +1,24 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull latest commit into cPanel checkout
+        run: |
+          curl -sf \
+            -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+            "${{ secrets.CPANEL_HOST }}/execute/VersionControl/update" \
+            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}"
+
+      - name: Deploy HEAD commit (runs .cpanel.yml)
+        run: |
+          curl -sf \
+            -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+            "${{ secrets.CPANEL_HOST }}/execute/VersionControlDeployment/create" \
+            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}"
