@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch: {}
 
+concurrency:
+  group: cpanel-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,9 +21,24 @@ jobs:
             --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}" \
             --data-urlencode "branch=main"
 
-      - name: Deploy HEAD commit (runs .cpanel.yml)
+      - name: Deploy HEAD commit (runs .cpanel.yml) and wait for the result
         run: |
-          curl -sf \
+          resp=$(curl -sf \
             -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
             "${{ secrets.CPANEL_HOST }}/execute/VersionControlDeployment/create" \
-            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}"
+            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}")
+          echo "$resp"
+          deploy_id=$(echo "$resp" | jq -r '.data.deploy_id')
+
+          for i in $(seq 1 60); do
+            sleep 5
+            state=$(curl -sf \
+              -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+              "${{ secrets.CPANEL_HOST }}/execute/VersionControlDeployment/retrieve" \
+              | jq -r ".data[] | select(.deploy_id == $deploy_id) | .timestamps | if has(\"succeeded\") then \"succeeded\" elif has(\"failed\") then \"failed\" else \"pending\" end")
+            echo "deploy $deploy_id: $state"
+            if [ "$state" = "succeeded" ]; then exit 0; fi
+            if [ "$state" = "failed" ]; then echo "::error::cPanel deploy $deploy_id failed"; exit 1; fi
+          done
+          echo "::error::Timed out waiting for cPanel deploy $deploy_id"
+          exit 1
