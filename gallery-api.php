@@ -3,13 +3,12 @@ header('Content-Type: application/json');
 
 $config = require __DIR__ . '/config.php';
 
+require_once __DIR__ . '/auth.php';
+
 $host = $config['db_host'];
 $dbname = $config['db_name'];
 $user = $config['db_user'];
 $pass = $config['db_pass'];
-
-// Must match the admin password in admin.html's login modal.
-const ADMIN_SECRET = 'secretpassword';
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
@@ -22,15 +21,6 @@ try {
     die(json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]));
 }
 
-function requireAdmin() {
-    $headers = getallheaders();
-    $secret = $headers['X-Admin-Secret'] ?? ($_POST['admin_secret'] ?? '');
-    if (!hash_equals(ADMIN_SECRET, (string) $secret)) {
-        http_response_code(401);
-        echo json_encode(['error' => 'Unauthorized']);
-        exit;
-    }
-}
 
 function slugify($label) {
     $slug = strtolower(trim($label));

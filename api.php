@@ -3,6 +3,8 @@ header('Content-Type: application/json');
 
 $config = require __DIR__ . '/config.php';
 
+require_once __DIR__ . '/auth.php';
+
 $host = $config['db_host'];
 $dbname = $config['db_name'];
 $user = $config['db_user'];
@@ -46,6 +48,7 @@ if ($method === 'GET') {
 }
 
 if ($method === 'POST') {
+    requireAdmin();
     $data = json_decode(file_get_contents('php://input'), true);
     $errors = validateEventData($data);
     if (!empty($errors)) {
@@ -71,6 +74,7 @@ if ($method === 'POST') {
 }
 
 if ($method === 'PUT') {
+    requireAdmin();
     $data = json_decode(file_get_contents('php://input'), true);
     $errors = validateEventData($data);
     if (!empty($errors)) {
@@ -102,6 +106,7 @@ if ($method === 'PUT') {
 }
 
 if ($method === 'DELETE') {
+    requireAdmin();
     $id = $_GET['id'] ?? 0;
     $stmt = $pdo->prepare("DELETE FROM events WHERE id=?");
     $stmt->execute([$id]);
