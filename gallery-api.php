@@ -13,7 +13,7 @@ const ADMIN_SECRET = 'secretpassword';
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
-const UPLOAD_DIR = __DIR__ . '/img/gallery/';
+$uploadDir = $config['upload_dir'] ?? (__DIR__ . '/img/gallery/');
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -168,7 +168,7 @@ if ($method === 'POST') {
     }
 
     $storedFilename = bin2hex(random_bytes(8)) . '.' . $ext;
-    if (!move_uploaded_file($file['tmp_name'], UPLOAD_DIR . $storedFilename)) {
+    if (!move_uploaded_file($file['tmp_name'], $uploadDir . $storedFilename)) {
         http_response_code(500);
         echo json_encode(['error' => 'Failed to save uploaded file']);
         exit;
@@ -228,7 +228,7 @@ if ($method === 'DELETE') {
 
     if ($filename) {
         $pdo->prepare("DELETE FROM photos WHERE id = ?")->execute([$id]);
-        $path = UPLOAD_DIR . $filename;
+        $path = $uploadDir . $filename;
         if (is_file($path)) {
             unlink($path);
         }
