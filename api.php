@@ -49,6 +49,7 @@ if ($method === 'GET') {
 
 if ($method === 'POST') {
     requireAdmin();
+    requireCsrf();
     $data = json_decode(file_get_contents('php://input'), true);
     $errors = validateEventData($data);
     if (!empty($errors)) {
@@ -75,6 +76,7 @@ if ($method === 'POST') {
 
 if ($method === 'PUT') {
     requireAdmin();
+    requireCsrf();
     $data = json_decode(file_get_contents('php://input'), true);
     $errors = validateEventData($data);
     if (!empty($errors)) {
@@ -107,6 +109,7 @@ if ($method === 'PUT') {
 
 if ($method === 'DELETE') {
     requireAdmin();
+    requireCsrf();
     $id = $_GET['id'] ?? 0;
     $stmt = $pdo->prepare("DELETE FROM events WHERE id=?");
     $stmt->execute([$id]);

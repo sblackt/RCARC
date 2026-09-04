@@ -15,6 +15,32 @@ function isAdmin(): bool
   return !empty($_SESSION['rcarc_admin']);
 }
 
+function getCsrfToken(): string
+{
+  if (empty($_SESSION['rcarc_csrf_token'])) {
+    $_SESSION['rcarc_csrf_token'] = bin2hex(random_bytes(32));
+  }
+
+  return $_SESSION['rcarc_csrf_token'];
+}
+
+function requireCsrf(): void
+{
+  $providedToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+  $sessionToken = $_SESSION['rcarc_csrf_token'] ?? '';
+
+  if (
+    $providedToken === '' ||
+    $sessionToken === '' ||
+    !hash_equals($sessionToken, $providedToken)
+  ) {
+    http_response_code(403);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Invalid CSRF token']);
+    exit;
+  }
+}
+
 function requireAdmin(): void
 {
   if (!isAdmin()) {
@@ -38,7 +64,7 @@ function loginAdmin(string $password): bool
   session_regenerate_id(true);
   $_SESSION['rcarc_admin'] = true;
   $_SESSION['rcarc_last_activity'] = time();
-
+  $_SESSION['rcarc_csrf_token'] = bin2hex(random_bytes(32));
   return true;
 }
 

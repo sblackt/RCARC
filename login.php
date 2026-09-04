@@ -7,10 +7,13 @@ require_once __DIR__ . '/auth.php';
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') {
-    echo json_encode([
-        'authenticated' => isAdmin()
-    ]);
-    exit;
+  $authenticated = isAdmin();
+
+  echo json_encode([
+    'authenticated' => $authenticated,
+    'csrf_token' => $authenticated ? getCsrfToken() : null
+  ]);
+  exit;
 }
 
 if ($method !== 'POST') {
@@ -28,7 +31,7 @@ if (!loginAdmin($password)) {
     echo json_encode(['error' => 'Invalid password']);
     exit;
 }
-
-echo json_encode([
-    'authenticated' => true
+  echo json_encode([
+    'authenticated' => true,
+    'csrf_token' => getCsrfToken()
 ]);

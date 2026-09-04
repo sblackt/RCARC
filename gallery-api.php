@@ -65,7 +65,7 @@ if ($method === 'GET') {
 
 if ($method === 'POST') {
     requireAdmin();
-
+    requireCsrf();
     // Creating a new category (no file attached)
     if (isset($_POST['action']) && $_POST['action'] === 'create_category') {
         $label = trim($_POST['label'] ?? '');
@@ -175,7 +175,7 @@ if ($method === 'POST') {
 
 if ($method === 'PUT') {
     requireAdmin();
-
+    requireCsrf();
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'] ?? 0;
     $categoryId = (int) ($data['category_id'] ?? 0);
@@ -195,7 +195,7 @@ if ($method === 'PUT') {
 
 if ($method === 'DELETE') {
     requireAdmin();
-
+    requireCsrf();
     $id = $_GET['id'] ?? 0;
 
     if (($_GET['type'] ?? 'photo') === 'category') {
