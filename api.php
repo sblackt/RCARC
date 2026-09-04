@@ -1,10 +1,12 @@
 <?php
 header('Content-Type: application/json');
 
-$host = 'localhost'; // Change if needed
-$dbname = 'rcarc_event_manager';
-$user = 'rcarc_admin';
-$pass = 'thisisthercarcpassword';
+$config = require __DIR__ . '/config.php';
+
+$host = $config['db_host'];
+$dbname = $config['db_name'];
+$user = $config['db_user'];
+$pass = $config['db_pass'];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
