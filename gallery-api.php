@@ -37,7 +37,7 @@ if ($method === 'GET') {
     $photos = $pdo->query(
         "SELECT p.id, p.filename, p.caption, c.slug AS category
          FROM photos p JOIN photo_categories c ON c.id = p.category_id
-         ORDER BY p.uploaded_at DESC"
+         ORDER BY COALESCE(p.taken_at, p.uploaded_at) DESC"
     )->fetchAll(PDO::FETCH_ASSOC);
 
     $images = [];
@@ -157,6 +157,20 @@ if ($method === 'POST') {
         exit;
     }
 
+    $takenAt = null;
+
+    if (function_exists('exif_read_data') && in_array($ext, ['jpg', 'jpeg'], true)) {
+        $exif = @exif_read_data($file['tmp_name']);
+
+        if (!empty($exif['DateTimeOriginal'])) {
+            $dt = DateTime::createFromFormat('Y:m:d H:i:s', $exif['DateTimeOriginal']);
+
+            if ($dt !== false) {
+                $takenAt = $dt->format('Y-m-d H:i:s');
+            }
+        }
+    }
+
     $storedFilename = bin2hex(random_bytes(8)) . '.' . $ext;
     if (!move_uploaded_file($file['tmp_name'], $uploadDir . $storedFilename)) {
         http_response_code(500);
@@ -165,14 +179,25 @@ if ($method === 'POST') {
     }
 
     $stmt = $pdo->prepare(
-        "INSERT INTO photos (filename, original_filename, category_id, caption) VALUES (?, ?, ?, ?)"
+        "INSERT INTO photos (filename, original_filename, category_id, caption, taken_at)
+         VALUES (?, ?, ?, ?, ?)"
     );
-    $stmt->execute([$storedFilename, $file['name'], $categoryId, $_POST['caption'] ?? null]);
 
-    echo json_encode(['success' => true, 'filename' => $storedFilename, 'id' => (int) $pdo->lastInsertId()]);
+    $stmt->execute([
+        $storedFilename,
+        $file['name'],
+        $categoryId,
+        $_POST['caption'] ?? null,
+        $takenAt,
+    ]);
+
+    echo json_encode([
+        'success' => true,
+        'filename' => $storedFilename,
+        'id' => (int) $pdo->lastInsertId(),
+    ]);
     exit;
 }
-
 if ($method === 'PUT') {
     requireAdmin();
     requireCsrf();
