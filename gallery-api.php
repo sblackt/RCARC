@@ -1,17 +1,18 @@
 <?php
 header('Content-Type: application/json');
 
-$host = 'localhost'; // Change if needed
-$dbname = 'rcarc_event_manager';
-$user = 'rcarc_admin';
-$pass = 'thisisthercarcpassword';
+$config = require __DIR__ . '/config.php';
 
-// Must match the admin password in admin.html's login modal.
-const ADMIN_SECRET = 'secretpassword';
+require_once __DIR__ . '/auth.php';
+
+$host = $config['db_host'];
+$dbname = $config['db_name'];
+$user = $config['db_user'];
+$pass = $config['db_pass'];
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
-const UPLOAD_DIR = __DIR__ . '/img/gallery/';
+$uploadDir = $config['upload_dir'] ?? (__DIR__ . '/img/gallery/');
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -20,15 +21,6 @@ try {
     die(json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]));
 }
 
-function requireAdmin() {
-    $headers = getallheaders();
-    $secret = $headers['X-Admin-Secret'] ?? ($_POST['admin_secret'] ?? '');
-    if (!hash_equals(ADMIN_SECRET, (string) $secret)) {
-        http_response_code(401);
-        echo json_encode(['error' => 'Unauthorized']);
-        exit;
-    }
-}
 
 function slugify($label) {
     $slug = strtolower(trim($label));
@@ -45,7 +37,7 @@ if ($method === 'GET') {
     $photos = $pdo->query(
         "SELECT p.id, p.filename, p.caption, c.slug AS category
          FROM photos p JOIN photo_categories c ON c.id = p.category_id
-         ORDER BY p.uploaded_at DESC"
+         ORDER BY COALESCE(p.taken_at, p.uploaded_at) DESC"
     )->fetchAll(PDO::FETCH_ASSOC);
 
     $images = [];
@@ -73,7 +65,7 @@ if ($method === 'GET') {
 
 if ($method === 'POST') {
     requireAdmin();
-
+    requireCsrf();
     // Creating a new category (no file attached)
     if (isset($_POST['action']) && $_POST['action'] === 'create_category') {
         $label = trim($_POST['label'] ?? '');
@@ -165,25 +157,50 @@ if ($method === 'POST') {
         exit;
     }
 
+    $takenAt = null;
+
+    if (function_exists('exif_read_data') && in_array($ext, ['jpg', 'jpeg'], true)) {
+        $exif = @exif_read_data($file['tmp_name']);
+
+        if (!empty($exif['DateTimeOriginal'])) {
+            $dt = DateTime::createFromFormat('Y:m:d H:i:s', $exif['DateTimeOriginal']);
+
+            if ($dt !== false) {
+                $takenAt = $dt->format('Y-m-d H:i:s');
+            }
+        }
+    }
+
     $storedFilename = bin2hex(random_bytes(8)) . '.' . $ext;
-    if (!move_uploaded_file($file['tmp_name'], UPLOAD_DIR . $storedFilename)) {
+    if (!move_uploaded_file($file['tmp_name'], $uploadDir . $storedFilename)) {
         http_response_code(500);
         echo json_encode(['error' => 'Failed to save uploaded file']);
         exit;
     }
 
     $stmt = $pdo->prepare(
-        "INSERT INTO photos (filename, original_filename, category_id, caption) VALUES (?, ?, ?, ?)"
+        "INSERT INTO photos (filename, original_filename, category_id, caption, taken_at)
+         VALUES (?, ?, ?, ?, ?)"
     );
-    $stmt->execute([$storedFilename, $file['name'], $categoryId, $_POST['caption'] ?? null]);
 
-    echo json_encode(['success' => true, 'filename' => $storedFilename, 'id' => (int) $pdo->lastInsertId()]);
+    $stmt->execute([
+        $storedFilename,
+        $file['name'],
+        $categoryId,
+        $_POST['caption'] ?? null,
+        $takenAt,
+    ]);
+
+    echo json_encode([
+        'success' => true,
+        'filename' => $storedFilename,
+        'id' => (int) $pdo->lastInsertId(),
+    ]);
     exit;
 }
-
 if ($method === 'PUT') {
     requireAdmin();
-
+    requireCsrf();
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'] ?? 0;
     $categoryId = (int) ($data['category_id'] ?? 0);
@@ -203,7 +220,7 @@ if ($method === 'PUT') {
 
 if ($method === 'DELETE') {
     requireAdmin();
-
+    requireCsrf();
     $id = $_GET['id'] ?? 0;
 
     if (($_GET['type'] ?? 'photo') === 'category') {
@@ -226,7 +243,7 @@ if ($method === 'DELETE') {
 
     if ($filename) {
         $pdo->prepare("DELETE FROM photos WHERE id = ?")->execute([$id]);
-        $path = UPLOAD_DIR . $filename;
+        $path = $uploadDir . $filename;
         if (is_file($path)) {
             unlink($path);
         }

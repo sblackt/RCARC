@@ -1,0 +1,5 @@
+# Local configuration / secrets
+config.local.php
+
+# Editor backup files
+*~

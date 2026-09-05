@@ -1,10 +1,14 @@
 <?php
 header('Content-Type: application/json');
 
-$host = 'localhost'; // Change if needed
-$dbname = 'rcarc_event_manager';
-$user = 'rcarc_admin';
-$pass = 'thisisthercarcpassword';
+$config = require __DIR__ . '/config.php';
+
+require_once __DIR__ . '/auth.php';
+
+$host = $config['db_host'];
+$dbname = $config['db_name'];
+$user = $config['db_user'];
+$pass = $config['db_pass'];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -44,6 +48,8 @@ if ($method === 'GET') {
 }
 
 if ($method === 'POST') {
+    requireAdmin();
+    requireCsrf();
     $data = json_decode(file_get_contents('php://input'), true);
     $errors = validateEventData($data);
     if (!empty($errors)) {
@@ -69,6 +75,8 @@ if ($method === 'POST') {
 }
 
 if ($method === 'PUT') {
+    requireAdmin();
+    requireCsrf();
     $data = json_decode(file_get_contents('php://input'), true);
     $errors = validateEventData($data);
     if (!empty($errors)) {
@@ -100,6 +108,8 @@ if ($method === 'PUT') {
 }
 
 if ($method === 'DELETE') {
+    requireAdmin();
+    requireCsrf();
     $id = $_GET['id'] ?? 0;
     $stmt = $pdo->prepare("DELETE FROM events WHERE id=?");
     $stmt->execute([$id]);
